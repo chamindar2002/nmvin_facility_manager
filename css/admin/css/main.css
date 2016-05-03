@@ -1,0 +1,51 @@
+html,body{margin:0;padding:0;}
+body{
+    font: 12px arial,sans-serif;
+    color:#606060;
+    
+/*    background: #FAFAFA;*/
+}
+
+#header{
+    height:50px;
+    background: #67bcdb;
+    padding-top: 5px;
+}
+
+#logo{
+    font-size:18px;
+    margin-left:5px;
+}
+
+#content{
+    margin:10px;
+}
+
+.portlet-content{
+    margin-bottom: 50px;
+}
+
+.portlet-content ul{
+  padding: 0;
+  list-style-type:none;   
+}
+
+.portlet-content ul li {
+    display: inline;
+    padding: 2px;
+    
+}
+
+.portlet-content a{
+     background: #335CD6;
+     color:#fff;
+     text-decoration: none;
+     padding:5px;
+}
+
+
+.portlet-content a:hover{
+     background: #99AEEA;
+     color:#fff;
+     
+}
