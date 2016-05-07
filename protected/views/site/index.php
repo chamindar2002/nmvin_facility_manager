@@ -9,7 +9,7 @@ $this->pageTitle=Yii::app()->name;
 
 
 <p>
-<div class="panel panel-primary">
+<div class="panel panel-success">
   <div class="panel-heading">
       Today's Receipts | <i class="fa fa-calendar"></i>
         <?= date('Y-M-d'); ?></div>
