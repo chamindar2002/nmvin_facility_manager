@@ -99,7 +99,8 @@ class PaymentsController extends Controller
             $customer_id = $id;
             //sleep(5);
             //$this->renderPartial('application.modules.reports.views.payments._results',array('customer_id'=>$customer_id));
-                
+            $facility = FacilityMaster::model()->findByPk($facility_master_id);
+            
             $mPDF1 = Yii::app()->ePdf->mpdf('','A4');
             $stylesheet = file_get_contents(Yii::app()->getBasePath().'/modules/reports/views/payments/pdf.css'); // external css
             $mPDF1->WriteHTML($stylesheet,1);
@@ -108,6 +109,7 @@ class PaymentsController extends Controller
                             'application.modules.reports.views.payments._results',
                             array(
                                 'customer_id'=>$customer_id,
+                                'facility'=>$facility,
                                 'facility_master_id'=>$facility_master_id),
                                 2));               
             $mPDF1->Output('Repayment_report.pdf','D'); 
