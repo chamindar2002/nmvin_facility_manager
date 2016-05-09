@@ -42,6 +42,7 @@ class DuesController extends Controller
             $criteria = new CDbCriteria();
             $criteria->compare('deleted',0);
             $criteria->compare('is_active',1);
+            $criteria->order = 'blockrefnumber ASC';
             
             if(Yii::app()->getRequest()->getParam('lid')){
                 $lid = Yii::app()->getRequest()->getParam('lid');
@@ -70,6 +71,7 @@ class DuesController extends Controller
             $criteria = new CDbCriteria();
             $criteria->compare('deleted',0);
             $criteria->compare('is_active',1);
+            $criteria->order = 'blockrefnumber ASC';
             
             if(Yii::app()->getRequest()->getParam('lid')){
                 $lid = Yii::app()->getRequest()->getParam('lid');

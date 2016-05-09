@@ -16,10 +16,11 @@ $criteria->order = 'id';
 
 $repaymentSchema = RepaymentSchema::model()->findAll($criteria);
 
+
 $customer = Customerdetails::model()->getFullName2($customer_id);
 $faddress = Customerdetails::model()->getFullAddress($customer_id);
 
-$fcm = ViewFacilityCustomerBlockRelation::model()->findByAttributes(array('customer_id'=>$customer_id));
+$fcm = ViewFacilityCustomerBlockRelation::model()->findByAttributes(array('facility_master_id'=>$facility_master_id));
 
 
 #fetch totals
