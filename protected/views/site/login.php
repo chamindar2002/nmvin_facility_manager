@@ -27,13 +27,13 @@ $this->breadcrumbs=array(
         <?php echo $form->errorSummary($model); ?>
          <div class="form-group">
 		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('class'=>'form-control input-lg', 'placeholder'=>'Email')); ?>
+		<?php echo $form->textField($model,'username',array('class'=>'form-control input-sm', 'placeholder'=>'Email')); ?>
 		<?php echo $form->error($model,'username'); ?>
             </div>
         
         <div class="form-group">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('class'=>'form-control input-lg', 'placeholder'=>'Password')); ?>
+		<?php echo $form->passwordField($model,'password',array('class'=>'form-control input-sm', 'placeholder'=>'Password')); ?>
 		<?php echo $form->error($model,'password'); ?>
             </div>
 	
