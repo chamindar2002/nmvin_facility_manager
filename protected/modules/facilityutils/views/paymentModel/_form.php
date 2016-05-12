@@ -27,10 +27,10 @@
 		<?php 
                 //echo $form->textField($model,'payment_plan_master_id');
                 if($model->isNewRecord){
-                    echo $form->dropDownList($model, 'payment_plan_master_id', CHtml::listData(PaymentPlanMaster::model()->findAll(), 'id', 'name'), array('prompt' => '','class'=>'form-control input-lg'));
+                    echo $form->dropDownList($model, 'payment_plan_master_id', CHtml::listData(PaymentPlanMaster::model()->findAll(), 'id', 'name'), array('prompt' => '','class'=>'form-control input-sm'));
                 }else{
-                    echo CHtml::telField('dummy',$model->paymentPlanMaster->name,array('class'=>'form-control input-lg','readonly'=>'readonly'));
-                    echo $form->hiddenField($model, 'payment_plan_master_id', array('readonly' => 'readonly','class'=>'form-control input-lg'));
+                    echo CHtml::telField('dummy',$model->paymentPlanMaster->name,array('class'=>'form-control input-sm','readonly'=>'readonly'));
+                    echo $form->hiddenField($model, 'payment_plan_master_id', array('readonly' => 'readonly','class'=>'form-control input-sm'));
                 }
                 ?>
 		<?php echo $form->error($model,'payment_plan_master_id'); ?>
@@ -41,17 +41,17 @@
 		<?php 
                 //echo $form->textField($model,'payment_plan_item_id');
                 /*if($model->isNewRecord){
-                    echo $form->dropDownList($model, 'payment_plan_item_id', CHtml::listData(PaymentPlanItems::model()->findAll(), 'id', 'name'), array('prompt' => '','class'=>'form-control input-lg'));
+                    echo $form->dropDownList($model, 'payment_plan_item_id', CHtml::listData(PaymentPlanItems::model()->findAll(), 'id', 'name'), array('prompt' => '','class'=>'form-control input-sm'));
                 }else{
-                    echo $form->dropDownList($model, 'payment_plan_item_id', $AvailablePaymentPlanItems, array('prompt' => '','class'=>'form-control input-lg'));
+                    echo $form->dropDownList($model, 'payment_plan_item_id', $AvailablePaymentPlanItems, array('prompt' => '','class'=>'form-control input-sm'));
                 }*/
                 //if($model->is_installment_definer == 1){
                     //echo 'installment definer : '.$model->is_installment_definer;
-                        //echo CHtml::telField('dummy',$model->paymentPlanItem->name,array('class'=>'form-control input-lg','readonly'=>'readonly'));
-                        //echo $form->hiddenField($model, 'payment_plan_item_id', array('readonly' => 'readonly','class'=>'form-control input-lg'));
+                        //echo CHtml::telField('dummy',$model->paymentPlanItem->name,array('class'=>'form-control input-sm','readonly'=>'readonly'));
+                        //echo $form->hiddenField($model, 'payment_plan_item_id', array('readonly' => 'readonly','class'=>'form-control input-sm'));
                     
                //}else{
-                    echo $form->dropDownList($model, 'payment_plan_item_id', $AvailablePaymentPlanItems, array('prompt' => '','class'=>'form-control input-lg'));
+                    echo $form->dropDownList($model, 'payment_plan_item_id', $AvailablePaymentPlanItems, array('prompt' => '','class'=>'form-control input-sm'));
                 //}
                 ?>
 		<?php echo $form->error($model,'payment_plan_item_id'); ?>
@@ -83,13 +83,13 @@
         
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'no_of_installments'); ?>
-		<?php echo $form->textField($model,'no_of_installments',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'no_of_installments',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'no_of_installments'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'installment_amount'); ?>
-		<?php echo $form->textField($model,'installment_amount',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'installment_amount',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'installment_amount'); ?>
 	</div>
         
@@ -97,19 +97,19 @@
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'interest'); ?>
-		<?php echo $form->textField($model,'interest',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'interest',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'interest'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'tax'); ?>
-		<?php echo $form->textField($model,'tax',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'tax',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'tax'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'total_payable'); ?>
-		<?php echo $form->textField($model,'total_payable',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'total_payable',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'total_payable'); ?>
 	</div>
 
@@ -133,7 +133,7 @@
 
         <div class="form-group">
 		<?php echo $form->labelEx($model,'payment_sequence'); ?>
-		<?php echo $form->textField($model,'payment_sequence',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'payment_sequence',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'payment_sequence'); ?>
 	</div>
 

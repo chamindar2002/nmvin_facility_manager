@@ -40,7 +40,7 @@ $this->widget('ext.myAutoComplete', array(
         
         
     ),
-    'htmlOptions' => array('class' => 'input-1 form-control input-lg', 'autocomplete' => 'off'),
+    'htmlOptions' => array('class' => 'input-1 form-control input-sm', 'autocomplete' => 'off'),
     'methodChain' => '.data( "autocomplete" )._renderItem = function( ul, item ) {
         return $( "<li></li>" )
         .data( "item.msearch_receipt_master", item )

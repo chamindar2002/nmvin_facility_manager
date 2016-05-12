@@ -26,7 +26,7 @@ echo $r;
         <div class="form-group">
 		<?php echo $form->labelEx($model,'receipt_date'); ?>
 		<?php
-                //echo $form->textField($model,'receipt_date',array('class'=>'form-control input-lg'));
+                //echo $form->textField($model,'receipt_date',array('class'=>'form-control input-sm'));
                  
                 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                                 'model' => $model,
@@ -45,7 +45,7 @@ echo $r;
                                     
                                 ),
                                 'htmlOptions'=>array(
-                                    'class'=>'form-control input-lg',
+                                    'class'=>'form-control input-sm',
                                     'value'=> date('d-m-Y'),
                                 ),
                             ));
@@ -71,8 +71,8 @@ echo $r;
 		<?php echo $form->labelEx($model,'facility_master_id'); ?>
            
                 <?php
-                echo $form->hiddenField($model,'facility_master_id',array('class'=>'form-control input-lg'));
-                //echo $form->dropDownList($model, 'facility_master_id', CHtml::listData(FacilityMaster::getValidFacility($customer_id), 'id', 'name'), array('prompt' => '','class'=>'form-control input-lg'));
+                echo $form->hiddenField($model,'facility_master_id',array('class'=>'form-control input-sm'));
+                //echo $form->dropDownList($model, 'facility_master_id', CHtml::listData(FacilityMaster::getValidFacility($customer_id), 'id', 'name'), array('prompt' => '','class'=>'form-control input-sm'));
                 ?>
                  <div id='facility_master_placeholder'>
                      <?php $this->renderPartial('_facility_master',array('fm'=>$fm)); ?>
@@ -84,25 +84,25 @@ echo $r;
 
 <!--	<div class="form-group">
 		<?php echo $form->labelEx($model,'customer_id'); ?>
-		<?php echo $form->textField($model,'customer_id',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'customer_id',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'customer_id'); ?>
 	</div>-->
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'customer_name'); ?>
-		<?php echo $form->textField($model,'customer_name',array('size'=>60,'maxlength'=>255,'class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'customer_name',array('size'=>60,'maxlength'=>255,'class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'customer_name'); ?>
 	</div>
 
 <!--	<div class="form-group">
 		<?php echo $form->labelEx($model,'transaction_id'); ?>
-		<?php echo $form->textField($model,'transaction_id',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'transaction_id',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'transaction_id'); ?>
 	</div>-->
 
         <div class="form-group">
 		<?php echo $form->labelEx($model,'amount_paid'); ?>
-		<?php echo $form->textField($model,'amount_paid',array('class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'amount_paid',array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'amount_paid'); ?>
 	</div>
 

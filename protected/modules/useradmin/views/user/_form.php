@@ -23,32 +23,32 @@
 		<?php echo $form->labelEx($model,'enabled'); ?>
 		<?php 
                 //echo $form->textField($model,'enabled');
-                echo $form->dropdownlist($model,'enabled',User::model()->userStates(),array('class'=>'form-control input-lg'));
+                echo $form->dropdownlist($model,'enabled',User::model()->userStates(),array('class'=>'form-control input-sm'));
                 ?>
 		<?php echo $form->error($model,'enabled'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'loginname'); ?>
-		<?php echo $form->textField($model,'loginname',array('size'=>60,'maxlength'=>200,'class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'loginname',array('size'=>60,'maxlength'=>200,'class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'loginname'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'familyname'); ?>
-		<?php echo $form->textField($model,'familyname',array('size'=>60,'maxlength'=>200,'class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'familyname',array('size'=>60,'maxlength'=>200,'class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'familyname'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'firstname'); ?>
-		<?php echo $form->textField($model,'firstname',array('size'=>60,'maxlength'=>200,'class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'firstname',array('size'=>60,'maxlength'=>200,'class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'firstname'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>200, 'class'=>'form-control input-lg')); ?>
+		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>200, 'class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 

@@ -9,9 +9,9 @@ if($fm){
 }
 //echo $sale->projectMaster->projectname.' - '.$sale->blockDetails->blocknumber;
 if(sizeof($sale) > 0){
-    echo CHtml::textField('dummy_project_dls',$sale->location->locationname.' - '.$sale->projectMaster->projectname.' - '.$sale->blockDetails->blocknumber,array('class'=>'form-control input-lg'));
+    echo CHtml::textField('dummy_project_dls',$sale->location->locationname.' - '.$sale->projectMaster->projectname.' - '.$sale->blockDetails->blocknumber,array('class'=>'form-control input-sm'));
 }else{
-    echo CHtml::textField('dummy_project_dls','',array('class'=>'form-control input-lg'));
+    echo CHtml::textField('dummy_project_dls','',array('class'=>'form-control input-sm'));
 }
 
 

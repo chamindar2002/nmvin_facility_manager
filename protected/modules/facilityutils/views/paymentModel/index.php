@@ -64,7 +64,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
       <div class="modal-body">
         <div class="form-group">
             <label>Payment Model Item</label>
-           <select id="sort_payplan_model" name="sort_payplan_model" class="form-control input-lg">
+           <select id="sort_payplan_model" name="sort_payplan_model" class="form-control input-sm">
                <?php 
                 $data = $dataProvider->data;
                 foreach($data As $d){
@@ -75,7 +75,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             </select>
             
             <label>Sort Sequence</label>
-            <select id="sort_payplan_sequence" name="sort_payplan_sequence" class="form-control input-lg">
+            <select id="sort_payplan_sequence" name="sort_payplan_sequence" class="form-control input-sm">
                 <option value="-1"></option>
                <?php 
                 

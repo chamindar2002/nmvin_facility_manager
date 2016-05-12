@@ -32,7 +32,7 @@
 		<?php //echo $form->labelEx($model,'customer_id'); ?>
 		<?php 
                 //echo $form->textField($model,'customer_id');
-                //echo $form->dropDownList($model, 'customer_id',  CHtml::listData(Customerdetails::model()->findAll(), 'customercode', 'familyname'), array('prompt' => '','class'=>'form-control input-lg'));
+                //echo $form->dropDownList($model, 'customer_id',  CHtml::listData(Customerdetails::model()->findAll(), 'customercode', 'familyname'), array('prompt' => '','class'=>'form-control input-sm'));
                 ?>
 		<?php //echo $form->error($model,'customer_id'); ?>
 <!--	</div>-->
@@ -42,10 +42,10 @@
 		<?php
                 //echo $form->textField($model,'payment_plan_master_id');
                 if($model->isNewRecord){
-                    //echo $form->dropDownList($model, 'payment_plan_master_id',  CHtml::listData(PaymentPlanMaster::model()->findAll(), 'id', 'name'), array('prompt' => '','class'=>'form-control input-lg'));
-                    echo $form->dropDownList($model, 'payment_plan_master_id', PaymentPlanMaster::model()->listPaymentPlans($model->customer_id), array('prompt' => '','class'=>'form-control input-lg'));
+                    //echo $form->dropDownList($model, 'payment_plan_master_id',  CHtml::listData(PaymentPlanMaster::model()->findAll(), 'id', 'name'), array('prompt' => '','class'=>'form-control input-sm'));
+                    echo $form->dropDownList($model, 'payment_plan_master_id', PaymentPlanMaster::model()->listPaymentPlans($model->customer_id), array('prompt' => '','class'=>'form-control input-sm'));
                 }else{
-                    echo CHtml::telField('dummypayment_plan_master_id',$model->paymentPlanMaster->name, array('readonly'=>'readonly','class'=>'form-control input-lg'));
+                    echo CHtml::telField('dummypayment_plan_master_id',$model->paymentPlanMaster->name, array('readonly'=>'readonly','class'=>'form-control input-sm'));
                     echo $form->hiddenField($model,'payment_plan_master_id');
                 }
                 ?>

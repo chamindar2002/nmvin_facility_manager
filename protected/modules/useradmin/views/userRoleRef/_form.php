@@ -24,7 +24,7 @@
 		<?php 
                     //echo $form->textField($model,'uid'); 
                     echo $form->dropDownList($model,'uid',CHtml::listData(User::model()->findAll(), 'uid', 'loginname'),
-                                                array('prompt'=>'Select User','class'=>'form-control input-lg'));
+                                                array('prompt'=>'Select User','class'=>'form-control input-sm'));
                 ?>
 		<?php echo $form->error($model,'uid'); ?>
 	</div>
@@ -34,7 +34,7 @@
 		<?php
                 //echo $form->textField($model,'rid');
                     echo $form->dropDownList($model,'rid',CHtml::listData(Role::model()->findAll(), 'rid', 'name'), 
-                        array('prompt'=>'Select Role','class'=>'form-control input-lg'));
+                        array('prompt'=>'Select Role','class'=>'form-control input-sm'));
                 ?>
 		<?php echo $form->error($model,'rid'); ?>
 	</div>

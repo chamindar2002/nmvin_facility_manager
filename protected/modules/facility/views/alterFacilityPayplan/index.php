@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
                    $facility->customer_id),
                    array(
                        'prompt' => '',
-                       'class'=>'form-control input-lg',
+                       'class'=>'form-control input-sm',
                        'options'=>$selectedOptions,
                        ));
      ?>

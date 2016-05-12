@@ -16,15 +16,15 @@
       
         <div class="form-group">
 		<?php echo CHtml::label('Cheque Number',''); ?>
-		<?php echo $form->textField($model,'cheque_number',array('size'=>60,'maxlength'=>255,'class'=>'form-control input-lg')); ?>
+		<?php echo $form->textField($model,'cheque_number',array('size'=>60,'maxlength'=>255,'class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'cheque_number'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo CHtml::label('Bank',''); ?>
 		<?php
-                //echo $form->textField($model,'bank',array('size'=>60,'maxlength'=>255,'class'=>'form-control input-lg'));
-                echo $form->dropdownlist($model,'bank',CHtml::listData($banks, 'id','bank_name'),array('prompt'=>'','class'=>'form-control input-lg'));
+                //echo $form->textField($model,'bank',array('size'=>60,'maxlength'=>255,'class'=>'form-control input-sm'));
+                echo $form->dropdownlist($model,'bank',CHtml::listData($banks, 'id','bank_name'),array('prompt'=>'','class'=>'form-control input-sm'));
                 ?>
 		<?php echo $form->error($model,'bank'); ?>
 	</div>

@@ -9,7 +9,7 @@ $this->breadcrumbs = array(
 <?php echo CHtml::label('From', ''); ?>
 <?php
 
-//echo $form->textField($model,'receipt_date',array('class'=>'form-control input-lg'));
+//echo $form->textField($model,'receipt_date',array('class'=>'form-control input-sm'));
 
 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
     //'model' => $model,
@@ -24,7 +24,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
         'yearRange' => "2014:2030",
     ),
     'htmlOptions' => array(
-        'class' => 'form-control input-lg',
+        'class' => 'form-control input-sm',
         'value' => date('d-m-Y'),
     ),
 ));
@@ -34,7 +34,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 <?php echo CHtml::label('To', ''); ?>
 <?php
 
-//echo $form->textField($model,'receipt_date',array('class'=>'form-control input-lg'));
+//echo $form->textField($model,'receipt_date',array('class'=>'form-control input-sm'));
 
 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
     //'model' => $model,
@@ -49,7 +49,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
         'yearRange' => "2014:2030",
     ),
     'htmlOptions' => array(
-        'class' => 'form-control input-lg',
+        'class' => 'form-control input-sm',
         'value' => date('d-m-Y'),
     ),
 ));
@@ -59,7 +59,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 <?php echo CHtml::dropDownList('bank_id', 'bank_id', 
         CHtml::listData(
                 PaymentBank::model()->findAll(), 'id', 'bank_name'),
-                array('prompt' => 'All','class'=>'form-control input-lg'));
+                array('prompt' => 'All','class'=>'form-control input-sm'));
 ?>
 
 
@@ -67,7 +67,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 <?php echo CHtml::dropDownList('user_id', 'user_id', 
         CHtml::listData(
                  User::model()->listAllValidUsers(), 'uid', 'loginname'),
-                array('prompt' => 'All','class'=>'form-control input-lg'));
+                array('prompt' => 'All','class'=>'form-control input-sm'));
 ?>
 
 
