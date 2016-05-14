@@ -155,7 +155,19 @@ class utilsComponents {
             } 
 
             return $res; 
-        } 
+        }
+
+    public static function getCutomerTitles(){
+        return array(
+            'MR'=>'Mr.',
+            'DR'=>'Dr.',
+            'MRS'=>'Mrs',
+            'MISS'=>'Miss',
+            'Rev'=>'Rev',
+            'M/S'=>'M/S',
+            'OTHER'=>'Other'
+        );
+    }
 }
 
 ?>
