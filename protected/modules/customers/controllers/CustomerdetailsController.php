@@ -36,7 +36,7 @@ class CustomerdetailsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'delete', 'admin'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -55,9 +55,10 @@ class CustomerdetailsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
+		/*$this->render('view',array(
 			'model'=>$this->loadModel($id),
-		));
+		));*/
+		$this->actionUpdate($id);
 	}
 
 	/**
@@ -74,8 +75,11 @@ class CustomerdetailsController extends Controller
 		if(isset($_POST['Customerdetails']))
 		{
 			$model->attributes=$_POST['Customerdetails'];
-			if($model->save())
+			if($model->save()){
+				Yii::app()->user->setFlash('success','Customer details saved successfully');
 				$this->redirect(array('view','id'=>$model->customercode));
+			}
+
 		}
 
 		$this->render('create',array(
@@ -98,8 +102,11 @@ class CustomerdetailsController extends Controller
 		if(isset($_POST['Customerdetails']))
 		{
 			$model->attributes=$_POST['Customerdetails'];
-			if($model->save())
+			if($model->save()){
+				Yii::app()->user->setFlash('success','Customer details saved successfully');
 				$this->redirect(array('view','id'=>$model->customercode));
+			}
+
 		}
 
 		$this->render('update',array(
@@ -114,7 +121,14 @@ class CustomerdetailsController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+
+		User::_can(['manager','admin']);
+
+		$model=$this->loadModel($id);
+		$model->deleted= 1;
+		$model->deletedby = yii::app()->user->userId;
+		//$model->deleteddate = CDbExpression('NOW()');
+		$model->save();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

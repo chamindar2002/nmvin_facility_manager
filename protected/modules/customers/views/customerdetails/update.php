@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Customerdetails'=>array('index'),
-	$model->title=>array('view','id'=>$model->customercode),
+	$model->firstname=>array('view','id'=>$model->customercode),
 	'Update',
 );
 
@@ -15,15 +15,26 @@ $this->breadcrumbs=array(
 	array('label'=>'Manage Customerdetails', 'url'=>array('admin')),
 );*/
 
-$this->menu=array(
-	array('label'=>'List', 'url'=>array('index')),
-	array('label'=>'Add', 'url'=>array('create')),
-	array('label'=>'View', 'url'=>array('view', 'id'=>$model->customercode)),
-	array('label'=>'Manage', 'url'=>array('admin')),
-        array('label'=>'Delete', 'url'=>array('delete', 'id'=>$model->customercode)),
-);
-?>
 
-<h1>Update Customerdetails <?php echo $model->customercode; ?></h1>
+if(User::_can(['manager','admin'], true)){
+	$this->menu=array(
+		array('label'=>'List', 'url'=>array('index')),
+		array('label'=>'Add', 'url'=>array('create')),
+		array('label'=>'Manage', 'url'=>array('admin')),
+
+	);
+}else{
+
+
+	$this->menu=array(
+		array('label'=>'List', 'url'=>array('index')),
+		array('label'=>'Add', 'url'=>array('create')),
+
+
+	);
+}
+
+
+?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
