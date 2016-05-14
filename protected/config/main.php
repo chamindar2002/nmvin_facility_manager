@@ -21,6 +21,7 @@ return array(
                 'application.modules.facility.models.*',
                 'application.modules.facilityutils.models.*',
                 'application.modules.payments.models.*',
+				'application.modules.customers.models.*',
 	),
 
 	'modules'=>array(
@@ -38,6 +39,7 @@ return array(
                 'payments' => array(),
                 'reports'=> array(),
                 'dataimport'=>array(),
+				'customers'=>array(),
                 
 	),
 
@@ -60,6 +62,9 @@ return array(
                                 //''=>'mall/',
 			),
 		),
+
+
+
 		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
@@ -68,28 +73,40 @@ return array(
                  */
 		// uncomment the following to use a MySQL database
 		
-		'db'=>array(
+		/*'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=nmwndb_asiast',
 			'emulatePrepare' => true,
 			'username' => 'root',
+<<<<<<< HEAD
 			'password' => 'ceylonlinux',
+=======
+			'password' => 'password',
+>>>>>>> 64b4f652c0f222b4ed5ed749faa12dde002a994f
 			'charset' => 'utf8',
                         'enableProfiling'=>true,
                         'enableParamLogging'=>true,
-		),
-            
-                'db2'=>array(
+		),*/
+
+		'db' => require(dirname(__FILE__) . '/db.php'),
+		'db2' => require(dirname(__FILE__) . '/db2.php'),
+
+		/*'db2'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=nmwndb',
 			'emulatePrepare' => true,
 			'username' => 'root',
+<<<<<<< HEAD
 			'password' => 'ceylonlinux',
+=======
+			'password' => 'password',
+>>>>>>> 64b4f652c0f222b4ed5ed749faa12dde002a994f
 			'charset' => 'utf8',
                         'class'   => 'CDbConnection',
                         'enableProfiling'=>true,
                         'enableParamLogging'=>true,
-                       
-		),
-                'authManager'=>array(
+
+		),*/
+
+		'authManager'=>array(
                     'class'=>'CDbAuthManager',
                     'connectionId'=>'db',
                 ),
