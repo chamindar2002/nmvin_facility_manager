@@ -63,7 +63,8 @@ class Customerdetails extends NmwndbActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('familyname, firstname, addressline1, addressline2, postcode, country, email, landline, passportno, sladdressline1, sladdressline2, sladdressline3, sllandline, slcontactperson', 'required'),
+			array('familyname, firstname, addressline1, addressline2, landline, passportno, mobile', 'required'),
+			array('passportno', 'unique', 'message' => "This ID/Passport number already exists."),
 			array('onlineuserid, deleted, addedby, lastmodifiedby, deletedby', 'numerical', 'integerOnly'=>true),
 			array('title, gender', 'length', 'max'=>10),
 			array('familyname, firstname, addressline1, addressline2, email, Skype, landline, mobile, workphone, fax, proffession, passportno, sladdressline1, sladdressline2, sladdressline3, sllandline, slmobile, slcontactperson', 'length', 'max'=>100),
@@ -95,10 +96,10 @@ class Customerdetails extends NmwndbActiveRecord
 		return array(
 			'customercode' => 'Customercode',
 			'title' => 'Title',
-			'familyname' => 'Familyname',
-			'firstname' => 'Firstname',
-			'addressline1' => 'Addressline1',
-			'addressline2' => 'Addressline2',
+			'familyname' => 'Family Name',
+			'firstname' => 'First Name',
+			'addressline1' => 'Address Line 1',
+			'addressline2' => 'Address Line 2',
 			'postcode' => 'Postcode',
 			'country' => 'Country',
 			'email' => 'Email',
@@ -109,13 +110,13 @@ class Customerdetails extends NmwndbActiveRecord
 			'fax' => 'Fax',
 			'proffession' => 'Proffession',
 			'gender' => 'Gender',
-			'passportno' => 'Passportno',
-			'sladdressline1' => 'Sladdressline1',
-			'sladdressline2' => 'Sladdressline2',
-			'sladdressline3' => 'Sladdressline3',
-			'sllandline' => 'Sllandline',
-			'slmobile' => 'Slmobile',
-			'slcontactperson' => 'Slcontactperson',
+			'passportno' => 'Passport/NIC Number',
+			'sladdressline1' => 'Address In Sri Lanka Line 1',
+			'sladdressline2' => 'Address In Sri Lanka Line 2',
+			'sladdressline3' => 'Address In Sri Lanka Line 3',
+			'sllandline' => 'Land Line',
+			'slmobile' => 'Mobile',
+			'slcontactperson' => 'Contact Person in Sri Lanka',
 			'onlineuserid' => 'Onlineuserid',
 			'deleted' => 'Deleted',
 			'addedby' => 'Addedby',
@@ -172,7 +173,7 @@ class Customerdetails extends NmwndbActiveRecord
 		$criteria->compare('slmobile',$this->slmobile,true);
 		$criteria->compare('slcontactperson',$this->slcontactperson,true);
 		$criteria->compare('onlineuserid',$this->onlineuserid);
-		$criteria->compare('deleted',$this->deleted);
+		$criteria->compare('deleted',0);
 		$criteria->compare('addedby',$this->addedby);
 		$criteria->compare('addeddate',$this->addeddate,true);
 		$criteria->compare('addedtime',$this->addedtime,true);
@@ -185,6 +186,10 @@ class Customerdetails extends NmwndbActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+
+			'sort'=>array(
+				'defaultOrder'=>'customercode DESC',
+			),
 		));
 	}
 
