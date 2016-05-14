@@ -237,6 +237,16 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-arrows-v"></i> Customer Management <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo4" class="collapse">
+                            <li>
+                                <?php echo CHtml::link('Customers',array('/customers/Customerdetails/index')); ?>
+                            </li>
+
+                        </ul>
+                    </li>
                     
                      <li>
                         
