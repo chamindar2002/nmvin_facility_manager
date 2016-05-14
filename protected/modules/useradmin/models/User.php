@@ -163,18 +163,22 @@ class User extends CActiveRecord
             return User::findAll($criteria);
         }
         
-        public static function _can($roles){
+        public static function _can($roles, $continue=false){
             
             
             if(!empty($roles)){
                 foreach($roles As $key=>$role){
-                    echo "$role <br>";
+                    //echo "$role <br>";
                             
                     if(Yii::app()->user->getState('roleName') == $role){
                         return true;
                     }
                 }
             }
+
+			if($continue){
+				return false;
+			}
             
             throw new CHttpException(404,'you are not authorized to perform this operation.');
             //throw new Exception('you are not authorized to perform this operation.'); 
