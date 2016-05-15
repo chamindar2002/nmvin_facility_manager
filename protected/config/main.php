@@ -102,8 +102,8 @@ return array(
 			'charset' => 'utf8',
                         'class'   => 'CDbConnection',
                         'enableProfiling'=>true,
-                        'enableParamLogging'=>true,
-
+                        'enableParamLogging'=>true
+:
 		),*/
 
 		'authManager'=>array(
