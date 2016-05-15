@@ -33,9 +33,11 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
+<?php echo $form->errorSummary($model); ?>
+
 <div class="cust-dls left_box">
 
-	<?php echo $form->errorSummary($model); ?>
+
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
     
@@ -65,7 +67,10 @@
 			<?php echo $form->textField($model,'passportno',array('size'=>60,'maxlength'=>100,'readonly'=>'readonly', 'class'=>'form-control input-sm')); ?>
 		<?php } ?>
 		<?php echo $form->error($model,'passportno'); ?>
-        <p>Please make sure the NIC/Passport no. is correct before saving. Once Saved NIC/Passport no. cannot be modified</p>
+
+		<?php if($model->isNewRecord){ ?>
+        	<p class="bg-info small">Please make sure the NIC/Passport number is correct before saving. Once Saved NIC/Passport no. cannot be modified</p>
+		<?php } ?>
     </div>
     <div class="form-group">
 		<?php echo $form->labelEx($model,'addressline1'); ?>
