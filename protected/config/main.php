@@ -77,11 +77,8 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=nmwndb_asiast',
 			'emulatePrepare' => true,
 			'username' => 'root',
-<<<<<<< HEAD
 			'password' => 'ceylonlinux',
-=======
 			'password' => 'password',
->>>>>>> 64b4f652c0f222b4ed5ed749faa12dde002a994f
 			'charset' => 'utf8',
                         'enableProfiling'=>true,
                         'enableParamLogging'=>true,
@@ -94,11 +91,8 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=nmwndb',
 			'emulatePrepare' => true,
 			'username' => 'root',
-<<<<<<< HEAD
 			'password' => 'ceylonlinux',
-=======
 			'password' => 'password',
->>>>>>> 64b4f652c0f222b4ed5ed749faa12dde002a994f
 			'charset' => 'utf8',
                         'class'   => 'CDbConnection',
                         'enableProfiling'=>true,
