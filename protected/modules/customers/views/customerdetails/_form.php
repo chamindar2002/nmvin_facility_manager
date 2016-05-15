@@ -65,8 +65,7 @@
 			<?php echo $form->textField($model,'passportno',array('size'=>60,'maxlength'=>100,'readonly'=>'readonly', 'class'=>'form-control input-sm')); ?>
 		<?php } ?>
 		<?php echo $form->error($model,'passportno'); ?>
-        <p>Please make sure the NIC/Passport no. is correct before saving.
-Once Saved NIC/Passport no. cannot be modified</p>
+        <p>Please make sure the NIC/Passport no. is correct before saving. Once Saved NIC/Passport no. cannot be modified</p>
     </div>
     <div class="form-group">
 		<?php echo $form->labelEx($model,'addressline1'); ?>
@@ -85,7 +84,7 @@ Once Saved NIC/Passport no. cannot be modified</p>
     </div>
     <div class="form-group">
 		<?php echo $form->labelEx($model,'country'); ?>
-		<?php echo $form->dropDownList($model, 'country',array('LK'=>'Sri Lanka'), array('class'=>'form-control input-sm')); ?>
+		<?php echo $form->dropDownList($model, 'country', countries::getCountries(), array('class'=>'form-control input-sm')); ?>
 		<?php echo $form->error($model,'country'); ?>
     </div>
     <div class="form-group">
