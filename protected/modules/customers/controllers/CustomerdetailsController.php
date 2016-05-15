@@ -71,6 +71,7 @@ class CustomerdetailsController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+                $model->country = 'LK';
 
 		if(isset($_POST['Customerdetails']))
 		{

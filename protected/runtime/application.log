@@ -1,138 +1,89 @@
-2016/05/15 01:39:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php:382
+2016/05/15 00:51:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "customers/customerdetails/update/id/3125".' in /var/www/nmvin_facility_manager/framework/web/CWebApplication.php:286
 Stack trace:
-#0 /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php(330): CDbConnection->open()
-#1 /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
-#2 /var/www/html/nmvin_facility_manager/framework/base/CModule.php(387): CDbConnection->init()
-#3 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(450): CModule->getComponent('db')
-#4 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
-#5 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(667): CActiveRecord->getDbConnection()
-#6 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(1595): CActiveRecord->getCommandBuilder()
-#7 /var/www/html/nmvin_facility_manager/framework/web/CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
-#8 /var/www/html/nmvin_facility_manager/framework/web/CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
-#9 /var/www/html/nmvin_facility_manager/framework/web/CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
-#10 /var/www/html/nmvin_facility_manager/framework/web/CDataProvider.php(168): CActiveDataProvider->fetchData()
-#11 /var/www/html/nmvin_facility_manager/framework/zii/widgets/CBaseListView.php(111): CDataProvider->getData()
-#12 /var/www/html/nmvin_facility_manager/framework/zii/widgets/grid/CGridView.php(339): CBaseListView->init()
-#13 /var/www/html/nmvin_facility_manager/framework/web/CBaseController.php(147): CGridView->init()
-#14 /var/www/html/nmvin_facility_manager/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.gri...', Array)
-#15 /var/www/html/nmvin_facility_manager/protected/modules/payments/views/paymentReceiptsMaster/index.php(51): CBaseController->widget('zii.widgets.gri...', Array)
-#16 /var/www/html/nmvin_facility_manager/framework/web/CBaseController.php(126): require('/var/www/html/n...')
-#17 /var/www/html/nmvin_facility_manager/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/html/n...', Array, true)
-#18 /var/www/html/nmvin_facility_manager/framework/web/CController.php(869): CBaseController->renderFile('/var/www/html/n...', Array, true)
-#19 /var/www/html/nmvin_facility_manager/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
-#20 /var/www/html/nmvin_facility_manager/protected/modules/payments/controllers/PaymentReceiptsMasterController.php(314): CController->render('index', Array)
-#21 /var/www/html/nmvin_facility_manager/framework/web/actions/CInlineAction.php(49): PaymentReceiptsMasterController->actionIndex()
-#22 /var/www/html/nmvin_facility_manager/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
-#23 /var/www/html/nmvin_facility_manager/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#24 /var/www/html/nmvin_facility_manager/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#25 /var/www/html/nmvin_facility_manager/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#26 /var/www/html/nmvin_facility_manager/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#27 /var/www/html/nmvin_facility_manager/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#28 /var/www/html/nmvin_facility_manager/framework/web/CController.php(291): CFilterChain->run()
-#29 /var/www/html/nmvin_facility_manager/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#30 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('index')
-#31 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('payments/paymen...')
-#32 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#33 /var/www/html/nmvin_facility_manager/index.php(17): CApplication->run()
+#0 /var/www/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('customers/custo...')
+#1 /var/www/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/nmvin_facility_manager/index.php(17): CApplication->run()
+#3 {main}
+REQUEST_URI=/Nimavin_Developers_Facility_Manager/index.php/customers/customerdetails/update/id/3125
+HTTP_REFERER=http://220.247.234.143/Nimavin_Developers_Facility_Manager/index.php/customers/Customerdetails/index
+---
+2016/05/15 01:06:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/nmvin_facility_manager/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/nmvin_facility_manager/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/nmvin_facility_manager/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/nmvin_facility_manager/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/nmvin_facility_manager/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 /var/www/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(1595): CActiveRecord->getCommandBuilder()
+#7 /var/www/nmvin_facility_manager/framework/web/CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
+#8 /var/www/nmvin_facility_manager/framework/web/CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
+#9 /var/www/nmvin_facility_manager/framework/web/CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
+#10 /var/www/nmvin_facility_manager/framework/web/CDataProvider.php(168): CActiveDataProvider->fetchData()
+#11 /var/www/nmvin_facility_manager/framework/zii/widgets/CBaseListView.php(111): CDataProvider->getData()
+#12 /var/www/nmvin_facility_manager/framework/zii/widgets/grid/CGridView.php(339): CBaseListView->init()
+#13 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(147): CGridView->init()
+#14 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.gri...', Array)
+#15 /var/www/nmvin_facility_manager/protected/modules/payments/views/paymentReceiptsMaster/index.php(51): CBaseController->widget('zii.widgets.gri...', Array)
+#16 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(126): require('/var/www/nmvin_...')
+#17 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/nmvin_...', Array, true)
+#18 /var/www/nmvin_facility_manager/framework/web/CController.php(869): CBaseController->renderFile('/var/www/nmvin_...', Array, true)
+#19 /var/www/nmvin_facility_manager/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#20 /var/www/nmvin_facility_manager/protected/modules/payments/controllers/PaymentReceiptsMasterController.php(314): CController->render('index', Array)
+#21 /var/www/nmvin_facility_manager/framework/web/actions/CInlineAction.php(49): PaymentReceiptsMasterController->actionIndex()
+#22 /var/www/nmvin_facility_manager/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#23 /var/www/nmvin_facility_manager/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#24 /var/www/nmvin_facility_manager/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#25 /var/www/nmvin_facility_manager/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#26 /var/www/nmvin_facility_manager/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#27 /var/www/nmvin_facility_manager/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#28 /var/www/nmvin_facility_manager/framework/web/CController.php(291): CFilterChain->run()
+#29 /var/www/nmvin_facility_manager/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#30 /var/www/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('index')
+#31 /var/www/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('payments/paymen...')
+#32 /var/www/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#33 /var/www/nmvin_facility_manager/index.php(17): CApplication->run()
 #34 {main}
-REQUEST_URI=/nmvin_facility_manager/index.php/payments/paymentReceiptsMaster/index
-HTTP_REFERER=http://localhost/nmvin_facility_manager/index.php/customers/customerdetails/update/id/3123
+REQUEST_URI=/Nimavin_Developers_Facility_Manager/index.php/payments/paymentReceiptsMaster/index
+HTTP_REFERER=http://220.247.234.143/Nimavin_Developers_Facility_Manager/index.php/customers/customerdetails/update/id/3125
 ---
-2016/05/15 01:41:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /var/www/html/nmvin_facility_manager/framework/web/CController.php:483
+2016/05/15 01:06:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/nmvin_facility_manager/framework/db/CDbConnection.php:382
 Stack trace:
-#0 /var/www/html/nmvin_facility_manager/framework/web/CController.php(270): CController->missingAction('css')
-#1 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('css')
-#2 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('site/css/styles...')
-#3 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /var/www/html/nmvin_facility_manager/index.php(17): CApplication->run()
-#5 {main}
-REQUEST_URI=/nmvin_facility_manager/index.php/site/css/styles.css
-HTTP_REFERER=http://localhost/nmvin_facility_manager/index.php/site/login
----
-2016/05/15 01:41:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in /var/www/html/nmvin_facility_manager/framework/web/CController.php:483
-Stack trace:
-#0 /var/www/html/nmvin_facility_manager/framework/web/CController.php(270): CController->missingAction('js')
-#1 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('js')
-#2 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('site/js/bootstr...')
-#3 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /var/www/html/nmvin_facility_manager/index.php(17): CApplication->run()
-#5 {main}
-REQUEST_URI=/nmvin_facility_manager/index.php/site/js/bootstrap.min.js
-HTTP_REFERER=http://localhost/nmvin_facility_manager/index.php/site/login
----
-2016/05/15 01:41:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /var/www/html/nmvin_facility_manager/framework/web/CController.php:483
-Stack trace:
-#0 /var/www/html/nmvin_facility_manager/framework/web/CController.php(270): CController->missingAction('css')
-#1 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('css')
-#2 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('site/css/styles...')
-#3 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /var/www/html/nmvin_facility_manager/index.php(17): CApplication->run()
-#5 {main}
-REQUEST_URI=/nmvin_facility_manager/index.php/site/css/styles.css
-HTTP_REFERER=http://localhost/nmvin_facility_manager/index.php/site/login
----
-2016/05/15 01:41:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in /var/www/html/nmvin_facility_manager/framework/web/CController.php:483
-Stack trace:
-#0 /var/www/html/nmvin_facility_manager/framework/web/CController.php(270): CController->missingAction('js')
-#1 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('js')
-#2 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('site/js/bootstr...')
-#3 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /var/www/html/nmvin_facility_manager/index.php(17): CApplication->run()
-#5 {main}
-REQUEST_URI=/nmvin_facility_manager/index.php/site/js/bootstrap.min.js
-HTTP_REFERER=http://localhost/nmvin_facility_manager/index.php/site/login
----
-2016/05/15 01:41:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php:382
-Stack trace:
-#0 /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php(330): CDbConnection->open()
-#1 /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
-#2 /var/www/html/nmvin_facility_manager/framework/base/CModule.php(387): CDbConnection->init()
-#3 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(450): CModule->getComponent('db')
-#4 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
-#5 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(1428): CActiveRecord->getDbConnection()
-#6 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(1517): CActiveRecord->getTableAlias(true)
-#7 /var/www/html/nmvin_facility_manager/protected/components/UserIdentity.php(10): CActiveRecord->findByAttributes(Array)
-#8 /var/www/html/nmvin_facility_manager/protected/models/LoginForm.php(66): UserIdentity->authenticate()
-#9 /var/www/html/nmvin_facility_manager/framework/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
-#10 /var/www/html/nmvin_facility_manager/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
-#11 /var/www/html/nmvin_facility_manager/framework/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
-#12 /var/www/html/nmvin_facility_manager/protected/controllers/SiteController.php(126): CModel->validate()
-#13 /var/www/html/nmvin_facility_manager/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
-#14 /var/www/html/nmvin_facility_manager/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
-#15 /var/www/html/nmvin_facility_manager/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
-#16 /var/www/html/nmvin_facility_manager/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#17 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('login')
-#18 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
-#19 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#20 /var/www/html/nmvin_facility_manager/index.php(17): CApplication->run()
-#21 {main}
-REQUEST_URI=/nmvin_facility_manager/index.php/site/login
-HTTP_REFERER=http://localhost/nmvin_facility_manager/index.php/site/login
----
-2016/05/15 01:44:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php:382
-Stack trace:
-#0 /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php(330): CDbConnection->open()
-#1 /var/www/html/nmvin_facility_manager/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
-#2 /var/www/html/nmvin_facility_manager/framework/base/CModule.php(387): CDbConnection->init()
-#3 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(450): CModule->getComponent('db')
-#4 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
-#5 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(1428): CActiveRecord->getDbConnection()
-#6 /var/www/html/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(1517): CActiveRecord->getTableAlias(true)
-#7 /var/www/html/nmvin_facility_manager/protected/components/UserIdentity.php(10): CActiveRecord->findByAttributes(Array)
-#8 /var/www/html/nmvin_facility_manager/protected/models/LoginForm.php(66): UserIdentity->authenticate()
-#9 /var/www/html/nmvin_facility_manager/framework/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
-#10 /var/www/html/nmvin_facility_manager/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
-#11 /var/www/html/nmvin_facility_manager/framework/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
-#12 /var/www/html/nmvin_facility_manager/protected/controllers/SiteController.php(126): CModel->validate()
-#13 /var/www/html/nmvin_facility_manager/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
-#14 /var/www/html/nmvin_facility_manager/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
-#15 /var/www/html/nmvin_facility_manager/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
-#16 /var/www/html/nmvin_facility_manager/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#17 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('login')
-#18 /var/www/html/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
-#19 /var/www/html/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#20 /var/www/html/nmvin_facility_manager/index.php(17): CApplication->run()
-#21 {main}
-REQUEST_URI=/nmvin_facility_manager/index.php/site/login
-HTTP_REFERER=http://localhost/nmvin_facility_manager/index.php/site/login
+#0 /var/www/nmvin_facility_manager/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/nmvin_facility_manager/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/nmvin_facility_manager/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/nmvin_facility_manager/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 /var/www/nmvin_facility_manager/framework/db/ar/CActiveRecord.php(1595): CActiveRecord->getCommandBuilder()
+#7 /var/www/nmvin_facility_manager/framework/web/CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
+#8 /var/www/nmvin_facility_manager/framework/web/CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
+#9 /var/www/nmvin_facility_manager/framework/web/CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
+#10 /var/www/nmvin_facility_manager/framework/web/CDataProvider.php(168): CActiveDataProvider->fetchData()
+#11 /var/www/nmvin_facility_manager/framework/zii/widgets/CBaseListView.php(111): CDataProvider->getData()
+#12 /var/www/nmvin_facility_manager/framework/zii/widgets/grid/CGridView.php(339): CBaseListView->init()
+#13 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(147): CGridView->init()
+#14 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.gri...', Array)
+#15 /var/www/nmvin_facility_manager/protected/modules/payments/views/paymentReceiptsMaster/index.php(51): CBaseController->widget('zii.widgets.gri...', Array)
+#16 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(126): require('/var/www/nmvin_...')
+#17 /var/www/nmvin_facility_manager/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/nmvin_...', Array, true)
+#18 /var/www/nmvin_facility_manager/framework/web/CController.php(869): CBaseController->renderFile('/var/www/nmvin_...', Array, true)
+#19 /var/www/nmvin_facility_manager/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#20 /var/www/nmvin_facility_manager/protected/modules/payments/controllers/PaymentReceiptsMasterController.php(314): CController->render('index', Array)
+#21 /var/www/nmvin_facility_manager/framework/web/actions/CInlineAction.php(49): PaymentReceiptsMasterController->actionIndex()
+#22 /var/www/nmvin_facility_manager/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#23 /var/www/nmvin_facility_manager/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#24 /var/www/nmvin_facility_manager/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#25 /var/www/nmvin_facility_manager/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#26 /var/www/nmvin_facility_manager/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#27 /var/www/nmvin_facility_manager/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#28 /var/www/nmvin_facility_manager/framework/web/CController.php(291): CFilterChain->run()
+#29 /var/www/nmvin_facility_manager/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#30 /var/www/nmvin_facility_manager/framework/web/CWebApplication.php(282): CController->run('index')
+#31 /var/www/nmvin_facility_manager/framework/web/CWebApplication.php(141): CWebApplication->runController('payments/paymen...')
+#32 /var/www/nmvin_facility_manager/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#33 /var/www/nmvin_facility_manager/index.php(17): CApplication->run()
+#34 {main}
+REQUEST_URI=/Nimavin_Developers_Facility_Manager/index.php/payments/paymentReceiptsMaster/index
+HTTP_REFERER=http://220.247.234.143/Nimavin_Developers_Facility_Manager/index.php/customers/customerdetails/update/id/3125
 ---
