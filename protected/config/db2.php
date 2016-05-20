@@ -6,7 +6,7 @@ return array(
         'connectionString' => 'mysql:host=localhost;dbname=nmwndb',
         'emulatePrepare' => true,
         'username' => 'root',
-        'password' => 'ceylonlinux',
+        'password' => 'password',
         'charset' => 'utf8',
         'class'   => 'CDbConnection',
         'enableProfiling'=>true,
