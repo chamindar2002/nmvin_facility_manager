@@ -21,7 +21,8 @@ return array(
                 'application.modules.facility.models.*',
                 'application.modules.facilityutils.models.*',
                 'application.modules.payments.models.*',
-				'application.modules.customers.models.*',
+		'application.modules.customers.models.*',
+                'application.modules.projects.models.*',
 	),
 
 	'modules'=>array(
@@ -38,8 +39,9 @@ return array(
                 'facilityutils' => array(),
                 'payments' => array(),
                 'reports'=> array(),
-                'dataimport'=>array(),
-				'customers'=>array(),
+                'dataimport'=> array(),
+		'customers'=> array(),
+                'projects'=> array(),
                 
 	),
 
