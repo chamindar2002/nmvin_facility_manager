@@ -42,9 +42,10 @@ class ProjectMaster extends NmwndbActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('locationcode, projectname', 'required'),
-			array('locationcode, nofblocks, deleted, addedby, lastmodifiedby, deletedby', 'numerical', 'integerOnly'=>true),
+			array('locationcode, projectname, nofblocks', 'required'),
+			array('locationcode, deleted, addedby, lastmodifiedby, deletedby', 'numerical', 'integerOnly'=>true),
 			array('projectname', 'length', 'max'=>100),
+                        array('nofblocks','numerical', 'integerOnly'=>true, 'max'=>300),
 			array('addeddate, addedtime, lastmodifieddate, lastmodifiedtime, deleteddate, deletedtime', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -60,6 +61,7 @@ class ProjectMaster extends NmwndbActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'locationDetails' => array(self::BELONGS_TO, 'LocationMaster', 'locationcode'),
 		);
 	}
 
@@ -69,10 +71,10 @@ class ProjectMaster extends NmwndbActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'projectcode' => 'Projectcode',
-			'locationcode' => 'Locationcode',
-			'projectname' => 'Projectname',
-			'nofblocks' => 'Nofblocks',
+			'projectcode' => 'Project Code',
+			'locationcode' => 'Location Code',
+			'projectname' => 'Project Name',
+			'nofblocks' => 'Number Of Blocks',
 			'deleted' => 'Deleted',
 			'addedby' => 'Addedby',
 			'addeddate' => 'Addeddate',

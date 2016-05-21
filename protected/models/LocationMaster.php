@@ -131,4 +131,13 @@ class LocationMaster extends NmwndbActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public static function getLocations(){
+            $c = new CDbCriteria();
+            $c->compare('deleted', 0);
+            $c->order = 'locationname';
+            $data = self::model()->findAll($c);
+            
+            return $data;
+        }
 }
