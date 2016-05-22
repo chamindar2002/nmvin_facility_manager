@@ -109,6 +109,7 @@ class ViewFacilityCustomerBlockRelation extends CActiveRecord
 		$criteria->compare('passportno',$this->passportno,true);
 		$criteria->compare('mobile',$this->mobile,true);
 		$criteria->compare('blocknumber',$this->blocknumber,true);
+		$criteria->compare('project_name',$this->project_name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

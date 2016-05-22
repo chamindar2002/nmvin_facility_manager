@@ -36,7 +36,7 @@ class BlockListingController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'GetCustomer'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -55,9 +55,10 @@ class BlockListingController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
+		/*$this->render('view',array(
 			'model'=>$this->loadModel($id),
-		));
+		));*/
+		$this->actionUpdate($id);
 	}
 
 	/**
@@ -67,6 +68,17 @@ class BlockListingController extends Controller
 	public function actionCreate()
 	{
 		$model=new ProjectDetails;
+
+		$projects = ProjectMaster::getProjects();
+
+		$project_id = Yii::app()->request->getParam('project_code');
+		$model->projectcode = $project_id;
+
+		$blockListdata = array();
+
+		if($project_id != 0){
+			$blockListdata = $model->getBlockListData($project_id);
+		}
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -80,6 +92,8 @@ class BlockListingController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'projects'=>$projects,
+			'blockListdata'=>$blockListdata
 		));
 	}
 
@@ -114,6 +128,7 @@ class BlockListingController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		User::_can(['manager','admin']);
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -126,9 +141,19 @@ class BlockListingController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ProjectDetails');
+		$model = new ViewCustomerBlockRelation('search');
+
+		$model->unsetAttributes();
+
+		if(isset($_GET['ViewCustomerBlockRelation']))
+			$model->attributes=$_GET['ViewCustomerBlockRelation'];
+
+
+		$dataProvider=new CActiveDataProvider('ViewCustomerBlockRelation');
+
+
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'dataProvider'=>$dataProvider,'model'=>$model
 		));
 	}
 
@@ -137,6 +162,7 @@ class BlockListingController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		User::_can(['manager','admin']);
 		$model=new ProjectDetails('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['ProjectDetails']))
@@ -173,5 +199,25 @@ class BlockListingController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionGetCustomer(){
+
+		$customer = array();
+
+		if($_GET['customer_id'] != 0) {
+			$customer = Customerdetails::getCustomer($_GET['customer_id']);
+		}
+
+		$data = array(
+				'customer' => $customer,
+				'block' => ProjectDetails::getBlock($_GET['block_id'])
+			);
+
+		//sleep(10);
+
+		echo json_encode($data);
+
+		//echo json_encode(['cat','dog','cow',$_GET['customer_id']]);
 	}
 }

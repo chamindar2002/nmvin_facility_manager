@@ -18,6 +18,4 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create ProjectDetails</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'projects'=>$projects,'blockListdata'=>$blockListdata)); ?>

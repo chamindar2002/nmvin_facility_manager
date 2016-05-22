@@ -136,4 +136,13 @@ class ProjectMaster extends NmwndbActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function getProjects(){
+		$c = new CDbCriteria();
+		$c->compare('deleted', 0);
+		$c->order = 'projectname';
+		$data = self::model()->findAll($c);
+
+		return $data;
+	}
 }

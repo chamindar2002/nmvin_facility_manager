@@ -69,6 +69,8 @@ class ProjectDetails extends NmwndbActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'projectDetails' => array(self::BELONGS_TO, 'ProjectMaster', 'projectcode'),
+			'customerDetails' => array(self::BELONGS_TO, 'Customerdetails', 'customercode'),
 		);
 	}
 
@@ -79,16 +81,16 @@ class ProjectDetails extends NmwndbActiveRecord
 	{
 		return array(
 			'refno' => 'Refno',
-			'locationcode' => 'Locationcode',
-			'projectcode' => 'Projectcode',
-			'customercode' => 'Customercode',
-			'housecatcode' => 'Housecatcode',
-			'blocknumber' => 'Blocknumber',
-			'blocksize' => 'Blocksize',
-			'blockprice' => 'Blockprice',
-			'reservedate' => 'Reservedate',
-			'reservestatus' => 'Reservestatus',
-			'paymentmethod' => 'Paymentmethod',
+			'locationcode' => 'Location Code',
+			'projectcode' => 'Project Code',
+			'customercode' => 'Customer Code',
+			'housecatcode' => 'Housecat Code',
+			'blocknumber' => 'Block Number',
+			'blocksize' => 'Block Size',
+			'blockprice' => 'Block Price',
+			'reservedate' => 'Reserve Date',
+			'reservestatus' => 'Reserve Status',
+			'paymentmethod' => 'Payment Method',
 			'duedate' => 'Duedate',
 			'deleted' => 'Deleted',
 			'addedby' => 'Addedby',
@@ -158,5 +160,20 @@ class ProjectDetails extends NmwndbActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function getBlockListData($project_id){
+
+		$criteria = new CDbCriteria();
+		$criteria->compare('deleted', 0);
+		$criteria->compare('projectcode', $project_id);
+		$data = self::model()->findAll($criteria);
+
+		return $data;
+
+	}
+
+	public static function getBlock($block_id){
+		return ProjectDetails::model()->findByPk($block_id)->attributes;
 	}
 }

@@ -244,4 +244,8 @@ class Customerdetails extends NmwndbActiveRecord
             
             return '-';
         }
+
+	 public static function getCustomer($customer_id){
+		 return Customerdetails::model()->findByPk($customer_id)->attributes;
+	 }
 }

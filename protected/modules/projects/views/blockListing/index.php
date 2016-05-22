@@ -7,14 +7,54 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create ProjectDetails', 'url'=>array('create')),
-	array('label'=>'Manage ProjectDetails', 'url'=>array('admin')),
+	array('label'=>'Add', 'url'=>array('create')),
+	array('label'=>'Manage', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Project Details</h1>
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'project-details-grid',
+	'dataProvider'=>$model->search(),
+	'filter'=>$model,
+	'columns'=>array(
+		'refno',
+		//'locationcode',
+		'project_name',
+		//		array(
+//			'name'=>'customercode',
+//			'value'=>'$data->customerDetails->firstname',
+//			//'filter' => CHtml::listData(Customerdetails::getCustomers(), 'customercode', 'fullName'),
+//		),
+		//'customercode',
+		//'housecatcode',
+		'blocknumber',
+		'customercode',
+		'firstname',
+		'familyname',
+		'passportno',
+		/*
+		'blocksize',
+		'blockprice',
+		'reservedate',
+		'reservestatus',
+		'paymentmethod',
+		'duedate',
+		'deleted',
+		'addedby',
+		'addeddate',
+		'addedtime',
+		'lastmodifiedby',
+		'lastmodifieddate',
+		'lastmodifiedtime',
+		'deletedby',
+		'deleteddate',
+		'deletedtime',
+		*/
+		array(
+			'class'=>'CButtonColumn',
+		),
+	),
+));
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+
+?>

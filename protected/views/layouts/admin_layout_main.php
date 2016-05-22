@@ -252,10 +252,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-arrows-v"></i> Projects Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo5" class="collapse">
                             <li>
-                                <?php echo CHtml::link('Locations',array('/projects/locationmaster/index')); ?>
+                                <?php echo CHtml::link('Locations',array('/projects/LocationMaster/index')); ?>
                             </li>
                             <li>
-                                <?php echo CHtml::link('Projects',array('/projects/projectmaster/index')); ?>
+                                <?php echo CHtml::link('Projects',array('/projects/ProjectMaster/index')); ?>
                             </li>
                             <li>
                                 <?php echo CHtml::link('Block Listing',array('/projects/blockListing/index')); ?>

@@ -75,7 +75,7 @@ return array(
                  */
 		// uncomment the following to use a MySQL database
 		
-		/*'db'=>array(
+		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=nmwndb_asiast',
 			'emulatePrepare' => true,
 			'username' => 'root',
@@ -83,12 +83,12 @@ return array(
 			'charset' => 'utf8',
                         'enableProfiling'=>true,
                         'enableParamLogging'=>true,
-		),*/
+		),
 
-		'db' => require(dirname(__FILE__) . '/db.php'),
-		'db2' => require(dirname(__FILE__) . '/db2.php'),
+		//'db' => require(dirname(__FILE__) . '/db.php'),
+		//'db2' => require(dirname(__FILE__) . '/db2.php'),
 
-		/*'db2'=>array(
+		'db2'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=nmwndb',
 			'emulatePrepare' => true,
 			'username' => 'root',
@@ -98,7 +98,7 @@ return array(
                         'enableProfiling'=>true,
                         'enableParamLogging'=>true,
 
-		),*/
+		),
 
 		'authManager'=>array(
                     'class'=>'CDbAuthManager',
