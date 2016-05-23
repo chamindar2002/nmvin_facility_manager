@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List', 'url'=>array('index')),
-	array('label'=>'Manage', 'url'=>array('admin')),
+	//array('label'=>'Manage', 'url'=>array('admin')),
 );
 ?>
 

@@ -36,7 +36,7 @@ class BlockListingController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'GetCustomer'),
+				'actions'=>array('create','update', 'GetCustomer', 'SaveUpdates', 'DeleteBlock'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -219,5 +219,65 @@ class BlockListingController extends Controller
 		echo json_encode($data);
 
 		//echo json_encode(['cat','dog','cow',$_GET['customer_id']]);
+	}
+
+	public function actionSaveUpdates(){
+
+		$data = $data = ['status' => 'error', 'data'=>array(), 'message'=>null];
+
+		if(isset($_POST['blockrefno']))
+		{
+
+		$model=$this->loadModel($_POST['blockrefno']);
+
+
+			$model->attributes=$_POST;
+
+			//var_dump($model->validate());
+
+			if($model->validate()){
+
+				$model->save();
+
+				$data = ['status' => 'success', 'data'=>$model->attributes, 'message'=>'Updates saved successfully.'];
+
+				//echo json_encode($data);
+
+			}else{
+
+				$data = ['status' => 'error', 'data'=>$model->getErrors(), 'message'=>null];
+
+				//die('has errors');
+			}
+
+		}
+
+		echo json_encode($data);
+
+	}
+
+	public function actionDeleteBlock(){
+
+		$data = $data = ['status' => 'error', 'data'=>array(), 'message'=>null];
+
+
+		if(User::_can(['manager','admin'], true)){
+
+			if(isset($_POST['blockrefno'])) {
+
+				$model = $this->loadModel($_POST['blockrefno']);
+				$model->deleted = 1;
+				$model->save();
+
+				$data = ['status' => 'success', 'data'=>$model->attributes, 'message'=>'Deleted successfully.'];
+			}
+
+		}else{
+
+			$data = ['status' => 'error', 'data'=>['No Permission',403], 'message'=>null];
+
+		}
+
+		echo json_encode($data);
 	}
 }

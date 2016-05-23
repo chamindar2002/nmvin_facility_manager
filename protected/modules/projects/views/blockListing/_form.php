@@ -14,13 +14,13 @@
 	}
 
 	.block_staus_0{
-		background-color: greenyellow;
+		background-color: #00b300;
 	}
 	.block_staus_1{
-		background-color: yellow;
+		background-color: #ffff00;
 	}
 	.block_staus_2{
-		background-color: red;
+		background-color: #ff3300;
 	}
 	.block_staus_3{
 		background-color: rebeccapurple;
@@ -49,13 +49,13 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 <table class="table table-hover">
 <?php foreach($blockListdata As $bld){ ?>
 
-	<tr>
+	<tr id="tr_row_id_<?php echo $i; ?>">
 		<td><?php echo $bld->refno ?></td>
-		<td><div class="status-icon block_staus_<?php echo $bld->reservestatus; ?>"></div></td>
+		<td><div id="status_icon_<?php echo $i; ?>" class="status-icon block_staus_<?php echo $bld->reservestatus; ?>"></div></td>
 		<td><input type="text" name="block_no_<?php echo $i; ?>" id="block_no_<?php echo $i; ?>" value="<?php echo $bld->blocknumber; ?>"></td>
 		<td><input type="text" name="block_size_<?php echo $i; ?>" id="block_size_<?php echo $i; ?>" value="<?php echo $bld->blocksize; ?>"></td>
 		<td><input type="text" name="block_price_<?php echo $i; ?>" id="block_price_<?php echo $i; ?>" value="<?php echo $bld->blockprice; ?>"></td>
-		<td><a href="#" id="<?php echo $bld->refno ?>" customer="<?php echo $bld->customercode; ?>" class="block-itm-more-info">more</a></td>
+		<td><a href="#" id="<?php echo $bld->refno ?>" customer="<?php echo $bld->customercode; ?>" row_id="<?php echo $i; ?>" class="block-itm-more-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
 	</tr>
 
 	<?php $i++ ;?>
@@ -63,8 +63,6 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 <?php } ?>
 </table>
-
-
 
 
 
@@ -107,6 +105,8 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 						<?php echo $form->error($model,'blockprice'); ?>
 					</div>
 
+					<a href="#" id="btn_delete" style="display: none"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
 
 				</div>
 
@@ -122,6 +122,8 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 <script>
 
 	var arr_status = ['Available', 'Reserved', 'Sold Out', 'Not for Sale'];
+
+	var row_id = null;
 
 	var placeholder_html = '<br><span class="loader" style="margin-left:45%;"><img src="<?php echo yii::app()->baseUrl; ?>/themes/images/loading.gif" alt="Loading...") /></span><br><br>';
 
@@ -141,10 +143,12 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 	});
 
-	$('.block-itm-more-info').hover(function(event){
+	$('.block-itm-more-info').click(function(event){
 
 		var blockrefno = $(this).attr('id');
 		var customer = $(this).attr('customer');
+		row_id = $(this).attr('row_id');
+
 
 		fetchCustomerDetails(customer, blockrefno);
 
@@ -197,7 +201,17 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 		$('#ProjectDetails_reservestatus').val(getReserveStatus(result.block.reservestatus));
 		$('#hdn_blockrefno').val(result.block.refno);
 
-		if(getReserveStatus(result.block.reservestatus) == 'Available'){
+
+		setTextFieldAttributes(result.block);
+
+	}
+
+	function setTextFieldAttributes(data){
+
+
+
+		if(getReserveStatus(data.reservestatus) == 'Available'){
+
 			$("#ProjectDetails_blocknumber").removeAttr("readonly");
 			$('#ProjectDetails_blocksize').removeAttr("readonly");
 			$('#ProjectDetails_blockprice').removeAttr("readonly");
@@ -206,9 +220,10 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 			var prepare_dropdown = '<select id="ProjectDetails_reservestatus" name="ProjectDetails_reservestatus" class="form-control input-sm">'
 
+
 			$.each( arr_status, function( key, value) {
 
-				if(key == result.block.reservestatus){
+				if(key == data.reservestatus){
 					prepare_dropdown += '<option value='+key+' selected>'+ value +'</option>';
 				}else{
 					prepare_dropdown += '<option value='+key+'>'+ value +'</option>';
@@ -218,19 +233,49 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 			prepare_dropdown += '</select>';
 
+
+
 			$("#ProjectDetails_reservestatus").replaceWith(prepare_dropdown);
+			$("#btn_delete").css('display','block');
+
 
 		}else{
+
+
 			$("#ProjectDetails_blocknumber").attr("readonly", "readonly");
 			$('#ProjectDetails_blocksize').attr("readonly", "readonly");
 			$('#ProjectDetails_blockprice').attr("readonly", "readonly");
 			$('#ProjectDetails_reservestatus').attr("readonly", "readonly");
 			$('#btn_block_data_save').prop('disabled', true);
-			$("#ProjectDetails_reservestatus").replaceWith('<input type="text" name="ProjectDetails_reservestatus" id="ProjectDetails_reservestatus" class="form-control input-sm" readonly="readonly" value="'+getReserveStatus(result.block.reservestatus)+'">')
+			$("#ProjectDetails_reservestatus").replaceWith('<input type="text" name="ProjectDetails_reservestatus" id="ProjectDetails_reservestatus" class="form-control input-sm" readonly="readonly" value="'+getReserveStatus(data.reservestatus)+'">')
+			$("#btn_delete").css('display','none');
+
+			if(getReserveStatus(data.reservestatus) != 'Sold Out') {
+				$('#btn_block_data_save').prop('disabled', false);
+
+				var prepare_dropdown = '<select id="ProjectDetails_reservestatus" name="ProjectDetails_reservestatus" class="form-control input-sm">'
+
+
+				$.each( arr_status, function( key, value) {
+
+					if(key == data.reservestatus){
+						prepare_dropdown += '<option value='+key+' selected>'+ value +'</option>';
+					}else{
+						prepare_dropdown += '<option value='+key+'>'+ value +'</option>';
+					}
+
+				});
+
+				prepare_dropdown += '</select>';
 
 
 
+				$("#ProjectDetails_reservestatus").replaceWith(prepare_dropdown);
 
+
+				modifyRowData(data);
+
+			}
 
 		}
 	}
@@ -275,8 +320,16 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 				success : function(result){
 					//console.log(result);
 					//$('.modal-body').html(result);
-					appendCustomerData(result);
-					appendBlockData(result);
+					if(result.status == 'error'){
+
+						$('.customer_data_placeholder').html(appendErrors(result.data));
+					}else{
+
+						$('.customer_data_placeholder').html(appendSuccess(result.message));
+						modifyRowData(result.data);
+						setTextFieldAttributes(result.data);
+
+					}
 
 				}
 			});
@@ -285,6 +338,90 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 			return;
 		}
 
+	});
+
+
+	function appendErrors(_err){
+
+		var msg = '<ul>';
+		$.each( _err, function( key, value) {
+
+			//console.log('error fldfs :' + value);
+			msg += '<li class="errorMessage">' + value + '</li>';
+
+		});
+
+		msg += '</ul>';
+
+		return msg;
+
+	}
+
+	function appendSuccess(msg){
+
+		var msg = '<div class="flash-success">'+ msg + '</div>';
+
+		return msg;
+	}
+
+	function modifyRowData(data){
+
+		$("#status_icon_"+row_id).removeAttr('class');
+
+		$("#block_no_"+row_id).val(data.blocknumber);
+		$("#block_size_"+row_id).val(data.blocksize);
+		$("#block_price_"+row_id).val(data.blockprice);
+		$("#status_icon_"+row_id).addClass( "status-icon block_staus_"+data.reservestatus );
+
+		//alert(data);
+
+	}
+
+	$("#btn_delete").click(function(event){
+		var blockrefno = $('#hdn_blockrefno').val();
+
+		var res = confirm("Are you sure you want to delete ?");
+
+		if (res == true) {
+
+			$.ajax({
+				type :'POST',
+				dataType:'JSON',
+
+				cache: false,
+				url : '<?php echo Yii::app()->baseUrl."/index.php/projects/blockListing/DeleteBlock"; ?>',
+				data : {
+
+					blockrefno: blockrefno
+				},
+
+				beforeSend: function() {
+					//$('#total_chrgs_box').html(placeholder_html);
+					$('.customer_data_placeholder').html(placeholder_html);
+				},
+				success : function(result){
+
+					if(result.status == 'error'){
+
+						$('.customer_data_placeholder').html(appendErrors(result.data));
+					}else{
+
+						$('.customer_data_placeholder').html(appendSuccess(result.message));
+						$("#btn_delete").css('display','none');
+						$('#btn_block_data_save').prop('disabled', true);
+
+					}
+
+					$('#tr_row_id_2').remove();
+					//$('#modal_block_info').toggle();
+
+				}
+			});
+
+
+		}
+
+		return;
 	});
 </script>
 

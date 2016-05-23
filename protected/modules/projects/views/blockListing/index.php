@@ -50,9 +50,9 @@ $this->menu=array(
 		'deleteddate',
 		'deletedtime',
 		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
+//		array(
+//			'class'=>'CButtonColumn',
+//		),
 	),
 ));
 
