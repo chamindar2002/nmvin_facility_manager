@@ -38,9 +38,12 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
+<div class="form-group">
 <?php
+echo CHtml::label('Project', 'Project');
 echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'projectcode', 'projectname'), array('prompt' => '','class'=>'form-control input-sm'));
 ?>
+</div>
 
 <?php if(!empty($blockListdata)){ ?>
 
@@ -55,7 +58,10 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 		<td><input type="text" name="block_no_<?php echo $i; ?>" id="block_no_<?php echo $i; ?>" value="<?php echo $bld->blocknumber; ?>"></td>
 		<td><input type="text" name="block_size_<?php echo $i; ?>" id="block_size_<?php echo $i; ?>" value="<?php echo $bld->blocksize; ?>"></td>
 		<td><input type="text" name="block_price_<?php echo $i; ?>" id="block_price_<?php echo $i; ?>" value="<?php echo $bld->blockprice; ?>"></td>
-		<td><a href="#" id="<?php echo $bld->refno ?>" customer="<?php echo $bld->customercode; ?>" row_id="<?php echo $i; ?>" class="block-itm-more-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+		<td>
+			<a href="#" id="<?php echo $bld->refno ?>" customer="<?php echo $bld->customercode; ?>" row_id="<?php echo $i; ?>" class="block-itm-more-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+			<input type="hidden" name="block_refno_<?php echo $i; ?>" id="block_refno_<?php echo $i; ?>" value="<?php echo $bld->refno; ?>">
+		</td>
 	</tr>
 
 	<?php $i++ ;?>
@@ -63,7 +69,11 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 <?php } ?>
 </table>
+<div class="form-group">
+	<input type="hidden" name="num_rows" value="<?php echo isset($i) ? $i : 0; ?>" >
+</div>
 
+<button type="submit" class="btn btn-primary">Save All</button>
 
 
 <?php $this->endWidget(); ?>
@@ -144,6 +154,8 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 	});
 
 	$('.block-itm-more-info').click(function(event){
+
+		event.preventDefault();
 
 		var blockrefno = $(this).attr('id');
 		var customer = $(this).attr('customer');
@@ -378,6 +390,9 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 	}
 
 	$("#btn_delete").click(function(event){
+
+		event.preventDefault();
+
 		var blockrefno = $('#hdn_blockrefno').val();
 
 		var res = confirm("Are you sure you want to delete ?");
@@ -425,103 +440,3 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 	});
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-<!---->
-<!---->
-<!--<div class="form">-->
-<!---->
-<?php //$form=$this->beginWidget('CActiveForm', array(
-//	'id'=>'project-details-form',
-//	// Please note: When you enable ajax validation, make sure the corresponding
-//	// controller action is handling ajax validation correctly.
-//	// There is a call to performAjaxValidation() commented in generated controller code.
-//	// See class documentation of CActiveForm for details on this.
-//	'enableAjaxValidation'=>false,
-//)); ?>
-<!---->
-<!--	<p class="note">Fields with <span class="required">*</span> are required.</p>-->
-<!---->
-<!--	--><?php //echo $form->errorSummary($model); ?>
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'locationcode'); ?>
-<!--		--><?php //echo $form->textField($model,'locationcode'); ?>
-<!--		--><?php //echo $form->error($model,'locationcode'); ?>
-<!--	</div>-->
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'projectcode'); ?>
-<!--		--><?php //echo $form->textField($model,'projectcode'); ?>
-<!--		--><?php //echo $form->error($model,'projectcode'); ?>
-<!--	</div>-->
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'customercode'); ?>
-<!--		--><?php //echo $form->textField($model,'customercode'); ?>
-<!--		--><?php //echo $form->error($model,'customercode'); ?>
-<!--	</div>-->
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'housecatcode'); ?>
-<!--		--><?php //echo $form->textField($model,'housecatcode'); ?>
-<!--		--><?php //echo $form->error($model,'housecatcode'); ?>
-<!--	</div>-->
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'blocknumber'); ?>
-<!--		--><?php //echo $form->textField($model,'blocknumber',array('size'=>60,'maxlength'=>100)); ?>
-<!--		--><?php //echo $form->error($model,'blocknumber'); ?>
-<!--	</div>-->
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'blocksize'); ?>
-<!--		--><?php //echo $form->textField($model,'blocksize'); ?>
-<!--		--><?php //echo $form->error($model,'blocksize'); ?>
-<!--	</div>-->
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'blockprice'); ?>
-<!--		--><?php //echo $form->textField($model,'blockprice'); ?>
-<!--		--><?php //echo $form->error($model,'blockprice'); ?>
-<!--	</div>-->
-<!---->
-<!---->
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'reservestatus'); ?>
-<!--		--><?php //echo $form->textField($model,'reservestatus'); ?>
-<!--		--><?php //echo $form->error($model,'reservestatus'); ?>
-<!--	</div>-->
-<!---->
-<!---->
-<!---->
-<!--	<div class="row buttons">-->
-<!---->
-<!--                --><?php //echo CHtml::submitButton($model->isNewRecord ? 'Add' : 'Save'); ?>
-<!--	</div>-->
-<!---->
-<?php //$this->endWidget(); ?>
-<!---->
-<!--</div><!-- form -->

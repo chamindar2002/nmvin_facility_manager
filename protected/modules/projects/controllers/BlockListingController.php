@@ -67,6 +67,7 @@ class BlockListingController extends Controller
 	 */
 	public function actionCreate()
 	{
+
 		$model=new ProjectDetails;
 
 		$projects = ProjectMaster::getProjects();
@@ -85,9 +86,35 @@ class BlockListingController extends Controller
 
 		if(isset($_POST['ProjectDetails']))
 		{
-			$model->attributes=$_POST['ProjectDetails'];
+
+			$rows = $_POST['num_rows'];
+
+			for($i=0; $i<=$rows; $i++){
+
+				if(isset($_POST["block_refno_$i"])){
+					$block_refno = $_POST["block_refno_$i"];
+					$block_no = isset($_POST["block_no_$i"]) ? $_POST["block_no_$i"] : 'Undefined';
+					$block_size = isset($_POST["block_size_$i"]) ? $_POST["block_size_$i"]: 0;
+					$block_price = isset($_POST["block_price_$i"]) ? $_POST["block_price_$i"]: 0;
+
+                    $connection=Yii::app()->db2;
+                    $sql = "UPDATE `projectdetails` SET `blockprice` = '$block_price', `blocknumber` = '$block_no', `blocksize` = '$block_size'  WHERE `projectdetails`.`refno` = $block_refno;";
+                    //die($sql)
+                    $command = $connection->createCommand($sql);
+                    $command->execute();
+
+                    //echo "[$i] -> $block_refno -> $block_no [$block_price]<br>";
+
+
+				}
+
+			}
+            Yii::app()->user->setFlash('success','Updated successfully');
+
+            $this->redirect(Yii::app()->request->urlReferrer);
+			/*$model->attributes=$_POST['ProjectDetails'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->refno));
+				$this->redirect(array('view','id'=>$model->refno));*/
 		}
 
 		$this->render('create',array(
