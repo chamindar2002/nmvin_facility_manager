@@ -88,6 +88,7 @@ class BlockListingController extends Controller
 		{
 
 			$rows = $_POST['num_rows'];
+			$connection=Yii::app()->db2;
 
 			for($i=0; $i<=$rows; $i++){
 
@@ -97,9 +98,8 @@ class BlockListingController extends Controller
 					$block_size = isset($_POST["block_size_$i"]) ? $_POST["block_size_$i"]: 0;
 					$block_price = isset($_POST["block_price_$i"]) ? $_POST["block_price_$i"]: 0;
 
-                    $connection=Yii::app()->db2;
+
                     $sql = "UPDATE `projectdetails` SET `blockprice` = '$block_price', `blocknumber` = '$block_no', `blocksize` = '$block_size'  WHERE `projectdetails`.`refno` = $block_refno;";
-                    //die($sql)
                     $command = $connection->createCommand($sql);
                     $command->execute();
 
