@@ -139,6 +139,9 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 	var arr_status = ['Available', 'Reserved', 'Sold Out', 'Not for Sale'];
 
+	var itemtoRemove = "Sold Out";
+	arr_status.splice($.inArray(itemtoRemove, arr_status),1); //remove 'sold out' option since sold out should only be done via sale
+
 	var row_id = null;
 
 	var placeholder_html = '<br><span class="loader" style="margin-left:45%;"><img src="<?php echo yii::app()->baseUrl; ?>/themes/images/loading.gif" alt="Loading...") /></span><br><br>';

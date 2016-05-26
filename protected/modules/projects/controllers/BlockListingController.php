@@ -333,7 +333,7 @@ class BlockListingController extends Controller
 										 `blocknumber`,
 										 `blocksize`,
 										 `blockprice`)
-									  VALUES ('$location_id', '$project_id', '0', '0', 'Undefined', '0', '0');";
+									  VALUES ('$location_id', '$project_id', '0', '0', '', '0', '0');";
 				$command = $connection->createCommand($sql);
 				$command->execute();
 
