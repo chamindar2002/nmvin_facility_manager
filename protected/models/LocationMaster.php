@@ -69,8 +69,8 @@ class LocationMaster extends NmwndbActiveRecord
 	{
 		return array(
 			'locationcode' => 'Locationcode',
-			'locationname' => 'Locationname',
-			'locationcity' => 'Locationcity',
+			'locationname' => 'Location Name',
+			'locationcity' => 'Location City',
 			'deleted' => 'Deleted',
 			'addedby' => 'Addedby',
 			'addeddate' => 'Addeddate',
