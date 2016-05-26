@@ -830,3 +830,37 @@ from((
         JOIN `nmwndb`.`project` `prj`
         ON((`sls`.`locationcode` = `prj`.`locationcode`))
 );
+
+select
+ `cs`.`customercode` AS `customercode`,
+ `cs`.`familyname` AS `familyname`,
+ `cs`.`firstname` AS `firstname`,
+ `cs`.`title` AS `title`,`cs`.`addressline1` AS `addressline1`,
+ `cs`.`addressline2` AS `addressline2`,
+ `cs`.`passportno` AS `passportno`,`cs`.`mobile` AS `mobile`,
+ `pd`.`blocknumber` AS `blocknumber`,`pd`.`refno` AS `refno`,
+ `pd`.`projectcode` AS `projectcode`,
+ `prj`.`projectname` AS `project_name`
+  from ((
+          `nmwndb`.`customerdetails` `cs`
+          join `nmwndb`.`projectdetails` `pd`
+          on((`cs`.`customercode` = `pd`.`customercode`)))
+
+          join `nmwndb`.`project` `prj`
+          on((`pd`.`projectcode` = `prj`.`projectcode`))
+
+  );
+
+--   old system merge db changes
+
+
+--
+-- Structure for view `view_customer_block_relation`
+--
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_customer_block_relation` AS select `cs`.`customercode` AS `customercode`,`cs`.`familyname` AS `familyname`,`cs`.`firstname` AS `firstname`,`cs`.`title` AS `title`,`cs`.`addressline1` AS `addressline1`,`cs`.`addressline2` AS `addressline2`,`cs`.`passportno` AS `passportno`,`cs`.`mobile` AS `mobile`,`pd`.`blocknumber` AS `blocknumber`,`pd`.`refno` AS `refno`,`pd`.`projectcode` AS `projectcode`,`prj`.`projectname` AS `project_name` from ((`customerdetails` `cs` join `projectdetails` `pd` on((`cs`.`customercode` = `pd`.`customercode`))) join `project` `prj` on((`pd`.`projectcode` = `prj`.`projectcode`)));
+
+--
+-- VIEW  `view_customer_block_relation`
+-- Data: None
+--
