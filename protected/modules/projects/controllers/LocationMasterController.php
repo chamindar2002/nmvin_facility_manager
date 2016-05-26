@@ -75,8 +75,10 @@ class LocationMasterController extends Controller
 		if(isset($_POST['LocationMaster']))
 		{
 			$model->attributes=$_POST['LocationMaster'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->locationcode));
+			if($model->save()) {
+				Yii::app()->user->setFlash('success','Location saved successfully');
+				$this->redirect(array('index', 'id' => $model->locationcode));
+			}
 		}
 
 		$this->render('create',array(
@@ -99,8 +101,10 @@ class LocationMasterController extends Controller
 		if(isset($_POST['LocationMaster']))
 		{
 			$model->attributes=$_POST['LocationMaster'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->locationcode));
+			if($model->save()) {
+				Yii::app()->user->setFlash('success','Location updated successfully');
+				$this->redirect(array('index', 'id' => $model->locationcode));
+			}
 		}
 
 		$this->render('update',array(

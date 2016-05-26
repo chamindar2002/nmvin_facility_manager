@@ -73,7 +73,13 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 	<input type="hidden" name="num_rows" value="<?php echo isset($i) ? $i : 0; ?>" >
 </div>
 
-<button type="submit" class="btn btn-primary">Save All</button>
+<?php if(!empty($blockListdata)){ ?>
+	<button type="submit" class="btn btn-primary">Save All</button>
+<?php }else if(isset($projectMaster->nofblocks)){ ?>
+
+	<button type="button" class="btn btn-warning" location_id="<?php echo $projectMaster->locationcode; ?>"  project_id="<?php echo $projectMaster->projectcode; ?>" blocks="<?php echo $projectMaster->nofblocks; ?>" id="btn_block_generator">Generate <?php echo isset($projectMaster->nofblocks) ? $projectMaster->nofblocks : 0; ?> Block Records</button>
+
+<?php } ?>
 
 
 <?php $this->endWidget(); ?>
@@ -123,7 +129,7 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary", id="btn_block_data_save">Save changes</button>
+				<button type="button" class="btn btn-primary" id="btn_block_data_save">Save changes</button>
 			</div>
 		</div>
 	</div>
@@ -437,6 +443,46 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 		}
 
 		return;
+	});
+
+	$('#btn_block_generator').click(function(event){
+
+		var res = confirm("Are you sure you want to generate block records ?");
+		var nofblocks = $(this).attr('blocks');
+		var project_id = $(this).attr('project_id');
+		var location_id = $(this).attr('location_id');
+
+		if (res == true) {
+
+			$.ajax({
+				type :'POST',
+				dataType:'JSON',
+
+				cache: false,
+				url : '<?php echo Yii::app()->baseUrl."/index.php/projects/blockListing/GenerateBlocks"; ?>',
+				data : {
+
+					nofblocks: nofblocks, project_id: project_id, location_id: location_id
+				},
+
+				beforeSend: function() {
+					//$('#total_chrgs_box').html(placeholder_html);
+					//$('.customer_data_placeholder').html(placeholder_html);
+				},
+				success : function(result){
+					$('#btn_block_generator').prop('disabled', true);
+
+					if(result.status == 'success'){
+						alert(result.message);
+						location.reload();
+					}
+
+				}
+			});
+
+
+		}
+
 	});
 </script>
 

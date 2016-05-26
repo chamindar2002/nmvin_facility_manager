@@ -36,7 +36,7 @@ class BlockListingController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'GetCustomer', 'SaveUpdates', 'DeleteBlock'),
+				'actions'=>array('create','update', 'GetCustomer', 'SaveUpdates', 'DeleteBlock', 'GenerateBlocks'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -76,9 +76,12 @@ class BlockListingController extends Controller
 		$model->projectcode = $project_id;
 
 		$blockListdata = array();
+		$projectMaster = array();
 
 		if($project_id != 0){
 			$blockListdata = $model->getBlockListData($project_id);
+			$projectMaster = ProjectMaster::model()->findByPk($project_id);
+
 		}
 
 		// Uncomment the following line if AJAX validation is needed
@@ -89,6 +92,8 @@ class BlockListingController extends Controller
 
 			$rows = $_POST['num_rows'];
 			$connection=Yii::app()->db2;
+
+
 
 			for($i=0; $i<=$rows; $i++){
 
@@ -120,7 +125,8 @@ class BlockListingController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 			'projects'=>$projects,
-			'blockListdata'=>$blockListdata
+			'blockListdata'=>$blockListdata,
+			'projectMaster'=>$projectMaster
 		));
 	}
 
@@ -306,5 +312,34 @@ class BlockListingController extends Controller
 		}
 
 		echo json_encode($data);
+	}
+
+	public function actionGenerateBlocks(){
+
+		if(isset($_POST['nofblocks'])){
+			$project_id = $_POST['project_id'];
+			$nofblocks = $_POST['nofblocks'];
+			$location_id = $_POST['location_id'];
+
+			$connection=Yii::app()->db2;
+
+			for($n=0; $n<$nofblocks; $n++){
+
+				$sql = "INSERT INTO `projectdetails`
+										(`locationcode`,
+										 `projectcode`,
+										 `customercode`,
+										 `housecatcode`,
+										 `blocknumber`,
+										 `blocksize`,
+										 `blockprice`)
+									  VALUES ('$location_id', '$project_id', '0', '0', 'Undefined', '0', '0');";
+				$command = $connection->createCommand($sql);
+				$command->execute();
+
+			}
+			echo json_encode(['status' => 'success', 'data'=>null, 'message'=>'Blocks generated successfully.']);
+		}
+		//echo json_encode(['dog','cat','mouse',$_POST['nofblocks']]);
 	}
 }

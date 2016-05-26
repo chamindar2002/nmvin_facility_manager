@@ -75,8 +75,11 @@ class ProjectMasterController extends Controller
 		if(isset($_POST['ProjectMaster']))
 		{
 			$model->attributes=$_POST['ProjectMaster'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->projectcode));
+			if($model->save()) {
+				Yii::app()->user->setFlash('success','Project saved successfully');
+				$this->redirect(array('index', 'id' => $model->projectcode));
+			}
+
 		}
 
 		$this->render('create',array(
@@ -99,8 +102,10 @@ class ProjectMasterController extends Controller
 		if(isset($_POST['ProjectMaster']))
 		{
 			$model->attributes=$_POST['ProjectMaster'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->projectcode));
+			if($model->save()) {
+				Yii::app()->user->setFlash('success','Project updated successfully');
+				$this->redirect(array('index', 'id' => $model->projectcode));
+			}
 		}
 
 		$this->render('update',array(
