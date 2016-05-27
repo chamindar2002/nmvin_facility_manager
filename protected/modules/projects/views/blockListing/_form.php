@@ -75,6 +75,7 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 <?php if(!empty($blockListdata)){ ?>
 	<button type="submit" class="btn btn-primary">Save All</button>
+	<a href="#"  data-toggle="modal" data-target="additonal_blocks_input" id="btn_add_more_blocks" style="float:right"><i title="Add more blocks" class="fa fa-plus-square" aria-hidden="true"></i></a>
 <?php }else if(isset($projectMaster->nofblocks)){ ?>
 
 	<button type="button" class="btn btn-warning" location_id="<?php echo $projectMaster->locationcode; ?>"  project_id="<?php echo $projectMaster->projectcode; ?>" blocks="<?php echo $projectMaster->nofblocks; ?>" id="btn_block_generator">Generate <?php echo isset($projectMaster->nofblocks) ? $projectMaster->nofblocks : 0; ?> Block Records</button>
@@ -85,12 +86,48 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 <?php $this->endWidget(); ?>
 
 
+
+
+
+
+
+<div class="modal fade" id="additonal_blocks_input" tabindex="-1" role="dialog" aria-labelledby="mymodal_block_info_abel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Add More Blocks/Units</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<?php echo CHtml::label('Additional Blocks/Units','')?>
+					<?php echo CHtml::numberField('no_of_blocks','no_of_blocks',array('size'=>60,'maxlength'=>100,'class'=>'form-control input-sm')); ?>
+
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" location_id="<?php echo $projectMaster->locationcode; ?>"  project_id="<?php echo $projectMaster->projectcode; ?>" blocks="<?php echo $projectMaster->nofblocks; ?>" id="btn_additional_blocks_save">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
 <div class="modal fade" id="modal_block_info" tabindex="-1" role="dialog" aria-labelledby="mymodal_block_info_abel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Block/House Availability</h4>
+				<h4 class="modal-title" id="myModalLabel">Block/House/Unit Availability</h4>
 			</div>
 			<div class="modal-body">
 				<div class="customer_data_placeholder"></div>
@@ -487,5 +524,57 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 		}
 
 	});
+
+	$('#btn_add_more_blocks').click(function(event){
+
+		event.preventDefault();
+		$('#additonal_blocks_input').modal();
+
+
+	})
+
+	$('#btn_additional_blocks_save').click(function(event){
+		var nofblocks = $('#no_of_blocks').val();
+		if(nofblocks > 0){
+
+			var res = confirm("Are you sure you want to generate "+ nofblocks +" more records ?");
+
+			var project_id = $(this).attr('project_id');
+			var location_id = $(this).attr('location_id');
+
+			if (res == true) {
+
+				$.ajax({
+					type :'POST',
+					dataType:'JSON',
+
+					cache: false,
+					url : '<?php echo Yii::app()->baseUrl."/index.php/projects/blockListing/GenerateBlocks"; ?>',
+					data : {
+
+						nofblocks: nofblocks, project_id: project_id, location_id: location_id
+					},
+
+					beforeSend: function() {
+						//$('#total_chrgs_box').html(placeholder_html);
+						//$('.customer_data_placeholder').html(placeholder_html);
+					},
+					success : function(result){
+						$('#btn_block_generator').prop('disabled', true);
+
+						if(result.status == 'success'){
+
+							location.reload();
+						}
+
+					}
+				});
+
+
+			}
+
+		}
+
+	})
 </script>
 
