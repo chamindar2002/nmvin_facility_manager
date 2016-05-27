@@ -139,8 +139,8 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 	var arr_status = ['Available', 'Reserved', 'Sold Out', 'Not for Sale'];
 
-	var itemtoRemove = "Sold Out";
-	arr_status.splice($.inArray(itemtoRemove, arr_status),1); //remove 'sold out' option since sold out should only be done via sale
+	//var itemtoRemove = "Sold Out";
+	//arr_status.splice($.inArray(itemtoRemove, arr_status),1); //remove 'sold out' option since sold out should only be done via sale
 
 	var row_id = null;
 
