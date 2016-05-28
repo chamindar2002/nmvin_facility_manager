@@ -108,7 +108,7 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" location_id="<?php echo $projectMaster->locationcode; ?>"  project_id="<?php echo $projectMaster->projectcode; ?>" blocks="<?php echo $projectMaster->nofblocks; ?>" id="btn_additional_blocks_save">Add</button>
+				<button type="button" class="btn btn-primary" location_id="<?php echo $projectMaster->locationcode; ?>"  project_id="<?php echo $projectMaster->projectcode; ?>" blocks="<?php //echo $projectMaster->nofblocks; ?>" id="btn_additional_blocks_save">Add</button>
 			</div>
 		</div>
 	</div>
