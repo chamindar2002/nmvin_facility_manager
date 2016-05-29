@@ -851,6 +851,38 @@ select
 
   );
 
+
+select
+`sls`.`blockrefnumber` AS `blockrefnumber`,
+`sls`.`refno` AS `sales_ref_no`,
+`sls`.`addeddate` AS `addeddate`,
+`prj`.`projectcode` AS `projectcode`,
+`prj`.`projectname` AS `project_name`,
+`lctn`.`locationcode` AS `locationcode`,
+`lctn`.`locationname` AS `location_name`,
+`lctn`.`locationcity` AS `location_city`,
+`pj`.`blocknumber` AS `blocknumber`,
+`cs`.`customercode` AS `customercode`,
+`cs`.`firstname` AS `firstname`,
+`cs`.`familyname` AS `familyname`,
+`cs`.`passportno` AS `passportno`
+
+ from ((
+      `nmwndb`.`sales` `sls`
+      join `nmwndb`.`customerdetails` `cs`
+       on((`sls`.`customercode` = `cs`.`customercode`)))
+
+      join `nmwndb`.`project` `prj`
+       on((`sls`.`projectcode` = `prj`.`projectcode`))
+
+      join `nmwndb`.`location` `lctn`
+       on((`sls`.`locationcode` = `lctn`.`locationcode`))
+
+      join `nmwndb`.`projectdetails` `pj`
+       on((`sls`.`blockrefnumber` = `pj`.`refno`))
+
+  )
+
 --   old system merge db changes
 
 

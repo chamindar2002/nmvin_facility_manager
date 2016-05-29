@@ -71,6 +71,7 @@ class ProjectDetails extends NmwndbActiveRecord
 		return array(
 			'projectDetails' => array(self::BELONGS_TO, 'ProjectMaster', 'projectcode'),
 			'customerDetails' => array(self::BELONGS_TO, 'Customerdetails', 'customercode'),
+			'locationDetails' => array(self::HAS_ONE, 'LocationMaster', 'locationcode'),
 		);
 	}
 
@@ -175,5 +176,16 @@ class ProjectDetails extends NmwndbActiveRecord
 
 	public static function getBlock($block_id){
 		return ProjectDetails::model()->findByPk($block_id)->attributes;
+	}
+
+	public function setBlockSoldOut($block_id, $customer_id){
+		$block = $this->findByPk($block_id);
+		$block->reservestatus = 2;
+		$block->customercode = $customer_id;
+		$block->save();
+
+		return true;
+
+
 	}
 }

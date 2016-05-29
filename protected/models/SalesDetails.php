@@ -87,10 +87,10 @@ class SalesDetails extends NmwndbActiveRecord
 	{
 		return array(
 			'refno' => 'Refno',
-			'customercode' => 'Customercode',
-			'locationcode' => 'Locationcode',
-			'projectcode' => 'Projectcode',
-			'blockrefnumber' => 'Blockrefnumber',
+			'customercode' => 'Customer',
+			'locationcode' => 'Location Code',
+			'projectcode' => 'Project Code',
+			'blockrefnumber' => 'Block Number',
 			'payplanrefno' => 'Payplanrefno',
 			'nofinstallments' => 'Nofinstallments',
 			'description' => 'Description',

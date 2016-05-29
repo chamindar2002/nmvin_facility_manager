@@ -1,4 +1,4 @@
-<?php echo CHtml::label('Customer', 'Customer'); ?>
+<?php echo CHtml::label('Customer', 'Customer', array('class'=>'required')); ?>
 	
 <?php
 /*if($members == null){*/

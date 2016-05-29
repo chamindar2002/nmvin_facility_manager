@@ -16,13 +16,14 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'application.modules.useradmin.models.*',
-                'ext.YiiMailer.YiiMailer',
-                'application.modules.facility.models.*',
-                'application.modules.facilityutils.models.*',
-                'application.modules.payments.models.*',
+		'application.modules.useradmin.models.*',
+        'ext.YiiMailer.YiiMailer',
+        'application.modules.facility.models.*',
+        'application.modules.facilityutils.models.*',
+        'application.modules.payments.models.*',
 		'application.modules.customers.models.*',
-                'application.modules.projects.models.*',
+        'application.modules.projects.models.*',
+		'application.modules.sales.models.*',
 	),
 
 	'modules'=>array(
@@ -35,13 +36,14 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		'useradmin' => array(),
-                'facility' => array(),
-                'facilityutils' => array(),
-                'payments' => array(),
-                'reports'=> array(),
-                'dataimport'=> array(),
+        'facility' => array(),
+        'facilityutils' => array(),
+        'payments' => array(),
+        'reports'=> array(),
+        'dataimport'=> array(),
 		'customers'=> array(),
-                'projects'=> array(),
+		'projects'=> array(),
+		'sales'=>array()
                 
 	),
 

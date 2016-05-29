@@ -402,28 +402,8 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 	});
 
 
-	function appendErrors(_err){
 
-		var msg = '<ul>';
-		$.each( _err, function( key, value) {
 
-			//console.log('error fldfs :' + value);
-			msg += '<li class="errorMessage">' + value + '</li>';
-
-		});
-
-		msg += '</ul>';
-
-		return msg;
-
-	}
-
-	function appendSuccess(msg){
-
-		var msg = '<div class="flash-success">'+ msg + '</div>';
-
-		return msg;
-	}
 
 	function modifyRowData(data){
 
