@@ -177,6 +177,12 @@ class SalesDetails extends NmwndbActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function facilityExists($sale_refno){
+		$criteria = new CDbCriteria();
+		$criteria->compare('sales_ref_no', $sale_refno);
+		return FacilityMaster::model()->find($criteria);
+	}
         
        
 }

@@ -37,7 +37,7 @@ class SalesMasterController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'ProjectDetails', 'addnewsale'),
+				'actions'=>array('create','update', 'ProjectDetails', 'addnewsale', 'getsale', 'updatesale'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actionsn
@@ -188,8 +188,10 @@ class SalesMasterController extends Controller
 
 	public function actionProjectDetails(){
 
+
 		$data=ProjectDetails::model()->findAll('projectcode=:project_id AND deleted=0 AND reservestatus=0',
 			array(':project_id'=>(int) $_POST['project_id']));
+
 
 		$data=CHtml::listData($data,'refno','blocknumber');
 
@@ -198,6 +200,55 @@ class SalesMasterController extends Controller
 			echo CHtml::tag('option', array('value'=>$value),CHtml::encode($city_name),true);
 
 	}
+
+	public function actionUpdateSale(){
+
+		$data = $data = ['status' => 'error', 'data'=>array(), 'message'=>null];
+
+		if(isset($_POST['sale_ref_no']))
+		{
+			//customercode
+			if(count(SalesDetails::model()->facilityExists($_POST['sale_ref_no'])) > 0){
+				echo json_encode(['status' => 'error', 'data'=>['Cannot modify. Facilty exists for this sale.'], 'message'=>null]);
+				Yii::app()->end();
+			}
+
+			$model = SalesDetails::model()->findByPk($_POST['sale_ref_no']);
+			$model->attributes=$_POST;
+			$model->payplanrefno = 1;
+			$model->nofinstallments = 0;
+			$model->description = 'Not Given';
+			$model->installamount = 0;
+			$model->totalpayable = 0;
+			$model->lastmodifieddate = date('Y-m-d');
+			$model->lastmodifiedby = yii::app()->user->userId;
+
+			if($model->validate()){
+
+				if($model->save()){
+
+					ProjectDetails::model()->setBlockSoldOut($model->blockrefnumber, $model->customercode);
+
+
+				}
+
+				$data = ['status' => 'success', 'data'=>$model->attributes, 'message'=>'Updated successfully.'];
+
+				//echo json_encode($data);
+
+			}else{
+
+				$data = ['status' => 'error', 'data'=>$model->getErrors(), 'message'=>null];
+
+				//die('has errors');
+			}
+		}
+
+		echo json_encode($data);
+
+	}
+
+
 
 	public function actionAddnewsale(){
 
@@ -246,6 +297,24 @@ class SalesMasterController extends Controller
 				//die('has errors');
 			}
 
+		}
+
+		echo json_encode($data);
+
+	}
+
+	public function actionGetSale(){
+
+		$data = $data = ['status' => 'error', 'data'=>array(), 'message'=>null];
+
+		if(isset($_POST['sales_ref_no']))
+		{
+			$criteria = new CDbCriteria();
+			$criteria->compare('sales_ref_no', $_POST['sales_ref_no']);
+			$sale = ViewSaleCustomerProjectLocation::model()->find($criteria);
+
+
+			$data = ['status' => 'success', 'data'=>$sale->attributes, 'message'=>'success'];
 		}
 
 		echo json_encode($data);
