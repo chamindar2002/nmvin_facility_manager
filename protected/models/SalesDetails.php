@@ -181,6 +181,7 @@ class SalesDetails extends NmwndbActiveRecord
 	public function facilityExists($sale_refno){
 		$criteria = new CDbCriteria();
 		$criteria->compare('sales_ref_no', $sale_refno);
+		$criteria->compare('deleted', 0);
 		return FacilityMaster::model()->find($criteria);
 	}
         

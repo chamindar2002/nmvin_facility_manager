@@ -41,7 +41,7 @@ class ViewSaleCustomerProjectLocation extends CActiveRecord
 			array('project_name, location_name, location_city, blocknumber, firstname, familyname, passportno', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('blockrefnumber, sales_ref_no, projectcode, project_name, locationcode, location_name, location_city, blocknumber, customercode, firstname, familyname, passportno', 'safe', 'on'=>'search'),
+			array('blockrefnumber, sales_ref_no, projectcode, project_name, locationcode, location_name, location_city, blocknumber, customercode, firstname, familyname, passportno, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -109,6 +109,7 @@ class ViewSaleCustomerProjectLocation extends CActiveRecord
 		$criteria->compare('firstname',$this->firstname,true);
 		$criteria->compare('familyname',$this->familyname,true);
 		$criteria->compare('passportno',$this->passportno,true);
+		$criteria->compare('deleted',0);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -804,14 +804,14 @@ select
  `pmntmodel`.`payment_sequence` AS `payment_sequence`,
  `pitem`.`name` AS `payment_plan_item`
  from ((
-    `nmwndb_asiast`.`repayment_schema` `rps` 
+    `nmwndb_asiast`.`repayment_schema` `rps`
  join `nmwndb_asiast`.`payment_model` `pmntmodel`
  on((`rps`.`payment_model_id` = `pmntmodel`.`id`)))
  join `nmwndb_asiast`.`payment_plan_items` `pitem`
  on((`pitem`.`id` = `pmntmodel`.`payment_plan_item_id`)));
 
 
-SELECT 
+SELECT
  `fm`.`id` AS  `facility_master_id`,
  `fm`.`customer_id` AS  `customer_id`,
  `fm`.`deleted` AS  `deleted`,
@@ -883,6 +883,13 @@ select
 
   )
 
+  select
+  `sls`.`blockrefnumber` AS `blockrefnumber`,
+  `sls`.`refno` AS `sales_ref_no`,
+  `sls`.`addeddate` AS `addeddate`,
+  `prj`.`projectcode` AS `projectcode`,
+  `prj`.`projectname` AS `project_name`,`lctn`.`locationcode` AS `locationcode`,`lctn`.`locationname` AS `location_name`,`lctn`.`locationcity` AS `location_city`,`pj`.`blocknumber` AS `blocknumber`,`cs`.`customercode` AS `customercode`,`cs`.`firstname` AS `firstname`,`cs`.`familyname` AS `familyname`,`cs`.`passportno` AS `passportno` from ((((`nmwndb`.`sales` `sls` join `nmwndb`.`customerdetails` `cs` on((`sls`.`customercode` = `cs`.`customercode`))) join `nmwndb`.`project` `prj` on((`sls`.`projectcode` = `prj`.`projectcode`))) join `nmwndb`.`location` `lctn` on((`sls`.`locationcode` = `lctn`.`locationcode`))) join `nmwndb`.`projectdetails` `pj` on((`sls`.`blockrefnumber` = `pj`.`refno`)))
+
 --   old system merge db changes
 
 
@@ -890,7 +897,48 @@ select
 -- Structure for view `view_customer_block_relation`
 --
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_customer_block_relation` AS select `cs`.`customercode` AS `customercode`,`cs`.`familyname` AS `familyname`,`cs`.`firstname` AS `firstname`,`cs`.`title` AS `title`,`cs`.`addressline1` AS `addressline1`,`cs`.`addressline2` AS `addressline2`,`cs`.`passportno` AS `passportno`,`cs`.`mobile` AS `mobile`,`pd`.`blocknumber` AS `blocknumber`,`pd`.`refno` AS `refno`,`pd`.`projectcode` AS `projectcode`,`prj`.`projectname` AS `project_name` from ((`customerdetails` `cs` join `projectdetails` `pd` on((`cs`.`customercode` = `pd`.`customercode`))) join `project` `prj` on((`pd`.`projectcode` = `prj`.`projectcode`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_customer_block_relation` AS select
+  `cs`.`customercode` AS `customercode`,
+  `cs`.`familyname` AS `familyname`,
+  `cs`.`firstname` AS `firstname`,
+  `cs`.`title` AS `title`,
+  `cs`.`addressline1` AS `addressline1`,
+  `cs`.`addressline2` AS `addressline2`,
+  `cs`.`passportno` AS `passportno`,
+  `cs`.`mobile` AS `mobile`,
+  `pd`.`blocknumber` AS `blocknumber`,
+  `pd`.`refno` AS `refno`,
+  `pd`.`projectcode` AS `projectcode`,
+  `prj`.`projectname` AS `project_name`
+from ((
+      `customerdetails` `cs`
+       join `projectdetails` `pd`
+       on((`cs`.`customercode` = `pd`.`customercode`)))
+       join `project` `prj` on((`pd`.`projectcode` = `prj`.`projectcode`)));
+
+
+
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_sale_customer_project_location` AS select
+  `sls`.`blockrefnumber` AS `blockrefnumber`,
+  `sls`.`refno` AS `sales_ref_no`,
+  `sls`.`addeddate` AS `addeddate`,
+  `sls`.`deleted` AS `deleted`,
+  `prj`.`projectcode` AS `projectcode`,
+  `prj`.`projectname` AS `project_name`,
+  `lctn`.`locationcode` AS `locationcode`,
+  `lctn`.`locationname` AS `location_name`,
+  `lctn`.`locationcity` AS `location_city`,
+  `pj`.`blocknumber` AS `blocknumber`,
+  `cs`.`customercode` AS `customercode`,
+  `cs`.`firstname` AS `firstname`,
+  `cs`.`familyname` AS `familyname`,
+  `cs`.`passportno` AS `passportno`
+from ((((`sales` `sls`
+    join `customerdetails` `cs` on((`sls`.`customercode` = `cs`.`customercode`)))
+    join `project` `prj` on((`sls`.`projectcode` = `prj`.`projectcode`)))
+    join `location` `lctn` on((`sls`.`locationcode` = `lctn`.`locationcode`)))
+    join `projectdetails` `pj` on((`sls`.`blockrefnumber` = `pj`.`refno`)));
 
 --
 -- VIEW  `view_customer_block_relation`

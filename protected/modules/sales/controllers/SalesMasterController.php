@@ -37,7 +37,7 @@ class SalesMasterController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'ProjectDetails', 'addnewsale', 'getsale', 'updatesale'),
+				'actions'=>array('create','update', 'ProjectDetails', 'addnewsale', 'getsale', 'updatesale', 'deletesale'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actionsn
@@ -213,7 +213,12 @@ class SalesMasterController extends Controller
 				Yii::app()->end();
 			}
 
+
 			$model = SalesDetails::model()->findByPk($_POST['sale_ref_no']);
+
+			$prv_block = $model->blockrefnumber;
+			$new_block = $_POST['blockrefnumber'];
+
 			$model->attributes=$_POST;
 			$model->payplanrefno = 1;
 			$model->nofinstallments = 0;
@@ -223,11 +228,27 @@ class SalesMasterController extends Controller
 			$model->lastmodifieddate = date('Y-m-d');
 			$model->lastmodifiedby = yii::app()->user->userId;
 
+			$project = ProjectMaster::model()->findByPk($_POST['projectcode']);
+
+			if(count($project) == 1){
+				$model->locationcode = $project->locationDetails->locationcode;
+			}
+			//echo $model->blockrefnumber.'<br>';
+
+			//echo "$prv_block ? $new_block";exit;
+
+
 			if($model->validate()){
 
 				if($model->save()){
 
-					ProjectDetails::model()->setBlockSoldOut($model->blockrefnumber, $model->customercode);
+
+					if($prv_block != $new_block){
+
+						ProjectDetails::model()->setBlockSoldOut($new_block, $model->customercode);
+						ProjectDetails::model()->unsetBlockSoldOut($prv_block);
+
+					}
 
 
 				}
@@ -315,6 +336,45 @@ class SalesMasterController extends Controller
 
 
 			$data = ['status' => 'success', 'data'=>$sale->attributes, 'message'=>'success'];
+		}
+
+		echo json_encode($data);
+
+	}
+
+	public function actionDeleteSale(){
+		$data = $data = ['status' => 'error', 'data'=>array(), 'message'=>null];
+
+
+		if(isset($_POST['sale_ref_no']))
+		{
+			if(count(SalesDetails::model()->facilityExists($_POST['sale_ref_no'])) > 0){
+				echo json_encode(['status' => 'error', 'data'=>['Cannot delete. Facilty exists for this sale.'], 'message'=>null]);
+				Yii::app()->end();
+			}
+
+			$model = SalesDetails::model()->findByPk($_POST['sale_ref_no']);
+			$model->deleted = 1;
+			$model->deleteddate = date('Y-m-d');
+			$model->deletedby = yii::app()->user->userId;
+
+			if($model->validate()){
+
+				if($model->save()){
+
+					$data = ['status' => 'success', 'data'=>$model->attributes, 'message'=>'Updated successfully.'];
+
+				}
+
+
+			}else{
+
+				$data = ['status' => 'error', 'data'=>$model->getErrors(), 'message'=>null];
+
+				//die('has errors');
+			}
+
+
 		}
 
 		echo json_encode($data);

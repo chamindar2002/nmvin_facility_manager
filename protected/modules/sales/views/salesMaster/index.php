@@ -11,7 +11,6 @@ $this->menu=array(
 	//array('label'=>'Manage SalesDetails', 'url'=>array('admin')),
 );
 
-
 ?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
@@ -37,13 +36,13 @@ $this->menu=array(
 
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{email}',
+			'template'=>'{edit}',
 			'buttons'=>array
 			(
-				'email' => array
+				'edit' => array
 				(
-					'label'=>'edit',
-					//'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
+					'label'=>'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>',
+					//'imageUrl'=>'<i class="fa fa-pencil" aria-hidden="true"></i>',
 					'click'=>"function(){
                                     fetchSale($(this).attr('href'));
                                     return false;
@@ -138,7 +137,7 @@ $this->menu=array(
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">New Sale</h4>
+				<h4 class="modal-title" id="myModalLabel">Update Sale</h4>
 			</div>
 			<div class="modal-body">
 				<div class="customer_data_placeholder"></div>
@@ -190,6 +189,8 @@ $this->menu=array(
 
 					<?php $this->endWidget(); ?>
 
+					<a href="#" id="btn_delete" style="display: block"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
 				</div>
 			</div>
 
@@ -204,6 +205,58 @@ $this->menu=array(
 <script type="text/javascript">
 
 var placeholder_html = '<br><span class="loader" style="margin-left:45%;"><img src="<?php echo yii::app()->baseUrl; ?>/themes/images/loading.gif" alt="Loading...") /></span><br><br>';
+
+
+$("#btn_delete").click(function(event){
+
+	event.preventDefault();
+
+	var sale_ref_no = $('#sale_ref_no').val();
+
+	var res = confirm("Are you sure you want to delete ?");
+
+	if (res == true) {
+
+		$.ajax({
+			type :'POST',
+			dataType:'JSON',
+
+			cache: false,
+			url : '<?php echo Yii::app()->baseUrl."/index.php/sales/salesMaster/DeleteSale"; ?>',
+			data : {
+
+				sale_ref_no: sale_ref_no
+			},
+
+			beforeSend: function() {
+				//$('#total_chrgs_box').html(placeholder_html);
+				$('.customer_data_placeholder').html(placeholder_html);
+			},
+			success : function(result){
+
+				if(result.status == 'error'){
+
+					$('.customer_data_placeholder').html(appendErrors(result.data));
+				}else{
+
+					$('.customer_data_placeholder').html(appendSuccess(result.message));
+					$("#btn_delete").css('display','none');
+					$('#btn_sale_data_update').prop('disabled', true);
+
+					$.fn.yiiGridView.update('sales-details-grid');
+
+				}
+
+
+			}
+		});
+
+
+	}
+
+	return;
+});
+
 
 $('#btn_add_sale').click(function(event){
 event.preventDefault();
@@ -224,44 +277,52 @@ $('#btn_sale_data_update').click(function(event){
 	var block_id = $('#blockrefnumber').val();
 	var sale_ref_no = $('#sale_ref_no').val()
 
-	//var res = confirm("Save this new sale ?");
 
-	$.ajax({
-		type :'POST',
-		dataType:'JSON',
+	var res = confirm("Update sale ?");
 
-		cache: false,
-		url: '<?php echo Yii::app()->createUrl('sales/salesMaster/UpdateSale') ?>',
-		data : {
-			customercode : customer_id,
-			projectcode: project_id,
-			blockrefnumber: block_id,
-			sale_ref_no:sale_ref_no
+	if (res == true) {
 
-		},
+		$.ajax({
+			type :'POST',
+			dataType:'JSON',
 
-		beforeSend: function() {
-			//$('#total_chrgs_box').html(placeholder_html);
-			$('.customer_data_placeholder').html(placeholder_html);
-		},
-		success : function(result){
-			//console.log(result);
-			//$('.modal-body').html(result);
-			if(result.status == 'error'){
+			cache: false,
+			url: '<?php echo Yii::app()->createUrl('sales/salesMaster/UpdateSale') ?>',
+			data : {
+				customercode : customer_id,
+				projectcode: project_id,
+				blockrefnumber: block_id,
+				sale_ref_no:sale_ref_no
 
-				$('.customer_data_placeholder').html(appendErrors(result.data));
-			}else{
+			},
 
-				$('.customer_data_placeholder').html(appendSuccess(result.message));
+			beforeSend: function() {
+				//$('#total_chrgs_box').html(placeholder_html);
+				$('.customer_data_placeholder').html(placeholder_html);
+			},
+			success : function(result){
+				//console.log(result);
+				//$('.modal-body').html(result);
+				if(result.status == 'error'){
 
-				clearInputFields();
+					$('.customer_data_placeholder').html(appendErrors(result.data));
+				}else{
+
+					$('.customer_data_placeholder').html(appendSuccess(result.message));
+
+					clearInputFields();
+				}
+
+				$.fn.yiiGridView.update('sales-details-grid');
+
 			}
+		});
 
-			$.fn.yiiGridView.update('sales-details-grid');
 
-		}
-	});
 
+	}
+
+	return;
 
 });
 
@@ -334,6 +395,9 @@ function fetchSale(sales_ref_no) {
 
 	$('#modal_sale_update_form').modal();
 	//var sales_ref_no = $(this).attr('href');
+	$("#btn_delete").css('display','block');
+	$('#btn_sale_data_update').prop('disabled', false);
+
 
 	$.ajax({
 		type: 'POST',

@@ -50,7 +50,7 @@ class ProjectDetails extends NmwndbActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('locationcode, projectcode, customercode, housecatcode, blocknumber, blocksize, blockprice, reservedate, paymentmethod, duedate', 'required'),
+			array('locationcode, projectcode, customercode', 'required'),
 			array('locationcode, projectcode, customercode, housecatcode, reservestatus, paymentmethod, deleted, addedby, lastmodifiedby, deletedby', 'numerical', 'integerOnly'=>true),
 			array('blocksize, blockprice', 'numerical'),
 			array('blocknumber', 'length', 'max'=>100),
@@ -179,13 +179,27 @@ class ProjectDetails extends NmwndbActiveRecord
 	}
 
 	public function setBlockSoldOut($block_id, $customer_id){
+
 		$block = $this->findByPk($block_id);
 		$block->reservestatus = 2;
 		$block->customercode = $customer_id;
+		$block->lastmodifiedby = yii::app()->user->userId;
 		$block->save();
 
 		return true;
 
 
+	}
+
+
+	public function unsetBlockSoldOut($block_id){
+
+		$block = $this->findByPk($block_id);
+		$block->reservestatus = 0;
+		$block->customercode = 0;
+		$block->lastmodifiedby = yii::app()->user->userId;
+		$block->save();
+
+		return true;
 	}
 }
