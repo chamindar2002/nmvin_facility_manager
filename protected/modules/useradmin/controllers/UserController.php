@@ -10,6 +10,7 @@ class UserController extends Controller
         public $_model;
 
 	public function beforeAction($action) {
+		User::_can(['manager','admin']);
             //echo Address::model()->tableName();
                 $this->layout = UserAdmin::module()->layout;
                 

@@ -56,6 +56,8 @@ class RepaymentSchema extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
                      'paymentModel' => array(self::BELONGS_TO, 'PaymentModel', 'payment_model_id'),
+                     'customer' => array(self::BELONGS_TO,'Customerdetails', 'customer_id'),
+                     'settlements' => array(self::HAS_ONE,'RepaymentSchemaSettlement', 'repayment_schema_id'),
 		);
 	}
 

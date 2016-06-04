@@ -8,6 +8,7 @@ class LocationMasterController extends Controller
 	 */
 	//public $layout='//layouts/column2';
         public function beforeAction($action) {
+			User::_can(['manager','admin', 'staff-front-office']);
             $this->layout = Payments::module()->layout;
             return parent::beforeAction($action);
         }

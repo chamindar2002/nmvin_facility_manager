@@ -160,6 +160,40 @@ class SiteController extends Controller
                 //Yii::app()->user->userId = 2;
                 $this->redirect(yii::app()->baseUrl.'/index.php/site/login');
 	}
+
+	public function actionAuthorize(){
+		$model=new LoginForm();
+		$model->attributes=$_POST;
+
+		$data = ['response'=>'error','data'=>null];
+
+		if($model->validate() && $model->login()){
+
+			$record = User::model()->findByAttributes(array('loginname'=>$model->username,'enabled'=>true,'password'=> User::model()->encryptPassword($model->password)));
+			$urrf = UserRoleRef::model()->findByAttributes(array('uid'=>$record->uid));
+
+			if($urrf->roles->name == 'admin') {
+
+				$data['response'] = 'success';
+				$data['data'] = $model->attributes;
+				Yii::app()->user->setState('ajax_authorize', $model->username);
+
+			}else{
+
+				$data['response'] = 'error';
+				$data['data'] = array('You are not authorized');
+				Yii::app()->user->setState('ajax_authorize', null);
+			}
+		}else{
+			$data['response'] = 'error';
+			$data['data'] = $model->getErrors();
+			Yii::app()->user->setState('ajax_authorize', null);
+		}
+
+
+
+		echo json_encode($data);
+	}
         
         
         public function actionAbout(){

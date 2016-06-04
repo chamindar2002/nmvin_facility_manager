@@ -36,6 +36,10 @@ class PaymentReceiptsMaster extends CActiveRecord
         public $cheque_number;
         
         public $total_paid;
+
+		public $defualted = false;
+
+
     
 	public function tableName()
 	{
@@ -55,8 +59,8 @@ class PaymentReceiptsMaster extends CActiveRecord
 			array('amount_paid, value_of_house', 'numerical'),
 			array('customer_name, name_of_scheme, house_number, details', 'length', 'max'=>255),
 			array('created_at, updated_at', 'safe'),
-                    
-                        array('method_of_payment', 'check_bank_attributes', 'on'=>'validate_method_of_payment'),
+            array('method_of_payment', 'check_bank_attributes', 'on'=>'validate_method_of_payment'),
+			array('facility_master_id', 'check_days_overdue', 'on'=>'authenticateOverdueOveride'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, facility_master_id, customer_id, customer_name, customer_address, transaction_id, amount_paid, receipt_date, deleted, addedby, created_at, updated_at, name_of_scheme, house_number, value_of_house, details, old_receipt_no', 'safe', 'on'=>'search'),
@@ -182,6 +186,41 @@ class PaymentReceiptsMaster extends CActiveRecord
                 }
             }
         }
+
+		public function check_days_overdue(){
+			//Yii::app()->user->setState('ajax_authorize', null);
+
+			$c = new CDbCriteria();
+			$c->compare('facility_master_id', $this->facility_master_id);
+			$c->order = 'id DESC';
+
+			$rpmSettlement = RepaymentSchemaSettlement::model()->find($c);
+			$rpmSchema = RepaymentSchema::model()->find($c);
+
+			//if($rpmSettlement->id < $rpmSchema->id){
+				//echo $rpmSettlement->paymentReceiptMaster->receipt_date.'<br>';
+
+				$now = time();
+				$datediff = $now - strtotime($rpmSettlement->paymentReceiptMaster->receipt_date);
+				$days_overdue = floor($datediff/(60*60*24));
+
+				if($days_overdue > 90){
+
+					//var_dump(Yii::app()->user->getState('ajax_authorize'));
+					if(Yii::app()->user->getState('ajax_authorize') == null) {
+
+						$this->addError('facility_master_id', 'Your payment is overdue by ' . $days_overdue . ' days.');
+						$this->defualted = true;
+
+					}
+
+				}
+
+
+			//}
+
+			//return 0;
+		}
         
         public function add_receipt_detail($receipt_master,$post){
             

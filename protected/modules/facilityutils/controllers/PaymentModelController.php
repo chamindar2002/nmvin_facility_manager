@@ -8,6 +8,7 @@ class PaymentModelController extends Controller
 	 */
 	//public $layout='//layouts/column2';
         public function beforeAction($action) {
+			User::_can(['manager','admin', 'staff-front-office']);
             $this->layout = Facilityutils::module()->layout;
             return parent::beforeAction($action);
         }

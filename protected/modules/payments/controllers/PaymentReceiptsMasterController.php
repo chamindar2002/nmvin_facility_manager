@@ -32,11 +32,11 @@ class PaymentReceiptsMasterController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array(),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','AutocompleteByMemberId','RenderFacilityMaster','GeneratePdf','SimulateDelete', 'admin', 'delete'),
+				'actions'=>array('create','update','AutocompleteByMemberId','RenderFacilityMaster','GeneratePdf','SimulateDelete', 'admin', 'delete', 'index'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -55,6 +55,7 @@ class PaymentReceiptsMasterController extends Controller
 	 */
 	public function actionView($id)
 	{
+        User::_can(['manager','admin', 'staff-front-office']);
 //            $mPDF1 = Yii::app()->ePdf->mpdf('','A5-L');
 //            $mPDF1->WriteHTML($this->render('print',array('model'=>$this->loadModel($id)),true));               
 //            $mPDF1->Output(); 
@@ -79,6 +80,8 @@ class PaymentReceiptsMasterController extends Controller
 	 */
 	public function actionCreate()
 	{
+        User::_can(['manager','admin', 'staff-front-office']);
+
 		$model=new PaymentReceiptsMaster;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -94,7 +97,7 @@ class PaymentReceiptsMasterController extends Controller
 		if(isset($_POST['PaymentReceiptsMaster']))
 		{
                         $facility_master = FacilityMaster::model()->findByPk($_POST['PaymentReceiptsMaster']['facility_master_id']);
-			$model->attributes=$_POST['PaymentReceiptsMaster'];
+			             $model->attributes=$_POST['PaymentReceiptsMaster'];
                         
                         $facility_master_id = $_POST['PaymentReceiptsMaster']['facility_master_id'];
                         $amount = $_POST['PaymentReceiptsMaster']['amount_paid'];
@@ -121,7 +124,7 @@ class PaymentReceiptsMasterController extends Controller
                             $model->setScenario('validate_method_of_payment');
                         }
                         
-                        
+                        $model->setScenario('authenticateOverdueOveride');
                         
                         /*
                          * assign receipt data
@@ -164,6 +167,8 @@ class PaymentReceiptsMasterController extends Controller
                             
                             
                             $txt = textHandler::fireSms(null,$message);
+
+                            Yii::app()->user->setState('ajax_authorize', null);
                             //exit();
 				$this->redirect(array('view','id'=>$model->id));
                         }
@@ -301,6 +306,7 @@ class PaymentReceiptsMasterController extends Controller
 	 */
 	public function actionIndex()
 	{
+        User::_can(['manager','admin', 'staff-front-office']);
              $criteria=new CDbCriteria(array(                    
                                 'condition'=>'deleted = 0 ORDER BY id DESC',
                                 

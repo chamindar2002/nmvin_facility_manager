@@ -21,6 +21,8 @@ echo $r;
 	'enableAjaxValidation'=>false,
 )); ?>
 
+	<?php echo $form->errorSummary($model); ?>
+
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
         
         <div class="form-group">
@@ -54,7 +56,7 @@ echo $r;
 		<?php echo $form->error($model,'receipt_date'); ?>
 	</div>
 
-	<?php echo $form->errorSummary($model); ?>
+
         <div class="form-group">
             <?php
             $this->renderPartial('_msearch',array('form'=>$form,'model'=>$model));
@@ -169,3 +171,105 @@ foreach($payment_types As $pt){
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<div class="modal fade" id="modal_payment_validation" tabindex="-1" role="dialog" aria-labelledby="modal_payment_validation_label">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" id="close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Authorization Required</h4>
+			</div>
+			<div class="modal-body">
+				<div class="response_data_placeholder"></div>
+				<br />
+				<div class="user_data_placeholder">
+					<div class="form-group">
+						<div class="input-group">
+												<span class="input-group-addon">
+													<i class="fa fa-user" aria-hidden="true"></i>
+												</span>
+							<input class="form-control" placeholder="Username" id="loginname" name="loginname" type="text" autofocus>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+												<span class="input-group-addon">
+													<i class="fa fa-unlock" aria-hidden="true"></i>
+												</span>
+							<input class="form-control" placeholder="Password" id="password" name="password" type="password" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="button" id="btn_authrize" class="btn btn-lg btn-primary btn-block" value="Sign in">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+<?php if($model->defualted){ ?>
+
+	$( document ).ready(function() {
+		$('#modal_payment_validation').modal();
+
+		$('.errorSummary').appendTo('.response_data_placeholder');
+	});
+<?php } ?>
+
+$('#btn_authrize').click(function(){
+
+	var user = $('#loginname').val();
+	var pwd = $('#password').val();
+	var placeholder_html = '<br><span class="loader" style="margin-left:45%;"><img src="<?php echo yii::app()->baseUrl; ?>/themes/images/loading.gif" alt="Loading...") /></span><br><br>';
+	var resp = '<div class="errorSummary">';
+	$.ajax({
+		type :'POST',
+		dataType:'JSON',
+
+		cache: false,
+		url : '<?php echo Yii::app()->baseUrl."/index.php/site/authorize"; ?>',
+		data : { username:user, password:pwd},
+
+		beforeSend: function() {
+			//$('#total_chrgs_box').html(placeholder_html);
+			$('.response_data_placeholder').html(placeholder_html);
+		},
+		success : function(result){
+
+			if(result.response == 'error'){
+
+				$.each(result.data,function(k,v){
+
+					resp += v
+
+				})
+
+
+			}else if(result.response == 'success'){
+
+				$( document ).ready(function() {
+					$('#close-modal').trigger('click');
+				});
+
+
+
+			}else{
+
+				resp += 'An unknow error occured. Please contact IT department';
+
+			}
+
+			resp += '</div>';
+
+
+			$('.response_data_placeholder').html(resp);
+
+		}
+	});
+})
+
+</script>

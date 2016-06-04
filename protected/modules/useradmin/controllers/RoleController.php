@@ -9,6 +9,7 @@ class RoleController extends Controller
 	//public $layout='//layouts/column2';
     
         public function beforeAction($action) {
+			User::_can(['manager','admin']);
             //echo Address::model()->tableName();
                 $this->layout = UserAdmin::module()->layout;
 		return parent::beforeAction($action);

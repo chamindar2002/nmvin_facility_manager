@@ -8,6 +8,7 @@ class PaymentsController extends Controller
 	}
         
         public function beforeAction($action) {
+			User::_can(['manager','admin', 'staff-front-office']);
             //echo Address::model()->tableName();
                 $this->layout = UserAdmin::module()->layout;
 		return parent::beforeAction($action);

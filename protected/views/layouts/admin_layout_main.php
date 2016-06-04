@@ -36,7 +36,6 @@
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -171,8 +170,9 @@
                     <li>
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
                     </li>-->
-                    
-                    
+
+                <?php if(User::_can(['manager','admin','staff-front-office'], true)){ ?>
+
                     <li>
                         <a href="<?php echo Yii::app()->createUrl('/payments/paymentReceiptsMaster/create')?>"><i class="fa fa-fw fa-edit"></i>New Receipt</a>
                     </li>
@@ -270,11 +270,13 @@
                             <li>
                                 <?php echo CHtml::link('Sales',array('/sales/SalesMaster/index')); ?>
                             </li>
-
+                            <li>
+                                <?php echo CHtml::link('Transfer Block',array('/sales/transfer/blocktransfer')); ?>
+                            </li>
 
                         </ul>
                     </li>
-                    
+
                      <li>
                         
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo_rpts"><i class="fa fa-fw fa-bar-chart-o"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
@@ -298,6 +300,8 @@
                     <li>
                         <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li>
+
+              <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
