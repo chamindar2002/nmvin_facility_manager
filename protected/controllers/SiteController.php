@@ -176,7 +176,7 @@ class SiteController extends Controller
 
 				$data['response'] = 'success';
 				$data['data'] = $model->attributes;
-				Yii::app()->user->setState('ajax_authorize', $model->username);
+				Yii::app()->user->setState('ajax_authorize', $model->username.'@'.$_POST['customer_id']);
 
 			}else{
 

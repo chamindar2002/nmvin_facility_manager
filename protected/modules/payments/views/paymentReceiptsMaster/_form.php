@@ -224,6 +224,7 @@ $('#btn_authrize').click(function(){
 
 	var user = $('#loginname').val();
 	var pwd = $('#password').val();
+	var customer_id = $('#PaymentReceiptsMaster_customer_id').val();
 	var placeholder_html = '<br><span class="loader" style="margin-left:45%;"><img src="<?php echo yii::app()->baseUrl; ?>/themes/images/loading.gif" alt="Loading...") /></span><br><br>';
 	var resp = '<div class="errorSummary">';
 	$.ajax({
@@ -232,7 +233,7 @@ $('#btn_authrize').click(function(){
 
 		cache: false,
 		url : '<?php echo Yii::app()->baseUrl."/index.php/site/authorize"; ?>',
-		data : { username:user, password:pwd},
+		data : { username:user, password:pwd, customer_id:customer_id},
 
 		beforeSend: function() {
 			//$('#total_chrgs_box').html(placeholder_html);

@@ -189,6 +189,7 @@ class PaymentReceiptsMaster extends CActiveRecord
 
 		public function check_days_overdue(){
 			//Yii::app()->user->setState('ajax_authorize', null);
+			//die(Yii::app()->user->getState('ajax_authorize'));
 
 			$c = new CDbCriteria();
 			$c->compare('facility_master_id', $this->facility_master_id);
@@ -204,11 +205,13 @@ class PaymentReceiptsMaster extends CActiveRecord
 				$datediff = $now - strtotime($rpmSettlement->paymentReceiptMaster->receipt_date);
 				$days_overdue = floor($datediff/(60*60*24));
 				$max = 90;
+				$auth_token = 'admin@'.$this->customer_id;
+
 
 				if($days_overdue > $max){
 
 					//var_dump(Yii::app()->user->getState('ajax_authorize'));
-					if(Yii::app()->user->getState('ajax_authorize') == null) {
+					if(Yii::app()->user->getState('ajax_authorize') != $auth_token) {
 
 						$this->addError('facility_master_id', 'Your payment is overdue by ' . $days_overdue . ' days. Payments overdue by more than '.$max.' days is open for resale.');
 						$this->defualted = true;
