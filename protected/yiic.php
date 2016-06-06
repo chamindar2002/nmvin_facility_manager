@@ -1,7 +1,7 @@
 <?php
 
 // change the following paths if necessary
-$yiic='D:\yiiframework\framework\yiic.php';
+$yiic='/var/www/html/nmvin_facility_manager/framework/yiic.php';
 $config=dirname(__FILE__).'/config/console.php';
 
 require_once($yiic);

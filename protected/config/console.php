@@ -9,11 +9,27 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
 
+	// autoloading model and component classes
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+		'application.modules.useradmin.models.*',
+		'ext.YiiMailer.YiiMailer',
+		'application.modules.facility.models.*',
+		'application.modules.facilityutils.models.*',
+		'application.modules.payments.models.*',
+		'application.modules.customers.models.*',
+		'application.modules.projects.models.*',
+		'application.modules.sales.models.*',
+	),
+
 	// application components
 	'components'=>array(
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
+//		'db'=>array(
+//			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+//		),
+		'db' => require(dirname(__FILE__) . '/db.php'),
+		'db2' => require(dirname(__FILE__) . '/db2.php'),
 		// uncomment the following to use a MySQL database
 		/*
 		'db'=>array(

@@ -143,6 +143,8 @@ class RepaymentSchema extends CActiveRecord
                 $installment_number,
                 $payment_plan_master_id
                 ){
+
+            $due_date = date("Y-m-d", strtotime("+$installment_number month", strtotime(date('Y-m-d'))));
             
             $model = new RepaymentSchema();
             $model->facility_master_id = $facility_master_id;
@@ -153,7 +155,9 @@ class RepaymentSchema extends CActiveRecord
             $model->amount_paid = 0;
             $model->amount_diff = 0;
             $model->installment_number = $installment_number;
-            $model->payment_due_date = date('Y-m-d');//have to change
+            //$model->payment_due_date = date('Y-m-d');//have to change
+            $model->payment_due_date = $due_date;
+            $model->due_date_updated = 1; #
             $model->paid = 0;
             $model->receipt_id = 0;
             $model->is_istallment = ($installment_number > 0) ? 1 : 0;

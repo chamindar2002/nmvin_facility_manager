@@ -944,3 +944,5 @@ from ((((`sales` `sls`
 -- VIEW  `view_customer_block_relation`
 -- Data: None
 --
+
+ALTER TABLE `repayment_schema` ADD `due_date_updated` TINYINT NOT NULL DEFAULT '0' AFTER `payment_due_date`;

@@ -194,18 +194,36 @@ class PaymentReceiptsMaster extends CActiveRecord
 			$c = new CDbCriteria();
 			$c->compare('facility_master_id', $this->facility_master_id);
 			$c->order = 'id DESC';
+			$c->compare('deleted', 0);
 
-			$rpmSettlement = RepaymentSchemaSettlement::model()->find($c);
-			$rpmSchema = RepaymentSchema::model()->find($c);
+			#fetch settlements
+			$rpmSettlement = RepaymentSchemaSettlement::model()->findAll($c);
+
+			$settled = array();
+
+			#compose array with settlement ids
+			foreach($rpmSettlement as $rpms){
+				$settled[] = $rpms->repayment_schema_id.'<br>';
+			}
+
+
+			$k = new CDbCriteria();
+			$k->compare('facility_master_id', $this->facility_master_id);
+			$k->order = 'id ASC';
+			$k->addNotInCondition('id', $settled, 'AND');
+
+			#find the first unsettled Repayment record
+			$rpmSchema = RepaymentSchema::model()->find($k);
+
 
 			//if($rpmSettlement->id < $rpmSchema->id){
 				//echo $rpmSettlement->paymentReceiptMaster->receipt_date.'<br>';
 
 				$now = time();
-				$datediff = $now - strtotime($rpmSettlement->paymentReceiptMaster->receipt_date);
-				$days_overdue = floor($datediff/(60*60*24));
+				$datediff = $now - strtotime($rpmSchema->payment_due_date);# calculate diff.
+				$days_overdue = floor($datediff/(60*60*24));#round off
 				$max = 90;
-				$auth_token = 'admin@'.$this->customer_id;
+				$auth_token = 'admin@'.$this->customer_id; #auth token to be matched.
 
 
 				if($days_overdue > $max){
