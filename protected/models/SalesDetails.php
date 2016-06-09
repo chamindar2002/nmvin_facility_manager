@@ -77,6 +77,7 @@ class SalesDetails extends NmwndbActiveRecord
                     'blockDetails' => array(self::BELONGS_TO, 'ProjectDetails', 'blockrefnumber'),
                     'projectMaster' => array(self::BELONGS_TO, 'ProjectMaster', 'projectcode'),
                     'location' => array(self::BELONGS_TO,'LocationMaster','locationcode'),
+					'customer' => array(self::BELONGS_TO,'Customerdetails', 'customercode'),
 		);
 	}
 

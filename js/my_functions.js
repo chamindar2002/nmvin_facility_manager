@@ -101,3 +101,63 @@ function appendSuccess(msg){
 
     return msg;
 }
+
+
+var counted = 0;
+var rows = 0;
+
+function notificationsPull() {
+    $.ajax({
+        type: 'GET',
+        dataType: 'JSON',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        url: 'http://127.0.0.1:8000/todo',
+
+
+        beforeSend: function () {
+            //console.log('ok');
+        },
+        success: function (result, status, jqXHR) {
+
+            $('#notification_item_list_customer').html('');
+
+            if(result.length > 0){
+
+                $.each(result, function (k, v) {
+
+                    $('#notification_receipt_count').html(result.length)
+                    $('#notification_item_list_customer').append('<li><a href="#">'+v.customer_name+'<span  class="label label-primary"></span></a></li>');
+
+                    rows = result.length;
+
+                    if(rows > counted){
+                        $('#notification_receipt_count').removeClass('btn-info');
+                        $('#notification_receipt_count').addClass('label-danger');
+                    }
+
+                })
+
+            }else{
+                $('#notification_receipt_count').html('0');
+                $('#notification_receipt_count').removeClass('label-danger');
+                $('#notification_receipt_count').addClass('btn-info');
+                //$('#notification_item_list_customer).
+            }
+
+
+
+            //console.log(result.length);
+
+        }
+    });
+}
+
+
+setInterval(notificationsPull, 60000);
+
+$('#notification_receipt_count').click(function(){
+    $(this).removeClass('label-danger');
+    $(this).addClass('btn-info');
+    counted = rows
+});

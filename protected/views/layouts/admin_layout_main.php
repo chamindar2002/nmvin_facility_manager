@@ -25,6 +25,8 @@
     
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap/main.css" rel="stylesheet">
 
+    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -109,8 +111,9 @@
 <!--                    </ul>-->
 <!--                </li>-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>-->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Receipts <span class="label label-danger" id="notification_receipt_count"></span></a>
+                    <ul class="dropdown-menu alert-dropdown" id="notification_item_list_customer">
                         <li>
                             <a href="#">No Alerts<span  class="label label-primary"></span></a>
                         </li>

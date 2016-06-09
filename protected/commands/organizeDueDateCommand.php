@@ -67,7 +67,7 @@ class organizeDueDateCommand extends CConsoleCommand{
     }
 
     public function  actionIndex(){
-        echo "OKI";
+        echo "running";
     }
 
 }
