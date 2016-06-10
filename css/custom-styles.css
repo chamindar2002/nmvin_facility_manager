@@ -1,0 +1,22 @@
+
+.status-icon{
+    width:10px;
+    height:10px;
+    color: blue;
+    border: 1px solid black;
+    border-radius: 10px;
+
+}
+
+.block_staus_0{
+    background-color: #00b300;
+}
+.block_staus_1{
+    background-color: #ffff00;
+}
+.block_staus_2{
+    background-color: #ff3300;
+}
+.block_staus_3{
+    background-color: rebeccapurple;
+}

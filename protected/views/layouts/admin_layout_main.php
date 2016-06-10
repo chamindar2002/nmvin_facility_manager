@@ -25,7 +25,7 @@
     
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap/main.css" rel="stylesheet">
 
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" rel="stylesheet">
+    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom-styles.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

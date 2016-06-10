@@ -40,14 +40,18 @@
 </div>
 
 <div class="panel panel-success">
-	<div class="panel-heading">Tranfer From</div>
+	<div class="panel-heading">Swap From</div>
 	<div class="panel-body" id="customer_from_placeholder"></div>
 </div>
 
 <div class="panel panel-success">
-	<div class="panel-heading">Tranfer To</div>
+	<div class="panel-heading">Swap To</div>
 	<div class="panel-body" id="customer_to_placeholder"></div>
 </div>
+
+
+
+<button type="button" id="btn_validate_tranfer" class="btn btn-primary">Save</button>
 
 
 <table>
@@ -83,12 +87,163 @@
 
 
 
+<div class="modal fade" id="modal_block_tranfer_confirm" tabindex="-1" role="dialog" aria-labelledby="mymodal_block_info_abel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Block/House Swap</h4>
+			</div>
+			<div class="modal-body">
+				<div class="customer_data_placeholder"></div>
+				<br />
+				<div class="block_data_placeholder">
 
 
 
 
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="btn_save_block_swap_data">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--<li class="errorMessage">sssss</li>-->
 
 <script type="text/javascript">
+
+	$('#btn_save_block_swap_data').click(function(){
+
+		var tranfer_to_block_id = $('#tranfer-to-block-id').val();
+		var tranfer_to_block_status = $('#tranfer-to-block-status').val();
+		var tranfer_to_block_customer_id = $('#tranfer-to-block-customer-id').val();
+		var tranfer_to_block_sales_ref = $('#tranfer-to-block-sales-ref').val();
+		var tranfer_to_block_price = $('#tranfer-to-block-price').val();
+
+		var tranfer_from_block_id = $('#tranfer-from-block-id').val();
+		var tranfer_from_block_status = $('#tranfer-from-block-status').val();
+		var tranfer_from_block_customer_id = $('#tranfer-from-block-customer-id').val();
+		var tranfer_from_block_sales_ref = $('#tranfer-from-block-sales-ref').val(0);
+		var tranfer_from_block_price = $('#tranfer-from-block-price').val();
+
+		var msg = ''
+
+		var transfer_data = {
+			tranfer_from_block_id:tranfer_from_block_id,
+			tranfer_from_block_status:tranfer_from_block_status,
+			tranfer_from_block_customer_id:tranfer_from_block_customer_id,
+			tranfer_from_block_sales_ref:tranfer_from_block_sales_ref,
+			tranfer_from_block_price:tranfer_from_block_price,
+			tranfer_to_block_id:tranfer_to_block_id,
+			tranfer_to_block_status:tranfer_to_block_status,
+			tranfer_to_block_customer_id:tranfer_to_block_customer_id,
+			tranfer_to_block_sales_ref:tranfer_to_block_sales_ref,
+			tranfer_to_block_price:tranfer_to_block_price
+
+
+		}
+
+		//alert(tranfer_from_block_status);
+
+		//apply rules
+
+		if(tranfer_to_block_id == 0 || tranfer_from_block_id == 0){
+
+			$('.customer_data_placeholder').html('<span class="errorMessage">Please select blocks/houses to swap</span>');
+			console.log('rule one:'+tranfer_to_block_id + ' - ' + tranfer_from_block_id);
+			return false;
+		}
+
+		if(tranfer_from_block_status != 2){
+
+			$('.customer_data_placeholder').html('<span class="errorMessage">Cannot swap an unsold block/house</span>');
+			console.log('rule two:'+tranfer_from_block_status);
+			return false;
+		}
+
+		if(tranfer_to_block_id == tranfer_from_block_id){
+
+			$('.customer_data_placeholder').html('<span class="errorMessage">Cannot swap same block/house</span>');
+			console.log('rule three:'+tranfer_to_block_id+' - '+tranfer_from_block_id);
+			return false;
+		}
+
+		if(tranfer_from_block_customer_id == 0 || tranfer_from_block_sales_ref == 0){
+
+			$('.customer_data_placeholder').html('<span class="errorMessage">Block/House to swap from should be a sold</span>');
+			console.log('rule four:'+tranfer_from_block_customer_id+' - '+tranfer_from_block_sales_ref);
+			return false;
+		}
+
+		if(tranfer_from_block_customer_id == tranfer_to_block_customer_id){
+
+			$('.customer_data_placeholder').html('<span class="errorMessage">Cannot swap between same owners</span>');
+			console.log('rule five:'+tranfer_from_block_customer_id+' - '+tranfer_to_block_customer_id);
+			return false;
+		}
+
+		if(tranfer_from_block_price != tranfer_to_block_price){
+
+			$('.customer_data_placeholder').html('<span class="errorMessage">Cannot swap block/house with different price/value</span>');
+			console.log('rule six:'+tranfer_from_block_price+' - '+tranfer_to_block_price);
+			return false;
+		}
+
+
+		$('.customer_data_placeholder').html('<span class="flash-success">All rules passed :D</span>');
+
+		console.log('clear');
+		console.log(transfer_data);
+
+		$.ajax({
+			type :'POST',
+			dataType:'JSON',
+
+			cache: false,
+			url : '<?php echo Yii::app()->baseUrl."/index.php/sales/transfer/create"; ?>',
+			data : {transfer_data: JSON.stringify(transfer_data)},
+
+			beforeSend: function() {
+				//$('#total_chrgs_box').html(placeholder_html);
+				//$('.customer_data_placeholder').html(placeholder_html);
+			},
+			success : function(result){
+
+				if(result.status == 'success'){
+
+
+
+
+					if(result.data.sales_data != null) {
+						//$('#tranfer-to-block-sales-ref').val(result.data.sales_data.refno);
+
+					}else{
+						//$('#tranfer-to-block-sales-ref').val(0);
+						//$('#customer_to_placeholder').html('');
+					}
+
+					//appendCustomerData('customer_to_placeholder',result);
+
+				}else{
+					//resetFields();
+				}
+
+			}
+		});
+
+
+
+	});
+
+	$('#btn_validate_tranfer').click(function(){
+		$('#modal_block_tranfer_confirm').modal();
+	});
 
 	$('#BlockTransfer_swap_to_block').change(function(event){
 
