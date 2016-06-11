@@ -1,9 +1,9 @@
 <?php
 /* @var $this TransferController */
 
-//$this->breadcrumbs=array(
-//	'Transfer',
-//);
+$this->breadcrumbs=array(
+	'Transfer','Block Swap'
+);
 
 ?>
 
@@ -54,7 +54,7 @@
 <button type="button" id="btn_validate_tranfer" class="btn btn-primary">Save</button>
 
 
-<table>
+<table style="display: none">
 	<tr>
 		<th>block id</th>
 		<th>status</th>
@@ -107,7 +107,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" id="btn_save_block_swap_data">Save</button>
+				<button type="button" class="btn btn-primary" id="btn_save_block_swap_data">Confirm</button>
 			</div>
 		</div>
 	</div>
@@ -117,6 +117,8 @@
 <!--<li class="errorMessage">sssss</li>-->
 
 <script type="text/javascript">
+
+	var placeholder_html = '<br><span class="loader" style="margin-left:45%;"><img src="<?php echo yii::app()->baseUrl; ?>/themes/images/loading.gif" alt="Loading...") /></span><br><br>';
 
 	$('#btn_save_block_swap_data').click(function(){
 
@@ -129,7 +131,7 @@
 		var tranfer_from_block_id = $('#tranfer-from-block-id').val();
 		var tranfer_from_block_status = $('#tranfer-from-block-status').val();
 		var tranfer_from_block_customer_id = $('#tranfer-from-block-customer-id').val();
-		var tranfer_from_block_sales_ref = $('#tranfer-from-block-sales-ref').val(0);
+		var tranfer_from_block_sales_ref = $('#tranfer-from-block-sales-ref').val();
 		var tranfer_from_block_price = $('#tranfer-from-block-price').val();
 
 		var msg = ''
@@ -140,6 +142,7 @@
 			tranfer_from_block_customer_id:tranfer_from_block_customer_id,
 			tranfer_from_block_sales_ref:tranfer_from_block_sales_ref,
 			tranfer_from_block_price:tranfer_from_block_price,
+
 			tranfer_to_block_id:tranfer_to_block_id,
 			tranfer_to_block_status:tranfer_to_block_status,
 			tranfer_to_block_customer_id:tranfer_to_block_customer_id,
@@ -196,46 +199,49 @@
 		}
 
 
-		$('.customer_data_placeholder').html('<span class="flash-success">All rules passed :D</span>');
+		$('.customer_data_placeholder').html('<strong>Confirmation Required</strong>');
 
-		console.log('clear');
-		console.log(transfer_data);
+		//console.log('clear');
+		//console.log(transfer_data);
+		var res = confirm("Are you sure you want to swap ?")
+			;
+		if (res == true) {
 
-		$.ajax({
-			type :'POST',
-			dataType:'JSON',
+			$.ajax({
+				type :'POST',
+				dataType:'JSON',
 
-			cache: false,
-			url : '<?php echo Yii::app()->baseUrl."/index.php/sales/transfer/create"; ?>',
-			data : {transfer_data: JSON.stringify(transfer_data)},
+				cache: false,
+				url : '<?php echo Yii::app()->baseUrl."/index.php/sales/transfer/createNewSwap"; ?>',
+				data : {transfer_data: JSON.stringify(transfer_data)},
 
-			beforeSend: function() {
-				//$('#total_chrgs_box').html(placeholder_html);
-				//$('.customer_data_placeholder').html(placeholder_html);
-			},
-			success : function(result){
+				beforeSend: function() {
+					//$('#total_chrgs_box').html(placeholder_html);
+					$('.customer_data_placeholder').html(placeholder_html);
+				},
+				success : function(result){
 
-				if(result.status == 'success'){
+					console.log(result);
 
+					if(result.status == 'success'){
 
+						$('.customer_data_placeholder').html(appendSuccess(result.message));
 
+						resetFields();
+						$('#BlockTransfer_swap_from_block').val('');
+						$('#BlockTransfer_swap_to_block').val('');
 
-					if(result.data.sales_data != null) {
-						//$('#tranfer-to-block-sales-ref').val(result.data.sales_data.refno);
 
 					}else{
-						//$('#tranfer-to-block-sales-ref').val(0);
-						//$('#customer_to_placeholder').html('');
+						$('.customer_data_placeholder').html(appendErrors(result.data));
 					}
 
-					//appendCustomerData('customer_to_placeholder',result);
-
-				}else{
-					//resetFields();
 				}
+			});
 
-			}
-		});
+		}
+
+
 
 
 
@@ -243,6 +249,25 @@
 
 	$('#btn_validate_tranfer').click(function(){
 		$('#modal_block_tranfer_confirm').modal();
+		$('.customer_data_placeholder').html('');
+
+
+		var htm_from = $('#customer_from_placeholder').html();
+
+		var htm = '<table width="100%"><tr><td>';
+		htm += $('#customer_from_placeholder').html();
+		htm += '</td>';
+		htm += '<td><i class="fa fa-chevron-right fa-3x" aria-hidden="true"></i></td>';
+		htm += '<td>'+$('#customer_to_placeholder').html()+'</td>';
+		htm += '</table>';
+//		htm.prepend('<table><tr><td>');
+//		htm.append()
+//		htm.append('</td></tr>');
+//		htm.append('</table>');
+//		htm.append('<p><i class="fa fa-chevron-down fa-3x" aria-hidden="true"></i></p>');
+
+
+		$('.customer_data_placeholder').html(htm);
 	});
 
 	$('#BlockTransfer_swap_to_block').change(function(event){
@@ -302,6 +327,7 @@
 		}
 
 		htm += 'Block Status <div id="status_icon_'+data_obj.data.block_data.reservestatus+'"' + 'class="status-icon block_staus_'+data_obj.data.block_data.reservestatus+'"' +'></div>';
+		htm += 'Block Number ['+data_obj.data.block_data.blocknumber+'] <br>';
 		htm += 'Block Price ['+data_obj.data.block_data.blockprice+']';
 
 		$('#'+placeholder).html(htm);
