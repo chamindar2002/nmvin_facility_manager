@@ -36,7 +36,7 @@ class BlockTransfer extends ProjectDetails
         return array(
             'swap_from_block' => 'Swap From',
             'swap_to_block' => 'Swap To',
-            'projectcode' => 'Project Code',
+            'projectcode' => 'Project',
 
         );
     }

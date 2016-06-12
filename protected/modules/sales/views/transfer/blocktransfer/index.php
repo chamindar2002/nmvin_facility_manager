@@ -2,7 +2,9 @@
 /* @var $this TransferController */
 
 $this->breadcrumbs=array(
-	'Transfer','Block Swap'
+	//'Project Details'=>array('index'),
+	//'Transfer',
+	'Block Swap'
 );
 
 ?>
