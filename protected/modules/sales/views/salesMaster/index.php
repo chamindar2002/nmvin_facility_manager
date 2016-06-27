@@ -423,7 +423,7 @@ function fetchSale(sales_ref_no) {
 			} else {
 
 				$('.customer_data_placeholder').html(appendSuccess(result.message));
-				appendCustomerData(result);
+				append_CustomerData(result);
 
 
 			}
@@ -434,7 +434,7 @@ function fetchSale(sales_ref_no) {
 	});
 }
 	//alert(sales_ref_no);
-function appendCustomerData(result){
+function append_CustomerData(result){
 
 	var str = "";
 

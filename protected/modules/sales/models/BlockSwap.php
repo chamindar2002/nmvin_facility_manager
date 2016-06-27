@@ -10,7 +10,7 @@
  */
 
 
-class BlockTransfer extends ProjectDetails
+class BlockSwap extends ProjectDetails
 {
     public $swap_from_block;
     public $swap_to_block;

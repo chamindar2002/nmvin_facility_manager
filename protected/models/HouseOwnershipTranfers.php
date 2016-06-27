@@ -21,6 +21,10 @@ class HouseOwnershipTranfers extends NmwndbActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+
+	public $projectcode;
+	public $block_to_be_tranfered;
+
 	public function tableName()
 	{
 		return 'house_ownership_tranfers';
@@ -125,5 +129,18 @@ class HouseOwnershipTranfers extends NmwndbActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function getBlockListData($project_id){
+
+		$criteria = new CDbCriteria();
+		$criteria->compare('deleted', 0);
+		$criteria->compare('projectcode', $project_id);
+		$criteria->compare('reservestatus',2);
+
+		$data = ProjectDetails::model()->findAll($criteria);
+
+		return $data;
+
 	}
 }

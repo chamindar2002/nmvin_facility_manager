@@ -274,7 +274,10 @@
                                 <?php echo CHtml::link('Sales',array('/sales/SalesMaster/index')); ?>
                             </li>
                             <li>
-                                <?php echo CHtml::link('Block Swap',array('/sales/transfer/blocktransfer')); ?>
+                                <?php echo CHtml::link('Block/House Swap',array('/sales/transfer/blocktransfer')); ?>
+                            </li>
+                            <li>
+                                <?php echo CHtml::link('Block/House Ownership Tranfer',array('/sales/transfer/OwnershipTransfer')); ?>
                             </li>
 
                         </ul>

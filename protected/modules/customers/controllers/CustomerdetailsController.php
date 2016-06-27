@@ -37,7 +37,7 @@ class CustomerdetailsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete', 'admin'),
+				'actions'=>array('create','update', 'delete', 'admin', 'AutocompleteByMemberId'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -198,5 +198,32 @@ class CustomerdetailsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionAutocompleteByMemberId() {
+		$res = array();
+		$term = Yii::app()->getRequest()->getParam('term', false);
+		if ($term) {
+			// test table is for the sake of this example
+			//$sql = "SELECT mid, first_name,last_name FROM member where first_name = '$term'";
+			//$sql = 'SELECT mid,first_name,last_name,association_memeber_id,gender,member_id FROM member where LCASE(member_id) LIKE :strcode';
+
+			//$sql = 'SELECT mid,first_name,last_name,association_memeber_id,gender,member_id FROM member where LCASE(member_id) LIKE :strcode  OR LCASE(first_name) LIKE :strcode OR LCASE(last_name) LIKE :strcode';
+
+			$sql = 'SELECT 	customercode,title,familyname,firstname,addressline1,addressline2,passportno
+                        FROM nmwndb.customerdetails  WHERE
+                        LCASE(customercode) LIKE :strcode
+                        OR LCASE(familyname) LIKE :strcode
+                        OR LCASE(firstname) LIKE :strcode
+                        OR LCASE(addressline1) LIKE :strcode
+                        OR LCASE(addressline2) LIKE :strcode
+                        OR LCASE(passportno) LIKE :strcode
+                        AND deleted = 0';
+			$cmd = Yii::app()->db->createCommand($sql);
+			$cmd->bindValue(":strcode","%".strtolower($term)."%", PDO::PARAM_STR);
+			$res = $cmd->queryAll();
+		}
+		echo CJSON::encode($res);
+		Yii::app()->end();
 	}
 }

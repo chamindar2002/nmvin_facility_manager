@@ -161,3 +161,19 @@ $('#notification_receipt_count').click(function(){
     $(this).addClass('btn-info');
     counted = rows
 });
+
+function appendCustomerData(placeholder,data_obj){
+    var htm = '';
+    if(data_obj.data.customer_data != null){
+        htm += '<strong>';
+        htm += data_obj.data.customer_data.title + '&nbsp;' + data_obj.data.customer_data.firstname +'&nbsp;'+data_obj.data.customer_data.familyname + '</strong><br />';
+        htm += data_obj.data.customer_data.addressline1 + '&nbsp;' + data_obj.data.customer_data.addressline2 + '<br />';
+        htm += data_obj.data.customer_data.country + '<br /><br />';
+    }
+
+    htm += 'Block Status <div id="status_icon_'+data_obj.data.block_data.reservestatus+'"' + 'class="status-icon block_staus_'+data_obj.data.block_data.reservestatus+'"' +'></div>';
+    htm += 'Block Number ['+data_obj.data.block_data.blocknumber+'] <br>';
+    htm += 'Block Price ['+data_obj.data.block_data.blockprice+']';
+
+    $('#'+placeholder).html(htm);
+}

@@ -550,11 +550,17 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/f76c1b3f/js/fancybox/jquery.fancybox-1.3.1.pack.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/f76c1b3f/js/main.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/f76c1b3f/js/tooltip.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/common/_msearch.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/protected/modules/sales/models/BlockTransfer.php" afterPath="$PROJECT_DIR$/protected/modules/sales/models/BlockSwap.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/config/db.php" afterPath="$PROJECT_DIR$/protected/config/db.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/config/db2.php" afterPath="$PROJECT_DIR$/protected/config/db2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/my_functions.js" afterPath="$PROJECT_DIR$/js/my_functions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/HouseOwnershipTranfers.php" afterPath="$PROJECT_DIR$/protected/models/HouseOwnershipTranfers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/customers/controllers/CustomerdetailsController.php" afterPath="$PROJECT_DIR$/protected/modules/customers/controllers/CustomerdetailsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/projects/views/blockListing/_form.php" afterPath="$PROJECT_DIR$/protected/modules/projects/views/blockListing/_form.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/sales/controllers/TransferController.php" afterPath="$PROJECT_DIR$/protected/modules/sales/controllers/TransferController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/sales/views/salesMaster/index.php" afterPath="$PROJECT_DIR$/protected/modules/sales/views/salesMaster/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/sales/views/transfer/blocktransfer/index.php" afterPath="$PROJECT_DIR$/protected/modules/sales/views/transfer/blocktransfer/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/sales/views/transfer/ownershiptransfer/index.php" afterPath="$PROJECT_DIR$/protected/modules/sales/views/transfer/ownershiptransfer/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/runtime/application.log" afterPath="$PROJECT_DIR$/protected/runtime/application.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/layouts/admin_layout_main.php" afterPath="$PROJECT_DIR$/protected/views/layouts/admin_layout_main.php" />
     </list>
@@ -578,14 +584,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/modules/sales/views/transfer/blocktransfer/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.18577075">
-              <caret line="201" column="75" selection-start-line="201" selection-start-column="75" selection-end-line="201" selection-end-column="75" />
+            <state vertical-scroll-proportion="-45.0">
+              <caret line="165" column="9" selection-start-line="160" selection-start-column="8" selection-end-line="165" selection-end-column="9" />
               <folding>
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-                <marker date="1465639341287" expanded="true" signature="8774:8966" placeholder="..." />
+                <marker date="1466908425676" expanded="true" signature="8808:9000" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_msearch.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/protected/views/common/_msearch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7614841">
+              <caret line="78" column="0" selection-start-line="59" selection-start-column="8" selection-end-line="78" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/modules/sales/views/transfer/ownershiptransfer/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.6792452">
+              <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerdetailsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/modules/customers/controllers/CustomerdetailsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.6037736">
+              <caret line="219" column="58" selection-start-line="219" selection-start-column="58" selection-end-line="219" selection-end-column="58" />
+              <folding>
+                <marker date="1466986795390" expanded="true" signature="5962:6501" placeholder="SELECT custo... customerdetails" />
               </folding>
             </state>
           </provider>
@@ -594,68 +631,28 @@
       <file leaf-file-name="TransferController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/modules/sales/controllers/TransferController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.418182">
-              <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+            <state vertical-scroll-proportion="-3.6603773">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/modules/useradmin/models/User.php">
+      <file leaf-file-name="HouseOwnershipTranfers.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/models/HouseOwnershipTranfers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.291666">
-              <caret line="178" column="18" selection-start-line="178" selection-start-column="18" selection-end-line="178" selection-end-column="18" />
+            <state vertical-scroll-proportion="-7.8679247">
+              <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_layout_main.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/views/layouts/admin_layout_main.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/modules/sales/views/salesMaster/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2363636">
-              <caret line="276" column="66" selection-start-line="276" selection-start-column="66" selection-end-line="276" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockListingController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/modules/projects/controllers/BlockListingController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.125">
-              <caret line="305" column="112" selection-start-line="305" selection-start-column="16" selection-end-line="305" selection-end-column="112" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectDetails.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/models/ProjectDetails.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.2083335">
-              <caret line="180" column="32" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SalesMasterController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/modules/sales/controllers/SalesMasterController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.625">
-              <caret line="249" column="79" selection-start-line="248" selection-start-column="24" selection-end-line="249" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/modules/projects/views/blockListing/_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.509091">
-              <caret line="334" column="24" selection-start-line="333" selection-start-column="8" selection-end-line="334" selection-end-column="26" />
+            <state vertical-scroll-proportion="-3.3818183">
+              <caret line="86" column="31" selection-start-line="85" selection-start-column="24" selection-end-line="87" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -665,17 +662,7 @@
         <entry file="file://$PROJECT_DIR$/js/my_functions.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="81" column="21" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="custom-styles.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/custom-styles.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+              <caret line="164" column="27" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -696,20 +683,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/protected/models/ViewFacilityCustomerBlockRelation.php" />
-        <option value="$PROJECT_DIR$/protected/models/Customerdetails.php" />
-        <option value="$PROJECT_DIR$/protected/modules/projects/views/blockListing/index.php" />
-        <option value="$PROJECT_DIR$/protected/models/LocationMaster.php" />
-        <option value="$PROJECT_DIR$/protected/modules/projects/views/blockListing/create.php" />
         <option value="$PROJECT_DIR$/protected/config/main.php" />
         <option value="$PROJECT_DIR$/protected/modules/sales/SalesModule.php" />
         <option value="$PROJECT_DIR$/protected/modules/sales/models/Sales.php" />
         <option value="$PROJECT_DIR$/protected/modules/sales/controllers/DefaultController.php" />
         <option value="$PROJECT_DIR$/protected/modules/reports/views/common/_msearch.php" />
-        <option value="$PROJECT_DIR$/protected/models/ProjectDetails.php" />
         <option value="$PROJECT_DIR$/protected/models/ViewSaleCustomerProjectLocation.php" />
-        <option value="$PROJECT_DIR$/protected/modules/sales/views/salesMaster/index.php" />
-        <option value="$PROJECT_DIR$/protected/modules/customers/controllers/CustomerdetailsController.php" />
         <option value="$PROJECT_DIR$/protected/modules/facilityutils/controllers/PaymentModelController.php" />
         <option value="$PROJECT_DIR$/protected/modules/facilityutils/controllers/PaymentPlanItemsController.php" />
         <option value="$PROJECT_DIR$/protected/modules/facilityutils/controllers/PaymentPlanMasterController.php" />
@@ -724,7 +703,6 @@
         <option value="$PROJECT_DIR$/protected/modules/useradmin/controllers/SecuritydataController.php" />
         <option value="$PROJECT_DIR$/protected/modules/facility/controllers/FacilityMasterController.php" />
         <option value="$PROJECT_DIR$/protected/modules/projects/controllers/BlockListingController.php" />
-        <option value="$PROJECT_DIR$/protected/modules/sales/models/BlockTransfer.php" />
         <option value="$PROJECT_DIR$/protected/modules/projects/controllers/LocationMasterController.php" />
         <option value="$PROJECT_DIR$/protected/modules/payments/controllers/PaymentReceiptsMasterController.php" />
         <option value="$PROJECT_DIR$/protected/modules/payments/views/paymentReceiptsMaster/_form.php" />
@@ -739,14 +717,23 @@
         <option value="$PROJECT_DIR$/protected/modules/payments/models/PaymentReceiptsMaster.php" />
         <option value="$PROJECT_DIR$/protected/commands/organizeDueDateCommand.php" />
         <option value="$PROJECT_DIR$/protected/views/site/index.php" />
-        <option value="$PROJECT_DIR$/js/my_functions.js" />
         <option value="$PROJECT_DIR$/protected/models/SalesDetails.php" />
         <option value="$PROJECT_DIR$/css/custom-styles.css" />
         <option value="$PROJECT_DIR$/css/main.css" />
+        <option value="$PROJECT_DIR$/protected/models/ProjectDetails.php" />
+        <option value="$PROJECT_DIR$/protected/modules/sales/models/BlockTransfer.php" />
+        <option value="$PROJECT_DIR$/protected/modules/sales/controllers/OwnershipTransferControllerController.php" />
+        <option value="$PROJECT_DIR$/protected/modules/sales/controllers/OwnershipTransferController.php" />
         <option value="$PROJECT_DIR$/protected/views/layouts/admin_layout_main.php" />
-        <option value="$PROJECT_DIR$/protected/modules/projects/views/blockListing/_form.php" />
+        <option value="$PROJECT_DIR$/protected/models/HouseOwnershipTranfers.php" />
         <option value="$PROJECT_DIR$/protected/modules/sales/controllers/TransferController.php" />
         <option value="$PROJECT_DIR$/protected/modules/sales/views/transfer/blocktransfer/index.php" />
+        <option value="$PROJECT_DIR$/js/my_functions.js" />
+        <option value="$PROJECT_DIR$/protected/modules/projects/views/blockListing/_form.php" />
+        <option value="$PROJECT_DIR$/protected/modules/sales/views/salesMaster/index.php" />
+        <option value="$PROJECT_DIR$/protected/modules/sales/views/transfer/ownershiptransfer/index.php" />
+        <option value="$PROJECT_DIR$/protected/modules/customers/controllers/CustomerdetailsController.php" />
+        <option value="$PROJECT_DIR$/protected/views/common/_msearch.php" />
       </list>
     </option>
   </component>
@@ -791,6 +778,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -859,29 +847,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap_layouts" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -921,7 +887,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sales" />
+              <option name="myItemId" value="payments" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -943,97 +909,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sales" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="transfer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sales" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="transfer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blocktransfer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sales" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sales" />
+              <option name="myItemId" value="payments" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1059,7 +935,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
+              <option name="myItemId" value="customers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1081,65 +957,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
+              <option name="myItemId" value="customers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blockListing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmvin_facility_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protected" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1164,14 +991,15 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/protected/modules/sales/views/transfer/ownershiptransfer" />
-      <recent name="$PROJECT_DIR$/protected/modules/sales/views/transfer/blocktransfer" />
-      <recent name="$PROJECT_DIR$/protected/config" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/protected/modules/sales/views" />
       <recent name="$PROJECT_DIR$/protected/modules/sales/controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/protected/views/common" />
+      <recent name="$PROJECT_DIR$/protected/modules/sales/views/transfer/ownershiptransfer" />
+      <recent name="$PROJECT_DIR$/protected/modules/sales/views/transfer/blocktransfer" />
+      <recent name="$PROJECT_DIR$/protected/config" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.modules">
@@ -1491,14 +1319,26 @@
       <option name="project" value="LOCAL" />
       <updated>1465558632042</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="block transfer block swap moudule completion">
+      <created>1465639690114</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1465639690114</updated>
+    </task>
+    <task id="LOCAL-00046" summary="block transfer block swap moudule completion">
+      <created>1465701071013</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1465701071013</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="-4" width="1323" height="772" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23414253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24980423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7274194" sideWeight="0.51213783" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1551,7 +1391,8 @@
     <MESSAGE value="command application to update &lt;payment_due_date&gt; colum of all &lt;repayment_schema&gt; table." />
     <MESSAGE value="block transfer from and to drop down and appending block and customer data on drop down change. next validation of from and two blocks" />
     <MESSAGE value="block transfer js validation rules implemented. next: save data to db" />
-    <option name="LAST_COMMIT_MESSAGE" value="block transfer js validation rules implemented. next: save data to db" />
+    <MESSAGE value="block transfer block swap moudule completion" />
+    <option name="LAST_COMMIT_MESSAGE" value="block transfer block swap moudule completion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1560,62 +1401,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/protected/modules/reports/controllers/DuesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/reports/controllers/PaymentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2793296">
-          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/useradmin/controllers/RoleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.1132076">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/projects/controllers/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/reports/controllers/CollectionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/customers/views/customerdetails/update.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35342467">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/facility/controllers/FacilityTransferController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35342467">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/useradmin/controllers/UserRoleRefController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53571427">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/modules/facility/controllers/FacilityMasterController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-23.125">
@@ -1627,13 +1412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.68904597">
           <caret line="44" column="53" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/sales/models/BlockTransfer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.375">
-          <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -1686,13 +1464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/payments/controllers/PaymentReceiptsMasterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/modules/payments/views/paymentReceiptsMaster/_form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1718,13 +1489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="66" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cron.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1824,7 +1588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="31.454546">
           <caret line="87" column="1" selection-start-line="82" selection-start-column="0" selection-end-line="87" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1832,7 +1595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1845,9 +1607,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/modules/sales/controllers/SalesMasterController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
+        <state vertical-scroll-proportion="0.0">
           <caret line="249" column="79" selection-start-line="248" selection-start-column="24" selection-end-line="249" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1855,24 +1616,105 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35833332">
           <caret line="39043" column="357" selection-start-line="39043" selection-start-column="357" selection-end-line="39043" selection-end-column="357" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/useradmin/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="178" column="18" selection-start-line="178" selection-start-column="18" selection-end-line="178" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/projects/views/blockListing/create.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.125">
+          <caret line="5" column="38" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/Tranferedbloks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="24.375">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/modules/dataimport/controllers/ReceiptImporterController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5589041">
+        <state vertical-scroll-proportion="1.3056537">
           <caret line="117" column="72" selection-start-line="117" selection-start-column="47" selection-end-line="117" selection-end-column="72" />
-          <folding>
-            <marker date="1462771677002" expanded="true" signature="4362:4371" placeholder="..." />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/layouts/admin_layout_main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.625">
+          <caret line="279" column="106" selection-start-line="279" selection-start-column="106" selection-end-line="279" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/projects/views/blockListing/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7226148">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/ProjectDetails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77031803">
+          <caret line="174" column="5" selection-start-line="165" selection-start-column="4" selection-end-line="174" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/sales/models/BlockSwap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13250883">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/modules/projects/controllers/BlockListingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.125">
-          <caret line="305" column="112" selection-start-line="305" selection-start-column="16" selection-end-line="305" selection-end-column="112" />
+        <state vertical-scroll-proportion="0.5706714">
+          <caret line="252" column="32" selection-start-line="239" selection-start-column="8" selection-end-line="252" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/projects/views/blockListing/_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.218563">
+          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/HouseOwnershipTranfers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8679247">
+          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/sales/views/salesMaster/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3818183">
+          <caret line="86" column="31" selection-start-line="85" selection-start-column="24" selection-end-line="87" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1880,59 +1722,62 @@
     <entry file="file://$PROJECT_DIR$/js/my_functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="21" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/layouts/admin_layout_main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2363636">
-          <caret line="276" column="66" selection-start-line="276" selection-start-column="66" selection-end-line="276" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/ProjectDetails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2083335">
-          <caret line="180" column="32" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/projects/views/blockListing/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.509091">
-          <caret line="334" column="24" selection-start-line="333" selection-start-column="8" selection-end-line="334" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/modules/useradmin/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.291666">
-          <caret line="178" column="18" selection-start-line="178" selection-start-column="18" selection-end-line="178" selection-end-column="18" />
+          <caret line="164" column="27" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/modules/sales/controllers/TransferController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.418182">
-          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+        <state vertical-scroll-proportion="-3.6603773">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/payments/controllers/PaymentReceiptsMasterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56537104">
+          <caret line="385" column="28" selection-start-line="365" selection-start-column="8" selection-end-line="391" selection-end-column="9" />
+          <folding>
+            <marker date="1465056292903" expanded="true" signature="15525:16187" placeholder="SELECT facil... view_facility_customer_block_relation" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/sales/views/transfer/ownershiptransfer/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.6792452">
+          <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/customers/controllers/CustomerdetailsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6037736">
+          <caret line="219" column="58" selection-start-line="219" selection-start-column="58" selection-end-line="219" selection-end-column="58" />
+          <folding>
+            <marker date="1466986795390" expanded="true" signature="5962:6501" placeholder="SELECT custo... customerdetails" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/modules/sales/views/transfer/blocktransfer/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.18577075">
-          <caret line="201" column="75" selection-start-line="201" selection-start-column="75" selection-end-line="201" selection-end-column="75" />
+        <state vertical-scroll-proportion="-45.0">
+          <caret line="165" column="9" selection-start-line="160" selection-start-column="8" selection-end-line="165" selection-end-column="9" />
           <folding>
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <marker date="1465639341287" expanded="true" signature="8774:8966" placeholder="..." />
+            <marker date="1466908425676" expanded="true" signature="8808:9000" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/common/_msearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7614841">
+          <caret line="78" column="0" selection-start-line="59" selection-start-column="8" selection-end-line="78" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

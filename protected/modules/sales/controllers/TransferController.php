@@ -35,9 +35,30 @@ class TransferController extends Controller
 		echo json_encode($data);
 	}
 
+	public function actionOwnershipTransfer()
+	{
+		$model = new HouseOwnershipTranfers();
+		$projects = ProjectMaster::getProjects();
+		$project_id = Yii::app()->request->getParam('project_code');
+		$model->projectcode = $project_id;
+
+		$blockListdata = array();
+		$projectMaster = array();
+
+		if($project_id != 0){
+			$blockListdata = $model->getBlockListData($project_id);
+			$projectMaster = ProjectMaster::model()->findByPk($project_id);
+
+		}
+
+
+		$this->render('application.modules.sales.views.transfer.ownershiptransfer.index',
+			array('model'=>$model,'projects'=>$projects,'blockListdata'=>$blockListdata));
+	}
+
 	public function actionBlocktransfer(){
 
-		$model=new BlockTransfer;
+		$model=new BlockSwap();
 
 		$projects = ProjectMaster::getProjects();
 
@@ -194,6 +215,10 @@ class TransferController extends Controller
 		return $model->save();
 
 	}
+
+
+
+
 
 	/*
 	 * if($blockswapto_blockstat == 0){

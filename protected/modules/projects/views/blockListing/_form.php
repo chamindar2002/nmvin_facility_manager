@@ -213,7 +213,7 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 			success : function(result){
 				//console.log(result);
 				//$('.modal-body').html(result);
-				appendCustomerData(result);
+				append_CustomerData(result);
 				appendBlockData(result);
 
 			}
@@ -221,7 +221,7 @@ echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'proj
 
 	}
 
-	function appendCustomerData(result){
+	function append_CustomerData(result){
 
 		var str = "";
 

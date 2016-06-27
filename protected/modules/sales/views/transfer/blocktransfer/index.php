@@ -230,8 +230,8 @@ $this->breadcrumbs=array(
 						$('.customer_data_placeholder').html(appendSuccess(result.message));
 
 						resetFields();
-						$('#BlockTransfer_swap_from_block').val('');
-						$('#BlockTransfer_swap_to_block').val('');
+						$('#BlockSwap_swap_from_block').val('');
+						$('#BlockSwap_swap_to_block').val('');
 
 
 					}else{
@@ -272,7 +272,7 @@ $this->breadcrumbs=array(
 		$('.customer_data_placeholder').html(htm);
 	});
 
-	$('#BlockTransfer_swap_to_block').change(function(event){
+	$('#BlockSwap_swap_to_block').change(function(event){
 
 		var id = $(this).val();
 
@@ -319,21 +319,7 @@ $this->breadcrumbs=array(
 		});
 	})
 
-	function appendCustomerData(placeholder,data_obj){
-		var htm = '';
-		if(data_obj.data.customer_data != null){
-			htm += '<strong>';
-			htm += data_obj.data.customer_data.title + '&nbsp;' + data_obj.data.customer_data.firstname +'&nbsp;'+data_obj.data.customer_data.familyname + '</strong><br />';
-			htm += data_obj.data.customer_data.addressline1 + '&nbsp;' + data_obj.data.customer_data.addressline2 + '<br />';
-			htm += data_obj.data.customer_data.country + '<br /><br />';
-		}
 
-		htm += 'Block Status <div id="status_icon_'+data_obj.data.block_data.reservestatus+'"' + 'class="status-icon block_staus_'+data_obj.data.block_data.reservestatus+'"' +'></div>';
-		htm += 'Block Number ['+data_obj.data.block_data.blocknumber+'] <br>';
-		htm += 'Block Price ['+data_obj.data.block_data.blockprice+']';
-
-		$('#'+placeholder).html(htm);
-	}
 
 	function resetFields(){
 		$('#tranfer-to-block-id').val(0);
@@ -350,7 +336,7 @@ $this->breadcrumbs=array(
 	}
 
 
-	$('#BlockTransfer_swap_from_block').change(function(event){
+	$('#BlockSwap_swap_from_block').change(function(event){
 
 		var id = $(this).val();
 
@@ -398,9 +384,9 @@ $this->breadcrumbs=array(
 		});
 	})
 
-	$('#BlockTransfer_projectcode').change(function(event) {
+	$('#BlockSwap_projectcode').change(function(event) {
 
-		var val = $('#BlockTransfer_projectcode').val();
+		var val = $('#BlockSwap_projectcode').val();
 		var url = window.location.href;
 		if(val !== ''){
 			//alert(val + 'sssm');
