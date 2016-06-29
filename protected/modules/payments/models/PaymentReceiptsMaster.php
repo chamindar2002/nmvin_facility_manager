@@ -209,11 +209,14 @@ class PaymentReceiptsMaster extends CActiveRecord
 
 			$k = new CDbCriteria();
 			$k->compare('facility_master_id', $this->facility_master_id);
+			$k->compare('is_istallment',1);
 			$k->order = 'id ASC';
 			$k->addNotInCondition('id', $settled, 'AND');
 
 			#find the first unsettled Repayment record
 			$rpmSchema = RepaymentSchema::model()->find($k);
+
+			//var_dump($rpmSchema);exit();
 
 
 			//if($rpmSettlement->id < $rpmSchema->id){

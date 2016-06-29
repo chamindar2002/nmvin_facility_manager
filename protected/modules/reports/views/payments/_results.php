@@ -91,7 +91,14 @@ foreach($repaymentSchema As $rs){
             <?php
                 echo $rs->paymentModel->paymentPlanItem->name;
                 $installment_no = ($rs->installment_number == 0) ? '' : ': '.$rs->installment_number;
-                echo " $installment_no";
+
+                echo " $installment_no <br />";
+
+                if($rs->installment_number != 0){
+                    echo '<span style="font-size:10px;"><i>Due on '.$rs->payment_due_date.'</i></span>';
+                }
+
+
                 
                 
             ?>
