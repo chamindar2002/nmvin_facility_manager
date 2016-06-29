@@ -165,7 +165,9 @@ class SiteController extends Controller
 		$model=new LoginForm();
 		$model->attributes=$_POST;
 
+
 		$data = ['response'=>'error','data'=>null];
+
 
 		if($model->validate() && $model->login()){
 
@@ -176,7 +178,10 @@ class SiteController extends Controller
 
 				$data['response'] = 'success';
 				$data['data'] = $model->attributes;
-				Yii::app()->user->setState('ajax_authorize', $model->username.'@'.$_POST['customer_id']);
+
+				$role = Role::model()->findByPk(Yii::app()->user->getState('roleId'));
+
+				Yii::app()->user->setState('ajax_authorize', $role->name.'@'.$_POST['customer_id']);
 
 			}else{
 
@@ -191,6 +196,7 @@ class SiteController extends Controller
 		}
 
 
+		//var_dump(Yii::app()->user->getState('ajax_authorize'));exit;
 
 		echo json_encode($data);
 	}
