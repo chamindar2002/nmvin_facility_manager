@@ -34,9 +34,10 @@ $this->breadcrumbs=array(
 </div>
 <div class="form-group" id="customer_data_to_be"></div>
 <div class="form-group" id="transfer_history"></div>
+<div class="form-group" id="customer_history"></div>
 
 <div class="form-group">
-	<?php $this->renderPartial('application.views.common._msearch'); ?>
+	<?php $this->renderPartial('application.views.common._msearch', array('label_text'=>'New Customer')); ?>
 </div>
 
 
@@ -208,5 +209,56 @@ $this->breadcrumbs=array(
 
 
 	});
+
+	function  fetchData(){
+
+		var customer_id = $('#customer_id').val();
+		var msg = '<strong>Customer transfer history</strong>';
+
+		$.ajax({
+			type :'GET',
+			dataType:'JSON',
+
+			cache: false,
+			url : '<?php echo Yii::app()->baseUrl."/index.php/sales/transfer/CustomerTransferHistory"; ?>',
+
+			data : {customer_id: customer_id},
+
+			beforeSend: function() {
+
+
+			},
+			success : function(result){
+
+				if(result.length == 0){
+
+					msg = '<li class="errorMessage">No customer tranfer history to be displayed.</li>';
+
+				}else{
+					msg += '<p><table class="table">';
+					var i = 1;
+
+
+					$.each(result, function( key, value) {
+
+						//console.log('-------------------');
+						//console.log(value.bock_transfers.blocknumber);
+						msg += '<tr> <td>['+ i +']&nbsp;'+value.customer.title +'. &nbsp;' + value.customer.firstname +'&nbsp;'+ value.customer.familyname+'</td><td>' + value.bock_transfers.blocknumber+'</td><td>'+value.bock_transfers.addeddate+'</td></tr>';
+
+						i++;
+
+					})
+
+					msg += '</table></p>';
+				}
+
+
+				$('#customer_history').html(msg);
+
+			}
+		});
+
+
+	}
 
 </script>

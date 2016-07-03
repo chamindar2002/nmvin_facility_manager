@@ -1,4 +1,7 @@
-<?php echo CHtml::label('Customer', 'Customer', array('class'=>'required')); ?>
+<?php
+    $label = isset($label_text) ? $label_text : 'Customer';
+    echo CHtml::label($label, 'Customer', array('class'=>'required'));
+?>
 	
 <?php
 /*if($members == null){*/
@@ -34,6 +37,7 @@ $this->widget('ext.myAutoComplete', array(
         'select' => 'js:function( event, ui ) {
             $("#' . CHtml::activeId('customer_id', 'customer_id') . '").val(ui.item.customercode);
             fetchFacility();
+            fetchData();
             return false;
          }'
         
@@ -57,6 +61,7 @@ $this->widget('ext.myAutoComplete', array(
 <script type='text/javascript'>
 
     function fetchFacility(){
+
         var customer_id = $('#customer_id').val();
         var facility_master_id = $('#facility_master_id').val();
 

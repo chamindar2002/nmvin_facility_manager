@@ -287,6 +287,20 @@ class TransferController extends Controller
 
 	}
 
+	public function actionCustomerTransferHistory(){
+		$data = array();
+		if(isset($_GET['customer_id'])){
+			$customer_id = $_GET['customer_id'];
+			$history = HouseOwnershipTranfers::model()->findAllByAttributes(array('customercode_previous'=>$customer_id));
+
+			foreach($history As $h){
+				$data[] = array('customer'=>$h->customerdata_previous->attributes, 'key'=>$h->refno, 'bock_transfers'=>$h->block_tranfers->attributes);
+			}
+		}
+
+		echo json_encode($data);
+	}
+
 
 
 
