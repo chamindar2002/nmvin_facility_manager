@@ -72,7 +72,7 @@ $this->breadcrumbs=array(
 			return false;
 		}
 
-		var s = confirm("Arge you sure you want to transfer the ownership of this block?");
+		var s = confirm("Are you sure you want to transfer the ownership of this block?");
 		if (s == true) {
 
 			$.ajax({
