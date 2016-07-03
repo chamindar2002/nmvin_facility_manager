@@ -173,7 +173,7 @@ $this->breadcrumbs=array(
 			$.each(result.data.transfer_history, function( key, value) {
 
 				//console.log('error fldfs :' + value);
-				msg += '<tr> <td>Owner['+ i +'] </td><td>' + value.customer.title +'. &nbsp;' + value.customer.firstname + value.customer.familyname + '</td></tr>';
+				msg += '<tr> <td>Owner['+ i +'] </td><td>' + value.customer.title +'. &nbsp;' + value.customer.firstname +'&nbsp;'+ value.customer.familyname + '</td></tr>';
 
 				i++;
 			});
