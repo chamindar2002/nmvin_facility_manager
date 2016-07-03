@@ -33,6 +33,7 @@ $this->breadcrumbs=array(
 	?>
 </div>
 <div class="form-group" id="customer_data_to_be"></div>
+<div class="form-group" id="transfer_history"></div>
 
 <div class="form-group">
 	<?php $this->renderPartial('application.views.common._msearch'); ?>
@@ -71,6 +72,46 @@ $this->breadcrumbs=array(
 			return false;
 		}
 
+		var s = confirm("Arge you sure you want to transfer the ownership of this block?");
+		if (s == true) {
+
+			$.ajax({
+				type :'POST',
+				dataType:'JSON',
+
+				cache: false,
+				url : '<?php echo Yii::app()->baseUrl."/index.php/sales/transfer/NewOwnershipTransfer"; ?>',
+
+				data : {
+					saleref: saleref_blockswapfrom,
+					blockref: blockref_blockswapfrom,
+					old_customer:ccode_blockswapfrom,
+					new_customer:customer_id,
+				},
+
+				beforeSend: function() {
+					$('.customer_data_placeholder').html(placeholder_html);
+
+				},
+				success : function(result){
+
+					console.log(result);
+
+					if(result.status == 'success'){
+
+						$('.customer_data_placeholder').html(result.message);
+
+					}else{
+
+
+					}
+
+				}
+			});
+
+
+		}
+
 	});
 
 	$('#HouseOwnershipTranfers_block_to_be_tranfered').change(function(event){
@@ -104,6 +145,8 @@ $this->breadcrumbs=array(
 					saleref_blockswapfrom = result.data.sales_data.refno;
 					blockprice_blockswapfrom = result.data.block_data.blockprice;
 
+					appendTranferHistory(result);
+
 				}else{
 
 					blockref_blockswapfrom = 0;
@@ -119,6 +162,34 @@ $this->breadcrumbs=array(
 
 
 	});
+
+	function appendTranferHistory(result){
+
+		var msg = '<strong>Owner History</strong>';
+
+		if(result.data.transfer_history != null){
+			var i =1;
+			msg += '<p><table class="table">';
+			$.each(result.data.transfer_history, function( key, value) {
+
+				//console.log('error fldfs :' + value);
+				msg += '<tr> <td>Owner['+ i +'] </td><td>' + value.customer.title + value.customer.firstname + value.customer.firstname + '</td></tr>';
+
+				i++;
+			});
+
+			msg += '</table></p>';
+
+		}else{
+			msg = '<li class="errorMessage">No owner history to be displayed.</li>';
+		}
+
+
+
+
+		console.log(result.data.transfer_history);
+		$('#transfer_history').html(msg);
+	}
 
 
 

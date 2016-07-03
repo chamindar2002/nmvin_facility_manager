@@ -62,6 +62,7 @@ class HouseOwnershipTranfers extends NmwndbActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'customerdata_previous' => array(self::BELONGS_TO, 'Customerdetails', 'customercode_previous'),
 		);
 	}
 

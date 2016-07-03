@@ -15,12 +15,18 @@ class TransferController extends Controller
 	}
 
 	public function actionGetBlockData(){
-		$block_data = array('sales_data'=>null, 'block_data'=>null, 'customer_data'=>null);
+		$block_data = array('sales_data'=>null, 'block_data'=>null, 'customer_data'=>null,'transfer_history'=>null);
 
 		$data = $data = ['status' => 'error', 'data'=>array(), 'message'=>null];
 		if(isset($_GET['blockref_id']) && $_GET['blockref_id'] != ''){
 
 			$block_data['block_data'] = ProjectDetails::model()->findByPk($_GET['blockref_id'])->attributes;
+			$history = HouseOwnershipTranfers::model()->findAllByAttributes(array('blockrefnumber'=>$_GET['blockref_id']));
+			foreach($history As $h){
+				$block_data['transfer_history'][] = array('customer'=>$h->customerdata_previous->attributes, 'key'=>$h->refno);
+			}
+			//$block_data['transfer_history']
+
 
 			$sales_data = SalesDetails::model()->findByAttributes(array('blockrefnumber'=>$_GET['blockref_id'], 'deleted'=>0));
 			if(isset($sales_data)){
@@ -216,6 +222,70 @@ class TransferController extends Controller
 
 	}
 
+	private function UpdateSaleCustomer($saleref, $customer_id){
+
+		$model = SalesDetails::model()->findByPk($saleref);
+		$model->customercode = $customer_id;
+		$model->lastmodifiedby = yii::app()->user->userId;
+		$model->lastmodifieddate = new CDbExpression('NOW()');
+		$model->lastmodifiedtime = date("h:i:s");
+
+		return $model->save();
+
+	}
+
+	public function actionNewOwnershipTransfer(){
+
+		$data = array();
+
+
+		if(User::_can(['manager','admin'], true)){
+
+			if(isset($_POST)){
+
+
+				$saleref = $_POST['saleref'];
+				$blockref = $_POST['blockref'];
+				$old_customer = $_POST['old_customer'];
+				$new_customer = $_POST['new_customer'];
+
+				$this->newHouseOwnershipTransfer($new_customer, $old_customer, $saleref, $blockref);
+				$this->UpdateSaleCustomer($saleref, $new_customer);
+				ProjectDetails::model()->setBlockSoldOut($blockref, $new_customer);
+
+
+
+				$data = ['status' => 'success', 'data'=>null, 'message'=>'Updated successfully.'];
+
+			}
+
+
+		}else{
+
+			$data = ['status' => 'error', 'data'=>['No Permission',403], 'message'=>null];
+			//var_dump($data);
+
+		}
+
+
+		echo json_encode($data);
+
+	}
+
+	public function newHouseOwnershipTransfer($ccode_current,$ccode_previous,$salerefno,$blockrefnumber){
+
+		$hot = new HouseOwnershipTranfers();
+		$hot->customercode_current = $ccode_current;
+		$hot->customercode_previous = $ccode_previous;
+		$hot->salerefno = $salerefno;
+		$hot->blockrefnumber = $blockrefnumber;
+		$hot->addedby = yii::app()->user->userId;
+		$hot->addeddate = new CDbExpression('NOW()');
+		$hot->addedtime = date("h:i:s");
+		$hot->save();
+
+
+	}
 
 
 
