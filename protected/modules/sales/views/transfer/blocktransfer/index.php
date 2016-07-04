@@ -22,7 +22,7 @@ $this->breadcrumbs=array(
 <div class="form-group">
 	<?php echo $form->labelEx($model,'projectcode'); ?>
 	<?php
-		echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'projectcode', 'projectname'), array('prompt' => '','class'=>'form-control input-sm'));
+		echo $form->dropDownList($model, 'projectcode', $projects, array('prompt' => '','class'=>'form-control input-sm'));
 	?>
 </div>
 

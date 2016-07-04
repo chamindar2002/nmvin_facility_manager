@@ -92,7 +92,7 @@ $this->menu=array(
 							<?php echo $form->labelEx($model,'projectcode'); ?>
 							<?php
 								echo $form->dropDownList($model, 'projectcode',
-											CHtml::listData($projects, 'projectcode', 'projectname'),
+											$projects,
 											array('prompt' => '','class'=>'form-control input-sm',
 												'ajax' => array(
 													'type'=>'POST',

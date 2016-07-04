@@ -21,7 +21,7 @@
 <div class="form-group">
 <?php
 echo CHtml::label('Project', 'Project');
-echo $form->dropDownList($model, 'projectcode', CHtml::listData($projects, 'projectcode', 'projectname'), array('prompt' => '','class'=>'form-control input-sm'));
+echo $form->dropDownList($model, 'projectcode', $projects, array('prompt' => '','class'=>'form-control input-sm'));
 ?>
 </div>
 

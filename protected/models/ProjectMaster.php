@@ -141,7 +141,14 @@ class ProjectMaster extends NmwndbActiveRecord
 		$c = new CDbCriteria();
 		$c->compare('deleted', 0);
 		$c->order = 'projectname';
-		$data = self::model()->findAll($c);
+		$results = self::model()->findAll($c);
+
+		$data = array();
+
+		foreach($results As $result){
+
+			$data[$result->projectcode] = $result->projectname.' -> '.$result->locationDetails->locationname;
+		}
 
 		return $data;
 	}
