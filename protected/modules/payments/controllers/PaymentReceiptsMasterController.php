@@ -545,7 +545,7 @@ class PaymentReceiptsMasterController extends Controller
             $pdf->SetFont('Arial','',10);
 			//$pdf->Cell(190,4,"_______________________",0,1,'R');
             $pdf->SetFont('Arial','',7);
-            $pdf->Cell(95,2,"Prepared By:".$model->userRef->loginname.", Printed By:".Yii::app()->user->name.", Reference: FM".$model->facility_master_id."/CCD".$model->customer_id."/RCT/".$id.", Time: ".$model->created_at,0,0,'LR');
+            $pdf->Cell(190,4,"Prepared By:".$model->userRef->loginname.", Printed By:".Yii::app()->user->name.", Reference: FM".$model->facility_master_id."/CCD".$model->customer_id."/RCT/".$id.", Time: ".$model->created_at.', Email: nimavindevelopers@gmail.com',0,0,'LR');
             $pdf->SetFont('Arial','',10);
             
             $pdf->Output("receipt.pdf",'D');
