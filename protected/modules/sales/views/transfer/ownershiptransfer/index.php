@@ -100,7 +100,9 @@ $this->breadcrumbs=array(
 
 					if(result.status == 'success'){
 
-						$('.customer_data_placeholder').html(result.message);
+						var msg = '<div class="flash-success">'+ result.message + '</div>';
+
+						$('.customer_data_placeholder').html(msg);
 
 					}else{
 

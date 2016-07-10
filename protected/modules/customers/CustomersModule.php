@@ -14,7 +14,8 @@ class CustomersModule extends CWebModule
 		$this->setImport(array(
 			'customers.models.*',
 			'customers.components.*',
-                        'customers.models.*',
+			'customers.models.*',
+			'dataimport.models.*',
 		));
 	}
 

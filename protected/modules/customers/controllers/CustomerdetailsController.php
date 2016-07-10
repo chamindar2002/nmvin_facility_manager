@@ -37,7 +37,7 @@ class CustomerdetailsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete', 'admin', 'AutocompleteByMemberId'),
+				'actions'=>array('create','update', 'delete', 'admin', 'AutocompleteByMemberId', 'ListPayments'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -225,5 +225,142 @@ class CustomerdetailsController extends Controller
 		}
 		echo CJSON::encode($res);
 		Yii::app()->end();
+	}
+
+	public function actionListPayments(){
+
+		$customer_id = Yii::app()->getRequest()->getParam('customer_id', false);
+
+		$facilities = FacilityMaster::model()->findAllByAttributes(array('customer_id'=>$customer_id));
+
+		$data = array();
+		$c = 0;
+
+
+		foreach($facilities As $facility) {
+
+
+			$criteria = new CDbCriteria();
+			$criteria->compare('customer_id', $customer_id);
+			$criteria->compare('facility_master_id', $facility->id);
+			$criteria->order = 'id';
+
+			$data[$c]['facility_id']= $facility->id;
+
+
+
+			$repaymentSchema = RepaymentSchema::model()->findAll($criteria);
+
+
+			$customer = Customerdetails::model()->getFullName2($customer_id);
+			$faddress = Customerdetails::model()->getFullAddress($customer_id);
+
+			$fcm = ViewFacilityCustomerBlockRelation::model()->findByAttributes(array('facility_master_id' => $facility->id));
+
+
+			#fetch totals
+			$sqltot1 = "select sum(amount_payable) as total FROM  repayment_schema WHERE facility_master_id='$facility->id' AND paid='0'";
+			$total_installments_left = Yii::app()->db->createCommand($sqltot1)->queryScalar();
+
+			$sqltot2 = "select sum(amount_paid) as total FROM  payment_receipts_master WHERE facility_master_id='$facility->id' AND deleted='0'";
+			$total_paid = Yii::app()->db->createCommand($sqltot2)->queryScalar();
+
+			$sqltot3 = "select sum(amount_payable) as total FROM  repayment_schema WHERE facility_master_id='$facility->id'";
+			$total_to_be_paid = Yii::app()->db->createCommand($sqltot3)->queryScalar();
+
+			$payment_summary = array(
+				'total_to_be_paid' => utilsComponents::formatCurrency(abs($total_to_be_paid - $total_paid)),
+				'total_paid' => utilsComponents::formatCurrency($total_paid),
+				'total_installments_left' => utilsComponents::formatCurrency($total_installments_left),
+			);
+
+			$data[$c]['block_number']= $fcm->blocknumber;
+			$data[$c]['summary'] = $payment_summary;
+
+
+			//==============================================================
+			$i = 0;
+			foreach ($repaymentSchema As $rs) {
+
+				$repayment_model_name = $rs->paymentModel->paymentPlanItem->name;
+
+				$installment_no = ($rs->installment_number == 0) ? '' : ': ' . $rs->installment_number;
+
+				$data[$c]['payment_data'][$i] = array(
+					'payment_model'=>$repayment_model_name,
+					'installment_number' => $installment_no,
+					'due_date' => $rs->payment_due_date,
+					'total_payable' =>  utilsComponents::formatCurrency($rs->paymentModel->total_payable),
+
+				);
+
+				$repayment_settlement = RepaymentSchemaSettlement::model()
+					->findAllByAttributes(
+						array(
+							'deleted'=>0,
+							'repayment_schema_id'=>$rs->id,
+						)
+					);
+
+				$settlements = array();
+
+				if($repayment_settlement){
+
+					$n = 0;
+
+					foreach ($repayment_settlement As $rstlmnt){
+						$receipt = PaymentReceiptsMaster::model()->findByPk($rstlmnt->payment_receipt_master_id);
+						$ReceiptMappingObj = PaymentReceiptsImportsMapping::model()->findByAttributes(array('new_receipt_no'=>$rstlmnt->payment_receipt_master_id));
+
+						$rpm_0 = $rstlmnt->payment_receipt_master_id;
+						$rpm_1 = utilsComponents::formatCurrency($receipt->amount_paid);
+
+						if(sizeof($ReceiptMappingObj) > 0){
+							$rpm_2 = $ReceiptMappingObj->old_receipt_no;
+						}else{
+							$rpm_2 = '-';
+						}
+
+						if($ReceiptMappingObj){
+							$rpm_3 = $ReceiptMappingObj->oldReceiptNo->receiptdate;
+						}else{
+							$rpm_3 = '-';
+						}
+
+
+						if($rstlmnt->paid_full){
+							$rpm_4 = 'Paid Full';
+						}else{
+							$rpm_4 = '-';
+						}
+
+						$settlements[$i][$n]['payment_receipt_master_id'] = $rpm_0;
+						$settlements[$i][$n]['amount_paid'] = $rpm_1;
+						$settlements[$i][$n]['old_receipt_no'] = $rpm_2;
+						$settlements[$i][$n]['old_receipt_date'] = $rpm_3;
+						$settlements[$i][$n]['status'] = $rpm_4;
+
+						$n++;
+					}
+				}
+
+				$data[$c]['payment_data'][$i]['settlements']  = $settlements;
+
+
+
+
+				//==============================================================
+
+				$i++;
+			}
+
+			$c++;
+		}
+
+//		echo '<pre>';
+//		print_r($data);
+//		echo '</pre>';
+		echo json_encode($data);
+
 	}
 }
