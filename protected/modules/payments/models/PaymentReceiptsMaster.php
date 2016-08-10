@@ -222,6 +222,7 @@ class PaymentReceiptsMaster extends CActiveRecord
 			//if($rpmSettlement->id < $rpmSchema->id){
 				//echo $rpmSettlement->paymentReceiptMaster->receipt_date.'<br>';
 
+			if($rpmSchema){
 				$now = time();
 				$datediff = $now - strtotime($rpmSchema->payment_due_date);# calculate diff.
 				$days_overdue = floor($datediff/(60*60*24));#round off
@@ -240,7 +241,7 @@ class PaymentReceiptsMaster extends CActiveRecord
 					}
 
 				}
-
+			}
 
 			//}
 
