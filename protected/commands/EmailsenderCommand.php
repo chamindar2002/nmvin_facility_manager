@@ -25,6 +25,7 @@ class EmailsenderCommand extends CConsoleCommand{
 			"MIME-Version: 1.0\r\n".
 			"Content-type: text/plain; charset=UTF-8";
         $x = mail('773784828@dialog.lk',$subject,$body,$headers);
+        $y = mail('chamindar2002@yahoo.com',$subject,$body,$headers);
            //var_dump($x);
        var_dump($x);
         
