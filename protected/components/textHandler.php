@@ -13,7 +13,7 @@
 class textHandler {
     //put your code here
     public static function fireSms($phone,$msg){
-            $from = 'info@dm-lk.com';
+            $from = 'nimavinsms@gmail.com';
             $name='=?UTF-8?B?'.base64_encode('Nimavin').'?=';
             $subject='=?UTF-8?B?'.base64_encode(self::trimSaleDetails($msg)).'?=';
             $body = self::trimCustomerName($msg).'|'.$msg['Amount Paid'].' '.$msg['payment_type'];
@@ -22,7 +22,9 @@ class textHandler {
 					"MIME-Version: 1.0\r\n".
 					"Content-type: text/plain; charset=UTF-8";
 
-            $x = mail('sms@dm-lk.com',$subject,$body,$headers);
+            //$x = mail('sms@dm-lk.com',$subject,$body,$headers);
+            $x = mail('777661702@dialog.lk',$subject,$body,$headers);
+            $y = mail('773784828@dialog.lk',$subject,$body,$headers);
            //var_dump($x);
        return $x;
     }
