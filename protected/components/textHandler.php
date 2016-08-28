@@ -24,7 +24,7 @@ class textHandler {
 
             //$x = mail('sms@dm-lk.com',$subject,$body,$headers);
             $x = mail('777661702@dialog.lk',$subject,$body,$headers);
-            $y = mail('773784828@dialog.lk',$subject,$body,$headers);
+            //$y = mail('773784828@dialog.lk',$subject,$body,$headers);
            //var_dump($x);
        return $x;
     }
