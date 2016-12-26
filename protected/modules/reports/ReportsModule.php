@@ -6,6 +6,7 @@ class ReportsModule extends CWebModule
     public $module_name = 'Reports';
 	public function init()
 	{
+        throw new CHttpException(400, 'A database error occured. Could not fetch data for processing.' );
 		// this method is called when the module is being created
 		// you may place code here to customize the module or the application
 

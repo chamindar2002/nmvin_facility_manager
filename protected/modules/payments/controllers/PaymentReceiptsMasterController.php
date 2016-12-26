@@ -166,7 +166,7 @@ class PaymentReceiptsMasterController extends Controller
                                                                   //var_dump($message);exit();
                             
                             
-                            $txt = textHandler::fireSms(null,$message);
+                            //$txt = textHandler::fireSms(null,$message);
 
                             Yii::app()->user->setState('ajax_authorize', null);
                             //exit();
