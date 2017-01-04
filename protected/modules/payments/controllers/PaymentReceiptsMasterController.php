@@ -307,12 +307,15 @@ class PaymentReceiptsMasterController extends Controller
 	public function actionIndex()
 	{
         User::_can(['manager','admin', 'staff-front-office']);
-             $criteria=new CDbCriteria(array(                    
-                                'condition'=>'deleted = 0 ORDER BY id DESC',
-                                
-                        ));
-             
-		$dataProvider=new CActiveDataProvider('PaymentReceiptsMaster',array('criteria'=>$criteria));
+
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('deleted = 0');
+
+		$dataProvider=new CActiveDataProvider('PaymentReceiptsMaster',array(
+		                                    'criteria' => $criteria,
+                                            'sort' => array('defaultOrder' => 'id DESC')
+                                 )
+                        );
                 
                 
 		$this->render('index',array(

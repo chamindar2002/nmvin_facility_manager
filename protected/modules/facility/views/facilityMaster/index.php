@@ -40,7 +40,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                   'value'=>'$data->customerDetails->firstname." ".$data->customerDetails->familyname',
                   'filter' => CHtml::listData(Customerdetails::getCustomers(), 'customercode', 'fullName'),
                 ),
-        
+
         array(
             'name'=>'payment_plan_master_id',
             'value'=>'$data->paymentPlanMaster->name'

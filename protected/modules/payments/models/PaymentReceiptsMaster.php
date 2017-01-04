@@ -130,10 +130,10 @@ class PaymentReceiptsMaster extends CActiveRecord
 		$criteria->compare('facility_master_id',$this->facility_master_id);
 		$criteria->compare('customer_id',$this->customer_id);
 		$criteria->compare('customer_name',$this->customer_name,true);
-                $criteria->compare('customer_address',$this->customer_address,true);
+        $criteria->compare('customer_address',$this->customer_address,true);
 		$criteria->compare('transaction_id',$this->transaction_id);
 		$criteria->compare('amount_paid',$this->amount_paid);
-                $criteria->compare('receipt_date',$this->receipt_date,true);
+        $criteria->compare('receipt_date',$this->receipt_date,true);
 		$criteria->compare('deleted',0);
 		$criteria->compare('addedby',$this->addedby);
 		$criteria->compare('created_at',$this->created_at,true);
