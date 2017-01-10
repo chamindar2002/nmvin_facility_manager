@@ -132,6 +132,7 @@ class SalesMasterController extends Controller
 
 		$projects = ProjectMaster::getProjects();
 
+
 		$model->unsetAttributes();
 
 		if(isset($_GET['ViewSaleCustomerProjectLocation']))

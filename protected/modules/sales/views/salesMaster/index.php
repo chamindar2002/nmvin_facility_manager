@@ -163,8 +163,7 @@ $this->menu=array(
 					<div class="form-group">
 						<?php echo $form->labelEx($model,'projectcode'); ?>
 						<?php
-						echo CHtml::dropDownList('projectcode', 'projectcode',
-							CHtml::listData($projects, 'projectcode', 'projectname'),
+						echo CHtml::dropDownList('projectcode', 'projectcode',$projects,
 							array('prompt' => '','class'=>'form-control input-sm',
 								'ajax' => array(
 									'type'=>'POST',
