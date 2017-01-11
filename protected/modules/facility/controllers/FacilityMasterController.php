@@ -163,6 +163,7 @@ class FacilityMasterController extends Controller
             //exit();
             /*if($model->save())
                 $this->redirect(array('view','id'=>$model->id));*/
+            Yii::app()->user->setFlash('success', 'Facility created successfully');
         }
 
         $this->render('create', array(

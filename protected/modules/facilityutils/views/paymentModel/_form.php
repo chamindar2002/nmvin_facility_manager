@@ -145,3 +145,9 @@
 
 
 </div><!-- form -->
+
+<script>
+	$("#PaymentModelInstallment_installment_amount").keyup(function(){
+		$("#PaymentModelInstallment_total_payable").val($("#PaymentModelInstallment_installment_amount").val());
+	});
+</script>
