@@ -19,27 +19,41 @@ $this->breadcrumbs=array(
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<div class="form-group">
-	<?php echo $form->labelEx($model,'projectcode'); ?>
-	<?php
-		echo $form->dropDownList($model, 'projectcode', $projects, array('prompt' => '','class'=>'form-control input-sm'));
-	?>
+<div class='row'>
+    <div class='col-sm-6'>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'projectcode'); ?>
+            <?php
+            echo $form->dropDownList($model, 'projectcode', $projects, array('prompt' => '','class'=>'form-control input-sm'));
+            ?>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'swap_from_block'); ?>
+            <?php
+            echo $form->dropDownList($model, 'swap_from_block', CHtml::listData($blockListdata, 'refno', 'blocknumber'), array('prompt' => '','class'=>'form-control input-sm'));
+            ?>
+        </div>
+    </div>
+
+    <div class='col-sm-6'>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'swap_to_project'); ?>
+            <?php
+            echo $form->dropDownList($model, 'swap_to_project', $projects, array('prompt' => '','class'=>'form-control input-sm'));
+            ?>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'swap_to_block'); ?>
+            <?php
+            echo $form->dropDownList($model, 'swap_to_block', CHtml::listData($blockToListdata, 'refno', 'blocknumber'), array('prompt' => '','class'=>'form-control input-sm'));
+            ?>
+        </div>
+    </div>
 </div>
 
-<div class="form-group">
-	<?php echo $form->labelEx($model,'swap_from_block'); ?>
-	<?php
-		echo $form->dropDownList($model, 'swap_from_block', CHtml::listData($blockListdata, 'refno', 'blocknumber'), array('prompt' => '','class'=>'form-control input-sm'));
-	?>
-</div>
 
-
-<div class="form-group">
-	<?php echo $form->labelEx($model,'swap_to_block'); ?>
-	<?php
-		echo $form->dropDownList($model, 'swap_to_block', CHtml::listData($blockListdata, 'refno', 'blocknumber'), array('prompt' => '','class'=>'form-control input-sm'));
-	?>
-</div>
 
 <div class="panel panel-success">
 	<div class="panel-heading">Swap From</div>
@@ -399,6 +413,24 @@ $this->breadcrumbs=array(
 
 
 	});
+
+    $('#BlockSwap_swap_to_project').change(function(event) {
+
+        var val = $('#BlockSwap_swap_to_project').val();
+        var url = window.location.href;
+        if(val !== ''){
+            //alert(val + 'sssm');
+            addParam(url,'project_to_code',val);
+        }else{
+            //alert('0');
+            addParam(url,'project_to_code','0');
+
+        }
+
+
+    });
+
+
 </script>
 
 

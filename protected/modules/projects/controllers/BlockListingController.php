@@ -88,7 +88,7 @@ class BlockListingController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ProjectDetails']))
+		if(isset($_POST['ProjectDetails']) && isset($_POST['num_rows']))
 		{
 
 			$rows = $_POST['num_rows'];

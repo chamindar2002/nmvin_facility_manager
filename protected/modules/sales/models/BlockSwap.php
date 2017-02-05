@@ -14,6 +14,7 @@ class BlockSwap extends ProjectDetails
 {
     public $swap_from_block;
     public $swap_to_block;
+    public $swap_to_project;
 
     public function rules()
     {
@@ -34,9 +35,10 @@ class BlockSwap extends ProjectDetails
     public function attributeLabels()
     {
         return array(
-            'swap_from_block' => 'Swap From',
-            'swap_to_block' => 'Swap To',
-            'projectcode' => 'Project',
+            'swap_from_block' => 'Swap From Block',
+            'swap_to_block' => 'Swap To Block',
+            'projectcode' => 'Project From',
+            'swap_to_project' => 'Project To',
 
         );
     }

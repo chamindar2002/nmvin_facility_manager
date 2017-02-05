@@ -71,8 +71,12 @@ class TransferController extends Controller
 		$project_id = Yii::app()->request->getParam('project_code');
 		$model->projectcode = $project_id;
 
-		$blockListdata = array();
-		$projectMaster = array();
+		$project_to_id = Yii::app()->request->getParam('project_to_code');
+		$model->swap_to_project = $project_to_id;
+
+		$blockListdata   = array();
+		$projectMaster   = array();
+		$blockToListdata = array();
 
 		if($project_id != 0){
 			$blockListdata = $model->getBlockListData($project_id);
@@ -80,11 +84,19 @@ class TransferController extends Controller
 
 		}
 
+		if($project_to_id != 0){
+		    $blockToListdata = $model->getBlockListData($project_to_id);
+        }else{
+            $blockToListdata = $blockListdata;
+            $model->swap_to_project = $project_id;
+        }
+
 		$this->render('application.modules.sales.views.transfer.blocktransfer.index',
 			array(
 				'model'=>$model,
 				'projects'=>$projects,
 				'blockListdata'=>$blockListdata,
+                'blockToListdata'=>$blockToListdata
 				));
 	}
 
