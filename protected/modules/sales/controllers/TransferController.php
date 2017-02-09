@@ -112,14 +112,11 @@ class TransferController extends Controller
 
 				if($data->tranfer_to_block_sales_ref == 0){
 
-
 					$model = $this->swapToUnOccupiedblock($data);
-
 
 				}else{
 
-
-					$model = $this->swaptoOccupiedBlocks($data);
+                    $model = $this->swaptoOccupiedBlocks($data);
 				}
 
 				$data = ['status' => 'success', 'data'=>null, 'message'=>'Saved successfully.'];
@@ -142,23 +139,27 @@ class TransferController extends Controller
 	private function swapToUnOccupiedblock($data){
 
 
-		//$setblocksoldout = SalesManager::getInstance()->setBlockSoldOut($blockswapto_blockref,$blockswapfrom_ccode); //set to sold
-		ProjectDetails::model()->setBlockSoldOut($data->tranfer_to_block_id, $data->tranfer_from_block_customer_id);
-
-		//$unsetBlock = SalesManager::getInstance()->UnsetBlockSoldOut($blockswapfrom_blockref,0); // unset to available
-		ProjectDetails::model()->unsetBlockSoldOut($data->tranfer_from_block_id);
 
 		//$sale = BlockSwapManager::getInstance()->UpdateSale($blockswapfrom_saleref,$blockswapto_blockref);//update sales record to new blocknumber
-		$this->UpdateSale($data->tranfer_from_block_sales_ref, $data->tranfer_to_block_id);
+		if($this->UpdateSale($data->tranfer_from_block_sales_ref, $data->tranfer_to_block_id)){
 
-		/*$newTransfer = BlockSwapManager::getInstance()->AddNewBlockTransfer($blockswapfrom_blockref,$blockswapfrom_ccode,$blockswapfrom_saleref,$blockswapto_blockref,$blockswapto_ccode);*/
-		$this->AddNewBlockTransfer(
-			$data->tranfer_from_block_id,
-			$data->tranfer_from_block_customer_id,
-			$data->tranfer_from_block_sales_ref,
-			$data->tranfer_to_block_id,
-			$data->tranfer_to_block_customer_id
-		);
+            //$setblocksoldout = SalesManager::getInstance()->setBlockSoldOut($blockswapto_blockref,$blockswapfrom_ccode); //set to sold
+            ProjectDetails::model()->setBlockSoldOut($data->tranfer_to_block_id, $data->tranfer_from_block_customer_id);
+
+            //$unsetBlock = SalesManager::getInstance()->UnsetBlockSoldOut($blockswapfrom_blockref,0); // unset to available
+            ProjectDetails::model()->unsetBlockSoldOut($data->tranfer_from_block_id);
+
+            /*$newTransfer = BlockSwapManager::getInstance()->AddNewBlockTransfer($blockswapfrom_blockref,$blockswapfrom_ccode,$blockswapfrom_saleref,$blockswapto_blockref,$blockswapto_ccode);*/
+            $this->AddNewBlockTransfer(
+                $data->tranfer_from_block_id,
+                $data->tranfer_from_block_customer_id,
+                $data->tranfer_from_block_sales_ref,
+                $data->tranfer_to_block_id,
+                $data->tranfer_to_block_customer_id
+            );
+        }
+
+
 
 	}
 
@@ -224,13 +225,20 @@ class TransferController extends Controller
 
 	private function UpdateSale($saleref, $blockref){
 
+	    //echo "$saleref -> $blockref";exit;
 		$model = SalesDetails::model()->findByPk($saleref);
-		$model->blockrefnumber = $blockref;
-		$model->lastmodifiedby = yii::app()->user->userId;
-		$model->lastmodifieddate = new CDbExpression('NOW()');
-		$model->lastmodifiedtime = date("h:i:s");
+		$block = ProjectDetails::model()->findByPk($blockref);
+		$model->locationcode        = $block->locationcode;
+        $model->projectcode         = $block->projectcode;
+		$model->blockrefnumber      = $blockref;
+		$model->lastmodifiedby      = yii::app()->user->userId;
+		$model->lastmodifieddate    = new CDbExpression('NOW()');
+		$model->lastmodifiedtime    = date("h:i:s");
 
-		return $model->save();
+		if($model->save())
+		    return true;
+
+		return $model->getErrors();
 
 	}
 
