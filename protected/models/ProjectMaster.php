@@ -45,7 +45,7 @@ class ProjectMaster extends NmwndbActiveRecord
 			array('locationcode, projectname, nofblocks', 'required'),
 			array('locationcode, deleted, addedby, lastmodifiedby, deletedby', 'numerical', 'integerOnly'=>true),
 			array('projectname', 'length', 'max'=>100),
-                        array('nofblocks','numerical', 'integerOnly'=>true, 'max'=>300),
+            array('nofblocks','numerical', 'integerOnly'=>true, 'max'=>800),
 			array('addeddate, addedtime, lastmodifieddate, lastmodifiedtime, deleteddate, deletedtime', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

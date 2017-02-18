@@ -50,7 +50,7 @@ echo $form->dropDownList($model, 'projectcode', $projects, array('prompt' => '',
 <?php } ?>
 </table>
 <div class="form-group">
-	<input type="text" name="num_rows" value="<?php echo isset($i) ? $i : 0; ?>" >
+	<input type="hidden" name="num_rows" value="<?php echo isset($i) ? $i : 0; ?>" >
 </div>
 
 <?php if(!empty($blockListdata)){ ?>
