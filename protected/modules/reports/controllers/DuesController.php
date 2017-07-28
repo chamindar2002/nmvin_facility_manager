@@ -49,6 +49,8 @@ class DuesController extends Controller
                 $lid = Yii::app()->getRequest()->getParam('lid');
                 $criteria->compare('locationcode',$lid);
             }
+            
+            Reports::disableFullGroupBy();
                         
             $total = ViewFacilitySaleProjectLocation::model()->count($criteria);
             $pages=new CPagination($total);

@@ -30,6 +30,9 @@ echo $form->dropDownList($model, 'projectcode', $projects, array('prompt' => '',
 <?php $i = 0; ?>
 
 <table class="table table-hover">
+    <tr>
+        <th>#</th><th>Status</th><th>Block/Unit No</th><th>Block/Unit Size</th><th>Block/Unit Price</th><th>&nbsp;</th>
+    </tr>
 <?php foreach($blockListdata As $bld){ ?>
 
 	<tr id="tr_row_id_<?php echo $i; ?>">
